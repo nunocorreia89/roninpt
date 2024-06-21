@@ -45,13 +45,260 @@
 
         /* Estilo do banner */
         #banner {
-            background-image: logo.png;
-    background-color: rgba(0, 0, 0, 0.7); /* Opacidade de 70% para o fundo preto */
-    color: #cba135;
-    padding: 2rem 0;
-    text-align: center;
-    background-size: contain; /* Ajusta o tamanho da imagem para conter a área do banner */
-}
+            background-color: #333333;
+            color: #cba135;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        /* Estilo das seções */
+        section {
+            padding: 2rem;
+            margin: 1rem 0;
+            background-color: #222222;
+            border-radius: 10px;
+            color: #cba135;
+        }
+
+        /* Estilo do rodapé */
+        footer {
+            background-color: #111111;
+            color: #cba135;
+            text-align: center;
+            padding: 1rem 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        footer ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        footer ul li a {
+            color: #cba135;
+            text-decoration: none;
+        }
+
+        /* Estilo do formulário de contato */
+        #contato form {
+            background-color: #000000;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+
+        #contato form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #cba135;
+        }
+
+        #contato form input[type="text"],
+        #contato form input[type="email"],
+        #contato form textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 2px solid #cba135;
+            border-radius: 5px;
+            font-size: 1rem;
+            color: #cba135;
+            background-color: #222222;
+            outline: none;
+        }
+
+        #contato form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        #contato form button {
+            background-color: #cba135;
+            color: #000000;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        #contato form button:hover {
+            background-color: #b99010;
+        }
+
+        /* Estilo do grid de jogadores */
+        .players-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+        }
+
+        .player {
+            text-align: center;
+        }
+
+        .player img {
+            max-width: 100%;
+            border-radius: 10px;
+            width: 150px;
+            height: auto;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .player img.zoomed {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1.2); /* Reduzido mais um pouco a altura do zoom */
+            z-index: 1000;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            max-width: 90vw; /* Limita a largura máxima à largura da viewport */
+            max-height: 90vh; /* Limita a altura máxima à altura da viewport */
+            object-fit: contain; /* Mantém proporções da imagem */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>RONIN PT</h1>
+        <nav>
+            <ul>
+                <li><a href="#sobre">Sobre Nós</a></li>
+                <li><a href="#jogadores">Jogadores</a></li>
+                <li><a href="#competicoes">Competições</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="banner">
+        <img src="logo.png" alt="Logo RONIN PT" style="max-width: 200px;">
+        <p>Onde a honra e a vitória se encontram</p>
+    </section>
+
+    <section id="sobre">
+        <h2>Sobre Nós</h2>
+        <p>Somos os RONIN PT, uma equipe portuguesa no mundo do gaming, fundada em 2024. Nascemos da união de um grupo de amigos, cuja amizade improvável se transformou em uma jornada de camaradagem e conquistas. Em cada batalha digital, honramos a tradição dos samurais modernos, buscando não apenas a vitória, mas também a excelência e o respeito mútuo. Juntos, somos mais do que uma equipe: somos uma família de guerreiros digitais comprometidos com a superação e a paixão pelo gaming.</p>
+    </section>
+
+    <section id="jogadores">
+        <h2>Jogadores</h2>
+        <div class="players-grid">
+            <div class="player">
+                <img src="KOR.jpg" alt="Jogador 1" id="player1">
+                <h3>Jogador 1</h3>
+                <p>Especialidade: Distribuidor de jogo</p>
+            </div>
+           <div class="player">
+                <img src="KOR.jpg" alt="Jogador 1" id="player1">
+                <h3>Jogador 1</h3>
+                <p>Especialidade: Distribuidor de jogo</p>
+            </div>
+            <div class="player">
+                <img src="KOR.jpg" alt="Jogador 1" id="player1">
+                <h3>Jogador 1</h3>
+                <p>Especialidade: Distribuidor de jogo</p>
+            </div>
+            <div class="player">
+                <img src="KOR.jpg" alt="Jogador 1" id="player1">
+                <h3>Jogador 1</h3>
+                <p>Especialidade: Distribuidor de jogo</p>
+            </div>
+            <div class="player">
+                <img src="KOR.jpg" alt="Jogador 1" id="player1">
+                <h3>Jogador 1</h3>
+                <p>Especialidade: Distribuidor de jogo</p>
+            </div>
+            <div class="player">
+                <img src="KOR.jpg" alt="Jogador 1" id="player1">
+                <h3>Jogador 1</h3>
+                <p>Especialidade: Distribuidor de jogo</p>
+            </div>
+            <div class="player">
+                <img src="KOR.jpg" alt="Jogador 1" id="player1">
+                <h3>Jogador 1</h3>
+                <p>Especialidade: Distribuidor de jogo</p>
+            </div>
+            <div class="player">
+                <img src="KOR.jpg" alt="Jogador 1" id="player1">
+                <h3>Jogador 1</h3>
+                <p>Especialidade: Distribuidor de jogo</p>
+            </div>
+            <div class="player">
+                <img src="KOR.jpg" alt="Jogador 1" id="player1">
+                <h3>Jogador 1</h3>
+                <p>Especialidade: Distribuidor de jogo</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="competicoes">
+        <h2>Competições</h2>
+        <ul>
+            <li>VPL - <a href="https://www.virtualproleague.com" style="color: white;">https://www.virtualproleague.com/portal/en/welcome</a></li>
+            <li>NG League - <a href="https://www.ngleague.com" style="color: white;">https://discord.gg/BsXBCTGX</a></li>
+        </ul>
+    <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RONIN PT</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilo de fonte inspirado na cultura samurai */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #000000;
+            color: #cba135;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Estilo de fonte específico para cabeçalhos */
+        h1, h2, h3 {
+            font-family: 'Yu Gothic', 'Yu Mincho', sans-serif;
+        }
+
+        /* Estilo de navegação */
+        header {
+            background-color: #111111;
+            color: #cba135;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        header nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        header nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        header nav ul li a {
+            color: #cba135;
+            text-decoration: none;
+        }
+
+        /* Estilo do banner */
+        #banner {
+            background-color: #333333;
+            color: #cba135;
+            padding: 2rem 0;
+            text-align: center;
+        }
 
         /* Estilo das seções */
         section {
