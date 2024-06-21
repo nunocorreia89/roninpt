@@ -2,13 +2,13 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    color: #f0d700; /* Dourado */
+    color: #f0d700; /* Dourado escuro */
     background-color: #000000; /* Preto */
 }
 
 header {
     background-color: #111111; /* Preto escuro */
-    color: #f0d700; /* Dourado */
+    color: #f0d700; /* Dourado escuro */
     padding: 1rem 0;
     text-align: center;
 }
@@ -24,13 +24,13 @@ header nav ul li {
 }
 
 header nav ul li a {
-    color: #f0d700; /* Dourado */
+    color: #f0d700; /* Dourado escuro */
     text-decoration: none;
 }
 
 #banner {
     background-color: #333333; /* Preto intermediário */
-    color: #f0d700; /* Dourado */
+    color: #f0d700; /* Dourado escuro */
     padding: 2rem 0;
     text-align: center;
 }
@@ -40,6 +40,7 @@ section {
     margin: 1rem 0;
     background-color: #222222; /* Preto */
     border-radius: 10px;
+    color: #f0d700; /* Dourado escuro */
 }
 
 #jogadores .player {
@@ -67,22 +68,22 @@ form input, form textarea {
     padding: 0.5rem;
     margin-top: 0.5rem;
     background-color: #333333; /* Preto intermediário */
-    color: #f0d700; /* Dourado */
-    border: 1px solid #f0d700; /* Dourado */
+    color: #f0d700; /* Dourado escuro */
+    border: 1px solid #f0d700; /* Dourado escuro */
 }
 
 form button {
     margin-top: 1rem;
     padding: 0.5rem;
     background-color: #111111; /* Preto escuro */
-    color: #f0d700; /* Dourado */
+    color: #f0d700; /* Dourado escuro */
     border: none;
     cursor: pointer;
 }
 
 footer {
     background-color: #111111; /* Preto escuro */
-    color: #f0d700; /* Dourado */
+    color: #f0d700; /* Dourado escuro */
     text-align: center;
     padding: 1rem 0;
 }
@@ -98,7 +99,7 @@ footer ul li {
 }
 
 footer ul li a {
-    color: #f0d700; /* Dourado */
+    color: #f0d700; /* Dourado escuro */
     text-decoration: none;
 }
 
@@ -110,11 +111,11 @@ footer ul li a {
 
 #biografia h2 {
     text-align: center;
-    color: #f0d700; /* Dourado */
+    color: #f0d700; /* Dourado escuro */
 }
 
 #biografia p {
     text-align: justify;
     margin-bottom: 1rem;
-    color: #f0d700; /* Dourado */
+    color: #f0d700; /* Dourado escuro */
 }
