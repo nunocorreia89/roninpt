@@ -151,16 +151,21 @@
             width: 150px; /* Tamanho menor */
             height: auto;
             transition: transform 0.3s ease; /* Adiciona transição suave */
+            cursor: pointer; /* Cursor de mão ao passar por cima */
         }
 
         .player img.zoomed {
-            transform: scale(3); /* Amplia a imagem mais */
+            transform: none; /* Remove o transform para permitir tamanho original */
             position: fixed;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) scale(3); /* Centraliza e amplia a imagem */
+            transform: translate(-50%, -50%);
             z-index: 1000;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra */
+            width: auto; /* Permite que a imagem seja do tamanho original */
+            height: auto; /* Permite que a imagem seja do tamanho original */
+            max-width: 90%; /* Limita o tamanho máximo ao tamanho da tela */
+            max-height: 90%; /* Limita o tamanho máximo ao tamanho da tela */
         }
     </style>
 </head>
