@@ -106,10 +106,12 @@ footer ul li a {
     background-color: #222222; /* Preto */
     padding: 2rem;
     border-radius: 10px;
+    text-align: center; /* Centraliza todo o conteúdo */
+    max-width: 800px; /* Define uma largura máxima para o conteúdo */
+    margin: 0 auto; /* Centraliza a seção na tela */
 }
 
 #biografia h2 {
-    text-align: center;
     color: #f0d700; /* Dourado */
 }
 
