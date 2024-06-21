@@ -150,6 +150,11 @@
             border-radius: 10px;
             width: 150px; /* Tamanho menor */
             height: auto;
+            transition: transform 0.3s ease; /* Adiciona transição suave */
+        }
+
+        .player img.zoomed {
+            transform: scale(2); /* Amplia a imagem */
         }
     </style>
 </head>
@@ -180,9 +185,9 @@
         <h2>Jogadores</h2>
         <div class="players-grid">
             <div class="player">
-                <img src="KOR.jpg" alt="Jogador 1">
+                <img src="KOR.jpg" alt="Jogador 1" id="player1">
                 <h3>Jogador 1</h3>
-                <p>Especialidade: Distribuicao de jogo</p>
+                <p>Especialidade: Ditribuicao de jogo</p>
             </div>
             <div class="player">
                 <img src="player2.jpg" alt="Jogador 2">
@@ -287,5 +292,12 @@
         </ul>
         <p>&copy; 2024 RONIN PT. Todos os direitos reservados.</p> <!-- Nome atualizado para RONIN PT -->
     </footer>
+
+    <script>
+        // JavaScript para alternar a classe 'zoomed' ao clicar na imagem do jogador 1
+        document.getElementById('player1').addEventListener('click', function() {
+            this.classList.toggle('zoomed');
+        });
+    </script>
 </body>
 </html>
