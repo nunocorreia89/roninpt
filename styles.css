@@ -8,7 +8,7 @@ body {
 
 header {
     header {
-    background-image: url('caminho/para/sua/imagem.jpg'); /* Substitua pelo caminho da sua imagem */
+    background-image: url(https://github.com/roninpt2024/roninpt/blob/main/logo.png?raw=true); /* Substitua pelo caminho da sua imagem */
     background-size: cover; /* Garante que a imagem cubra todo o cabeçalho */
     background-position: center center; /* Centraliza a imagem no cabeçalho */
     background-repeat: no-repeat; /* Evita repetição da imagem */
