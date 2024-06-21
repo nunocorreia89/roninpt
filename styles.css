@@ -7,16 +7,10 @@ body {
 }
 
 header {
-    background-image: url('logo.png');
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-color: #111111;
-    color: #cba135;
+    background-color: #111111; /* Preto escuro */
+    color: #f0d700; /* Dourado */
     padding: 1rem 0;
     text-align: center;
-    position: relative;
-    z-index: 1;
 }
 
 header nav ul {
