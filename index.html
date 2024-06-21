@@ -154,7 +154,13 @@
         }
 
         .player img.zoomed {
-            transform: scale(2); /* Amplia a imagem */
+            transform: scale(3); /* Amplia a imagem mais */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(3); /* Centraliza e amplia a imagem */
+            z-index: 1000;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra */
         }
     </style>
 </head>
@@ -187,7 +193,7 @@
             <div class="player">
                 <img src="KOR.jpg" alt="Jogador 1" id="player1">
                 <h3>Jogador 1</h3>
-                <p>Especialidade: Ditribuicao de jogo</p>
+                <p>Especialidade: Distribuidor de jogo</p>
             </div>
             <div class="player">
                 <img src="player2.jpg" alt="Jogador 2">
