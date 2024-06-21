@@ -110,13 +110,12 @@ footer ul li a {
 
 #biografia h2 {
     text-align: center;
-    color: #f0d700; /* Dourado */
-}
-
-#biografia p {
-    text-align: center;
     margin: 0 auto; /* Centraliza o conteúdo na tela */
     max-width: 800px; /* Define uma largura máxima para o conteúdo */
 }
+
+#biografia p {
+    text-align: justify;
+    margin-bottom: 1rem;
     color: #f0d700; /* Dourado */
 }
