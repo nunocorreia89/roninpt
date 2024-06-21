@@ -115,6 +115,6 @@ footer ul li a {
 
 #biografia p {
     text-align: justify;
-    margin-bottom: 1rem;
+   margin-bottom: 1.5rem; /* Espaço entre os parágrafos */
     color: #f0d700; /* Dourado */
 }
