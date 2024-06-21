@@ -60,13 +60,6 @@
             color: #cba135; /* Dourado mais escuro */
         }
 
-        /* Estilo dos links na seção de competições */
-        #competicoes a {
-            color: #ffffff; /* Cor branca para os links */
-            text-decoration: none;
-            font-weight: bold; /* Fonte em negrito para destacar os links */
-        }
-
         /* Estilo do rodapé */
         footer {
             background-color: #111111; /* Cor de fundo preto escuro */
@@ -81,10 +74,6 @@
         footer ul {
             list-style-type: none;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
         }
 
         footer ul li {
@@ -95,10 +84,6 @@
         footer ul li a {
             color: #cba135; /* Dourado mais escuro */
             text-decoration: none;
-        }
-
-        footer p {
-            margin-bottom: 10px; /* Adicionado para separar dos links */
         }
 
         /* Estilo do formulário de contato */
@@ -148,6 +133,24 @@
         #contato form button:hover {
             background-color: #b99010; /* Cor de fundo do botão ao passar o mouse */
         }
+
+        /* Estilo do grid de jogadores */
+        .players-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+        }
+
+        .player {
+            text-align: center;
+        }
+
+        .player img {
+            max-width: 100%;
+            border-radius: 10px;
+            width: 150px; /* Tamanho menor */
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -175,23 +178,91 @@
 
     <section id="jogadores">
         <h2>Jogadores</h2>
-        <div class="player">
-            <img src="KOR.jpg" alt="Jogador 1">
-            <h3>Jogador 1</h3>
-            <p>Especialidade: Distribuidor de jogo</p>
-        </div>
-        <div class="player">
-            <img src="player2.jpg" alt="Jogador 2">
-            <h3>Jogador 2</h3>
-            <p>Especialidade: MOBA</p>
+        <div class="players-grid">
+            <div class="player">
+                <img src="KOR.jpg" alt="Jogador 1">
+                <h3>Jogador 1</h3>
+                <p>Especialidade: Distribuicao de jogo</p>
+            </div>
+            <div class="player">
+                <img src="player2.jpg" alt="Jogador 2">
+                <h3>Jogador 2</h3>
+                <p>Especialidade: MOBA</p>
+            </div>
+            <div class="player">
+                <img src="player3.jpg" alt="Jogador 3">
+                <h3>Jogador 3</h3>
+                <p>Especialidade: RTS</p>
+            </div>
+            <div class="player">
+                <img src="player4.jpg" alt="Jogador 4">
+                <h3>Jogador 4</h3>
+                <p>Especialidade: Battle Royale</p>
+            </div>
+            <div class="player">
+                <img src="player5.jpg" alt="Jogador 5">
+                <h3>Jogador 5</h3>
+                <p>Especialidade: Fighting Games</p>
+            </div>
+            <div class="player">
+                <img src="player6.jpg" alt="Jogador 6">
+                <h3>Jogador 6</h3>
+                <p>Especialidade: FPS</p>
+            </div>
+            <div class="player">
+                <img src="player7.jpg" alt="Jogador 7">
+                <h3>Jogador 7</h3>
+                <p>Especialidade: MOBA</p>
+            </div>
+            <div class="player">
+                <img src="player8.jpg" alt="Jogador 8">
+                <h3>Jogador 8</h3>
+                <p>Especialidade: RTS</p>
+            </div>
+            <div class="player">
+                <img src="player9.jpg" alt="Jogador 9">
+                <h3>Jogador 9</h3>
+                <p>Especialidade: Battle Royale</p>
+            </div>
+            <div class="player">
+                <img src="player10.jpg" alt="Jogador 10">
+                <h3>Jogador 10</h3>
+                <p>Especialidade: Fighting Games</p>
+            </div>
+            <div class="player">
+                <img src="player11.jpg" alt="Jogador 11">
+                <h3>Jogador 11</h3>
+                <p>Especialidade: FPS</p>
+            </div>
+            <div class="player">
+                <img src="player12.jpg" alt="Jogador 12">
+                <h3>Jogador 12</h3>
+                <p>Especialidade: MOBA</p>
+            </div>
+            <div class="player">
+                <img src="player13.jpg" alt="Jogador 13">
+                <h3>Jogador 13</h3>
+                <p>Especialidade: RTS</p>
+            </div>
+            <div class="player">
+                <img src="player14.jpg" alt="Jogador 14">
+                <h3>Jogador 14</h3>
+                <p>Especialidade: Battle Royale</p>
+            </div>
+            <div class="player">
+                <img src="player15.jpg" alt="Jogador 15">
+                <h3>Jogador 15</h3>
+                <p>Especialidade: Fighting Games</p>
+            </div>
         </div>
     </section>
 
     <section id="competicoes">
         <h2>Competições</h2>
-        <p>Acompanhe nossas próximas competições:</p>
-        <p><strong><a href="https://exemplo.com/vpl" target="_blank" rel="noopener noreferrer">VPL:</a></strong> 15 de Agosto</p>
-        <p><strong><a href="https://exemplo.com/ng-league" target="_blank" rel="noopener noreferrer">NG League:</a></strong> 5 de Setembro</p>
+        <ul>
+            <li>VPL - <a href="https://www.virtualproleague.com" style="color: white;">https://www.virtualproleague.com</a></li>
+            <li>NG League - <a href="https://www.ngleague.com" style="color: white;">https://www.ngleague.com</a></li>
+        </ul>
     </section>
 
     <section id="contato">
@@ -208,6 +279,7 @@
     </section>
 
     <footer>
+        <p>Siga-nos nas redes sociais:</p>
         <ul>
             <li><a href="#">Twitter</a></li>
             <li><a href="#">Instagram</a></li>
@@ -217,9 +289,3 @@
     </footer>
 </body>
 </html>
-```
-
-### Explicações:
-
-1. **Estilo dos Links na Seção de Competições:**
-   - Foi adicionado um estilo CSS específico para os links dentro da seção de competições (`
