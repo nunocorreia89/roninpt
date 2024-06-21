@@ -36,10 +36,9 @@ header nav ul li a {
 }
 
 section {
-    padding: 2rem;
-    margin: 1rem 0;
-    background-color: #222222; /* Preto */
-    border-radius: 10px;
+   text-align: center;
+    margin: 0 auto; /* Centraliza o conteúdo na tela */
+    max-width: 800px; /* Define uma largura máxima para o conteúdo */
 }
 
 #jogadores .player {
