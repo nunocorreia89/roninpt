@@ -114,7 +114,9 @@ footer ul li a {
 }
 
 #biografia p {
-    text-align: justify;
-   margin-bottom: 1.5rem; /* Espaço entre os parágrafos */
+    text-align: center;
+    margin: 0 auto; /* Centraliza o conteúdo na tela */
+    max-width: 800px; /* Define uma largura máxima para o conteúdo */
+}
     color: #f0d700; /* Dourado */
 }
