@@ -2,13 +2,13 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    color: #333;
-    background-color: #f4f4f4;
+    color: #f0d700; /* Dourado */
+    background-color: #000000; /* Preto */
 }
 
 header {
-    background-color: #222;
-    color: white;
+    background-color: #111111; /* Preto escuro */
+    color: #f0d700; /* Dourado */
     padding: 1rem 0;
     text-align: center;
 }
@@ -24,13 +24,13 @@ header nav ul li {
 }
 
 header nav ul li a {
-    color: white;
+    color: #f0d700; /* Dourado */
     text-decoration: none;
 }
 
 #banner {
-    background-color: #555;
-    color: white;
+    background-color: #333333; /* Preto intermediário */
+    color: #f0d700; /* Dourado */
     padding: 2rem 0;
     text-align: center;
 }
@@ -38,6 +38,8 @@ header nav ul li a {
 section {
     padding: 2rem;
     margin: 1rem 0;
+    background-color: #222222; /* Preto */
+    border-radius: 10px;
 }
 
 #jogadores .player {
@@ -64,20 +66,23 @@ form label {
 form input, form textarea {
     padding: 0.5rem;
     margin-top: 0.5rem;
+    background-color: #333333; /* Preto intermediário */
+    color: #f0d700; /* Dourado */
+    border: 1px solid #f0d700; /* Dourado */
 }
 
 form button {
     margin-top: 1rem;
     padding: 0.5rem;
-    background-color: #222;
-    color: white;
+    background-color: #111111; /* Preto escuro */
+    color: #f0d700; /* Dourado */
     border: none;
     cursor: pointer;
 }
 
 footer {
-    background-color: #222;
-    color: white;
+    background-color: #111111; /* Preto escuro */
+    color: #f0d700; /* Dourado */
     text-align: center;
     padding: 1rem 0;
 }
@@ -93,6 +98,23 @@ footer ul li {
 }
 
 footer ul li a {
-    color: white;
+    color: #f0d700; /* Dourado */
     text-decoration: none;
+}
+
+#biografia {
+    background-color: #222222; /* Preto */
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+#biografia h2 {
+    text-align: center;
+    color: #f0d700; /* Dourado */
+}
+
+#biografia p {
+    text-align: justify;
+    margin-bottom: 1rem;
+    color: #f0d700; /* Dourado */
 }
