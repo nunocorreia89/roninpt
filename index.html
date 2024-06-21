@@ -155,14 +155,15 @@
         }
 
         .player img.zoomed {
-            transform: translate(-50%, -50%);
             position: fixed;
             top: 50%;
             left: 50%;
+            transform: translate(-50%, -50%) scale(1.5); /* Reduzido para metade do tamanho original */
             z-index: 1000;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            max-width: 80%; /* Limita a largura máxima */
-            max-height: 80%; /* Limita a altura máxima */
+            max-width: 90vw; /* Limita a largura máxima à largura da viewport */
+            max-height: 90vh; /* Limita a altura máxima à altura da viewport */
+            object-fit: contain; /* Mantém proporções da imagem */
         }
     </style>
 </head>
@@ -186,7 +187,7 @@
 
     <section id="sobre">
         <h2>Sobre Nós</h2>
-        <p>Somos os RONIN PT, uma equipe portuguesa no mundo do gaming, fundada em 2024. Nascemos da união de um grupo de amigos, cuja amizade improvável se transformou em uma jornada de camaradagem e conquistas. Em cada batalha digital, honramos a tradição dos samurais modernos, buscando não apenas a vitória, mas também a excelência e o respeito mútuo. Juntos, somos mais do que uma equipe: somos uma família de guerreiros digitais comprometidos com a superação e a paixão pelo gaming.</p>
+        <p>Somos os RONIN PT, uma equipa Portuguesa no mundo do eSports, fundada em 2024. Nascemos da união de um grupo de amigos, cuja amizade improvável se transformou em uma jornada de camaradagem e conquistas. Em cada batalha digital, honramos a tradição dos Ronin modernos, buscando não apenas a vitória, mas também a excelência e o respeito mútuo. Juntos, somos mais do que uma equipa: somos uma família de guerreiros digitais comprometidos com a superação e a paixão pelo mundo gaming.</p>
     </section>
 
     <section id="jogadores">
@@ -197,7 +198,7 @@
                 <h3>Jogador 1</h3>
                 <p>Especialidade: Distribuidor de jogo</p>
             </div>
-            <!-- outros jogadores omitidos por brevidade -->
+            <!-- Adicione outros jogadores conforme necessário -->
         </div>
     </section>
 
