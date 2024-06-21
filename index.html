@@ -3,164 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RONIN PT - Jogadores</title>
+    <title>RONIN PT</title> <!-- Nome atualizado para RONIN PT -->
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Estilo geral */
+        /* Estilo de fonte inspirado na cultura samurai */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #cba135;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte padrão para compatibilidade */
+            background-color: #000000; /* Cor de fundo preto */
+            color: #cba135; /* Dourado mais escuro */
             margin: 0;
             padding: 0;
         }
 
-        /* Estilo do container de jogadores */
-        .players-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 20px;
+        /* Estilo de fonte específico para cabeçalhos */
+        h1, h2, h3 {
+            font-family: 'Yu Gothic', 'Yu Mincho', sans-serif; /* Fonte inspirada na cultura samurai */
         }
 
-        /* Estilo de cada jogador */
-        .player {
+        /* Estilo de navegação */
+        header {
+            background-color: #111111; /* Cor de fundo preto escuro */
+            color: #cba135; /* Dourado mais escuro */
+            padding: 1rem 0;
             text-align: center;
-            margin: 10px;
         }
 
-        .player img {
-            max-width: 100px;
-            height: auto;
-            border-radius: 50%;
+        header nav ul {
+            list-style-type: none;
+            padding: 0;
         }
 
-        .player p {
-            margin: 5px 0;
+        header nav ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        header nav ul li a {
+            color: #cba135; /* Dourado mais escuro */
+            text-decoration: none;
+        }
+
+        /* Estilo do banner */
+        #banner {
+            background-color: #333333; /* Cor de fundo preto intermediário */
+            color: #cba135; /* Dourado mais escuro */
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        /* Estilo das seções */
+        section {
+            padding: 2rem;
+            margin: 1rem 0;
+            background-color: #222222; /* Cor de fundo preto */
+            border-radius: 10px;
+            color: #cba135; /* Dourado mais escuro */
+        }
+
+        /* Estilo do rodapé */
+        footer {
+            background-color: #111111; /* Cor de fundo preto escuro */
+            color: #cba135; /* Dourado mais escuro */
+            text-align: center;
+            padding: 1rem 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        footer ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        footer ul li a {
+            color: #cba135; /* Dourado mais escuro */
+            text-decoration: none;
+        }
+
+        /* Estilo do formulário de contato */
+        #contato form {
+            background-color: #000000; /* Cor de fundo dos campos */
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+
+        #contato form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #cba135; /* Cor do texto dos rótulos */
+        }
+
+        #contato form input[type="text"],
+        #contato form input[type="email"],
+        #contato form textarea {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 2px solid #cba135; /* Borda com cor #cba135 */
+            border-radius: 5px;
+            font-size: 1rem;
+            color: #cba135; /* Cor do texto */
+            background-color: #222222; /* Cor de fundo dos campos */
+            outline: none; /* Remover contorno ao focar */
+        }
+
+        #contato form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        #contato form button {
+            background-color: #cba135; /* Cor de fundo do botão */
+            color: #000000; /* Cor do texto do botão */
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        #contato form button:hover {
+            background-color: #b99010; /* Cor de fundo do botão ao passar o mouse */
         }
     </style>
 </head>
 <body>
-    <div class="players-container">
-        <!-- Jogador 1 -->
-        <div class="player">
-            <img src="jogador1.png" alt="Jogador 1">
-            <p>Jogador 1</p>
-        </div>
+    <header>
+        <h1>RONIN PT</h1> <!-- Nome atualizado para RONIN PT -->
+        <nav>
+            <ul>
+                <li><a href="#sobre">Sobre Nós</a></li>
+                <li><a href="#jogadores">Jogadores</a></li>
+                <li><a href="#competicoes">Competições</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        <!-- Jogador 2 -->
-        <div class="player">
-            <img src="jogador2.png" alt="Jogador 2">
-            <p>Jogador 2</p>
-        </div>
+    <section id="banner">
+        <img src="logo.png" alt="Logo RONIN PT" style="max-width: 200px;"> <!-- Logo adicionado -->
+        <p>Onde a honra e a vitória se encontram</p>
+    </section>
 
-        <!-- Jogador 3 -->
-        <div class="player">
-            <img src="jogador3.png" alt="Jogador 3">
-            <p>Jogador 3</p>
-        </div>
+    <section id="sobre">
+        <h2>Sobre Nós</h2>
+        <p>Somos os RONIN PT, uma equipe portuguesa no mundo do gaming, fundada em 2024. Nascemos da união de um grupo de amigos, cuja amizade improvável se transformou em uma jornada de camaradagem e conquistas. Em cada batalha digital, honramos a tradição dos samurais modernos, buscando não apenas a vitória, mas também a excelência e o respeito mútuo. Juntos, somos mais do que uma equipe: somos uma família de guerreiros digitais comprometidos com a superação e a paixão pelo gaming.</p>
+    </section>
 
-        <!-- Jogador 4 -->
+    <section id="jogadores">
+        <h2>Jogadores</h2>
         <div class="player">
-            <img src="jogador4.png" alt="Jogador 4">
-            <p>Jogador 4</p>
+            <img src="player1.jpg" alt="Jogador 1">
+            <h3>Jogador 1</h3>
+            <p>Especialidade: FPS</p>
         </div>
+        <div class="player">
+            <img src="player2.jpg" alt="Jogador 2">
+            <h3>Jogador 2</h3>
+            <p>Especialidade: MOBA</p>
+        </div>
+    </section>
 
-        <!-- Jogador 5 -->
-        <div class="player">
-            <img src="jogador5.png" alt="Jogador 5">
-            <p>Jogador 5</p>
-        </div>
+    <section id="competicoes">
+        <h2>Competições</h2>
+        <ul>
+            <li>Campeonato Mundial - 25 de Junho</li>
+            <li>Desafio das Lendas - 10 de Julho</li>
+        </ul>
+    </section>
 
-        <!-- Jogador 6 -->
-        <div class="player">
-            <img src="jogador6.png" alt="Jogador 6">
-            <p>Jogador 6</p>
-        </div>
+    <section id="contato">
+        <h2>Contato</h2>
+        <form action="submit_form.php" method="post">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Mensagem:</label>
+            <textarea id="message" name="message" required></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
 
-        <!-- Jogador 7 -->
-        <div class="player">
-            <img src="jogador7.png" alt="Jogador 7">
-            <p>Jogador 7</p>
-        </div>
-
-        <!-- Jogador 8 -->
-        <div class="player">
-            <img src="jogador8.png" alt="Jogador 8">
-            <p>Jogador 8</p>
-        </div>
-
-        <!-- Jogador 9 -->
-        <div class="player">
-            <img src="jogador9.png" alt="Jogador 9">
-            <p>Jogador 9</p>
-        </div>
-
-        <!-- Jogador 10 -->
-        <div class="player">
-            <img src="jogador10.png" alt="Jogador 10">
-            <p>Jogador 10</p>
-        </div>
-
-        <!-- Jogador 11 -->
-        <div class="player">
-            <img src="jogador11.png" alt="Jogador 11">
-            <p>Jogador 11</p>
-        </div>
-
-        <!-- Jogador 12 -->
-        <div class="player">
-            <img src="jogador12.png" alt="Jogador 12">
-            <p>Jogador 12</p>
-        </div>
-
-        <!-- Jogador 13 -->
-        <div class="player">
-            <img src="jogador13.png" alt="Jogador 13">
-            <p>Jogador 13</p>
-        </div>
-
-        <!-- Jogador 14 -->
-        <div class="player">
-            <img src="jogador14.png" alt="Jogador 14">
-            <p>Jogador 14</p>
-        </div>
-
-        <!-- Jogador 15 -->
-        <div class="player">
-            <img src="jogador15.png" alt="Jogador 15">
-            <p>Jogador 15</p>
-        </div>
-
-        <!-- Jogador 16 -->
-        <div class="player">
-            <img src="jogador16.png" alt="Jogador 16">
-            <p>Jogador 16</p>
-        </div>
-
-        <!-- Jogador 17 -->
-        <div class="player">
-            <img src="jogador17.png" alt="Jogador 17">
-            <p>Jogador 17</p>
-        </div>
-
-        <!-- Jogador 18 -->
-        <div class="player">
-            <img src="jogador18.png" alt="Jogador 18">
-            <p>Jogador 18</p>
-        </div>
-
-        <!-- Jogador 19 -->
-        <div class="player">
-            <img src="jogador19.png" alt="Jogador 19">
-            <p>Jogador 19</p>
-        </div>
-
-        <!-- Jogador 20 -->
-        <div class="player">
-            <img src="jogador20.png" alt="Jogador 20">
-            <p>Jogador 20</p>
-        </div>
-    </div>
+    <footer>
+        <p>Siga-nos nas redes sociais:</p>
+        <ul>
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Facebook</a></li>
+        </ul>
+        <p>&copy; 2024 RONIN PT. Todos os direitos reservados.</p> <!-- Nome atualizado para RONIN PT -->
+    </footer>
 </body>
 </html>
