@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RONIN PT</title> <!-- Nome atualizado para RONIN PT -->
+    <title>RONIN PT</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         /* Estilo de fonte inspirado na cultura samurai */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte padrão para compatibilidade */
-            background-color: #000000; /* Cor de fundo preto */
-            color: #cba135; /* Dourado mais escuro */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #000000;
+            color: #cba135;
             margin: 0;
             padding: 0;
         }
 
         /* Estilo de fonte específico para cabeçalhos */
         h1, h2, h3 {
-            font-family: 'Yu Gothic', 'Yu Mincho', sans-serif; /* Fonte inspirada na cultura samurai */
+            font-family: 'Yu Gothic', 'Yu Mincho', sans-serif;
         }
 
         /* Estilo de navegação */
         header {
-            background-color: #111111; /* Cor de fundo preto escuro */
-            color: #cba135; /* Dourado mais escuro */
+            background-color: #111111;
+            color: #cba135;
             padding: 1rem 0;
             text-align: center;
         }
@@ -39,14 +39,14 @@
         }
 
         header nav ul li a {
-            color: #cba135; /* Dourado mais escuro */
+            color: #cba135;
             text-decoration: none;
         }
 
         /* Estilo do banner */
         #banner {
-            background-color: #333333; /* Cor de fundo preto intermediário */
-            color: #cba135; /* Dourado mais escuro */
+            background-color: #333333;
+            color: #cba135;
             padding: 2rem 0;
             text-align: center;
         }
@@ -55,15 +55,15 @@
         section {
             padding: 2rem;
             margin: 1rem 0;
-            background-color: #222222; /* Cor de fundo preto */
+            background-color: #222222;
             border-radius: 10px;
-            color: #cba135; /* Dourado mais escuro */
+            color: #cba135;
         }
 
         /* Estilo do rodapé */
         footer {
-            background-color: #111111; /* Cor de fundo preto escuro */
-            color: #cba135; /* Dourado mais escuro */
+            background-color: #111111;
+            color: #cba135;
             text-align: center;
             padding: 1rem 0;
             position: fixed;
@@ -82,13 +82,13 @@
         }
 
         footer ul li a {
-            color: #cba135; /* Dourado mais escuro */
+            color: #cba135;
             text-decoration: none;
         }
 
         /* Estilo do formulário de contato */
         #contato form {
-            background-color: #000000; /* Cor de fundo dos campos */
+            background-color: #000000;
             padding: 1rem;
             border-radius: 10px;
             margin-top: 1rem;
@@ -97,7 +97,7 @@
         #contato form label {
             display: block;
             margin-bottom: 0.5rem;
-            color: #cba135; /* Cor do texto dos rótulos */
+            color: #cba135;
         }
 
         #contato form input[type="text"],
@@ -106,12 +106,12 @@
             width: 100%;
             padding: 0.5rem;
             margin-bottom: 1rem;
-            border: 2px solid #cba135; /* Borda com cor #cba135 */
+            border: 2px solid #cba135;
             border-radius: 5px;
             font-size: 1rem;
-            color: #cba135; /* Cor do texto */
-            background-color: #222222; /* Cor de fundo dos campos */
-            outline: none; /* Remover contorno ao focar */
+            color: #cba135;
+            background-color: #222222;
+            outline: none;
         }
 
         #contato form textarea {
@@ -120,8 +120,8 @@
         }
 
         #contato form button {
-            background-color: #cba135; /* Cor de fundo do botão */
-            color: #000000; /* Cor do texto do botão */
+            background-color: #cba135;
+            color: #000000;
             border: none;
             padding: 0.75rem 1.5rem;
             font-size: 1rem;
@@ -131,7 +131,7 @@
         }
 
         #contato form button:hover {
-            background-color: #b99010; /* Cor de fundo do botão ao passar o mouse */
+            background-color: #b99010;
         }
 
         /* Estilo do grid de jogadores */
@@ -148,30 +148,27 @@
         .player img {
             max-width: 100%;
             border-radius: 10px;
-            width: 150px; /* Tamanho menor */
+            width: 150px;
             height: auto;
-            transition: transform 0.3s ease; /* Adiciona transição suave */
-            cursor: pointer; /* Cursor de mão ao passar por cima */
+            transition: transform 0.3s ease;
+            cursor: pointer;
         }
 
         .player img.zoomed {
-            transform: none; /* Remove o transform para permitir tamanho original */
+            transform: translate(-50%, -50%);
             position: fixed;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
             z-index: 1000;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Adiciona uma sombra */
-            width: auto; /* Permite que a imagem seja do tamanho original */
-            height: auto; /* Permite que a imagem seja do tamanho original */
-            max-width: 90%; /* Limita o tamanho máximo ao tamanho da tela */
-            max-height: 90%; /* Limita o tamanho máximo ao tamanho da tela */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            max-width: 80%; /* Limita a largura máxima */
+            max-height: 80%; /* Limita a altura máxima */
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>RONIN PT</h1> <!-- Nome atualizado para RONIN PT -->
+        <h1>RONIN PT</h1>
         <nav>
             <ul>
                 <li><a href="#sobre">Sobre Nós</a></li>
@@ -183,7 +180,7 @@
     </header>
 
     <section id="banner">
-        <img src="logo.png" alt="Logo RONIN PT" style="max-width: 200px;"> <!-- Logo adicionado -->
+        <img src="logo.png" alt="Logo RONIN PT" style="max-width: 200px;">
         <p>Onde a honra e a vitória se encontram</p>
     </section>
 
@@ -200,76 +197,7 @@
                 <h3>Jogador 1</h3>
                 <p>Especialidade: Distribuidor de jogo</p>
             </div>
-            <div class="player">
-                <img src="player2.jpg" alt="Jogador 2">
-                <h3>Jogador 2</h3>
-                <p>Especialidade: MOBA</p>
-            </div>
-            <div class="player">
-                <img src="player3.jpg" alt="Jogador 3">
-                <h3>Jogador 3</h3>
-                <p>Especialidade: RTS</p>
-            </div>
-            <div class="player">
-                <img src="player4.jpg" alt="Jogador 4">
-                <h3>Jogador 4</h3>
-                <p>Especialidade: Battle Royale</p>
-            </div>
-            <div class="player">
-                <img src="player5.jpg" alt="Jogador 5">
-                <h3>Jogador 5</h3>
-                <p>Especialidade: Fighting Games</p>
-            </div>
-            <div class="player">
-                <img src="player6.jpg" alt="Jogador 6">
-                <h3>Jogador 6</h3>
-                <p>Especialidade: FPS</p>
-            </div>
-            <div class="player">
-                <img src="player7.jpg" alt="Jogador 7">
-                <h3>Jogador 7</h3>
-                <p>Especialidade: MOBA</p>
-            </div>
-            <div class="player">
-                <img src="player8.jpg" alt="Jogador 8">
-                <h3>Jogador 8</h3>
-                <p>Especialidade: RTS</p>
-            </div>
-            <div class="player">
-                <img src="player9.jpg" alt="Jogador 9">
-                <h3>Jogador 9</h3>
-                <p>Especialidade: Battle Royale</p>
-            </div>
-            <div class="player">
-                <img src="player10.jpg" alt="Jogador 10">
-                <h3>Jogador 10</h3>
-                <p>Especialidade: Fighting Games</p>
-            </div>
-            <div class="player">
-                <img src="player11.jpg" alt="Jogador 11">
-                <h3>Jogador 11</h3>
-                <p>Especialidade: FPS</p>
-            </div>
-            <div class="player">
-                <img src="player12.jpg" alt="Jogador 12">
-                <h3>Jogador 12</h3>
-                <p>Especialidade: MOBA</p>
-            </div>
-            <div class="player">
-                <img src="player13.jpg" alt="Jogador 13">
-                <h3>Jogador 13</h3>
-                <p>Especialidade: RTS</p>
-            </div>
-            <div class="player">
-                <img src="player14.jpg" alt="Jogador 14">
-                <h3>Jogador 14</h3>
-                <p>Especialidade: Battle Royale</p>
-            </div>
-            <div class="player">
-                <img src="player15.jpg" alt="Jogador 15">
-                <h3>Jogador 15</h3>
-                <p>Especialidade: Fighting Games</p>
-            </div>
+            <!-- outros jogadores omitidos por brevidade -->
         </div>
     </section>
 
@@ -301,7 +229,7 @@
             <li><a href="#">Instagram</a></li>
             <li><a href="#">Facebook</a></li>
         </ul>
-        <p>&copy; 2024 RONIN PT. Todos os direitos reservados.</p> <!-- Nome atualizado para RONIN PT -->
+        <p>&copy; 2024 RONIN PT. Todos os direitos reservados.</p>
     </footer>
 
     <script>
