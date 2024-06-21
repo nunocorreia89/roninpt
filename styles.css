@@ -7,14 +7,16 @@ body {
 }
 
 header {
-    background-image: https://github.com/roninpt2024/roninpt/blob/main/logo.png?raw=true ; /* Substitua pelo caminho da sua imagem */
-    background-size: cover; /* Garante que a imagem cubra todo o cabeçalho */
-    background-position: center center; /* Centraliza a imagem no cabeçalho */
-    background-repeat: no-repeat; /* Evita repetição da imagem */
-    background-color: #111111; /* Cor de fundo de fallback */
+    background-image: url('logo.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: #111111;
     color: #cba135;
     padding: 1rem 0;
     text-align: center;
+    position: relative;
+    z-index: 1;
 }
 
 header nav ul {
