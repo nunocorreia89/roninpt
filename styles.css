@@ -36,9 +36,10 @@ header nav ul li a {
 }
 
 section {
-   text-align: center;
-    margin: 0 auto; /* Centraliza o conteúdo na tela */
-    max-width: 800px; /* Define uma largura máxima para o conteúdo */
+    padding: 2rem;
+    margin: 1rem 0;
+    background-color: #222222; /* Preto */
+    border-radius: 10px;
 }
 
 #jogadores .player {
@@ -109,12 +110,11 @@ footer ul li a {
 
 #biografia h2 {
     text-align: center;
-    margin: 0 auto; /* Centraliza o conteúdo na tela */
-    max-width: 800px; /* Define uma largura máxima para o conteúdo */
+    color: #f0d700; /* Dourado */
 }
 
 #biografia p {
-    text-align: center;
-    margin: 0 auto; /* Centraliza o conteúdo na tela */
-    max-width: 800px; /* Define uma largura máxima para o conteúdo */
+    text-align: justify;
+    margin-bottom: 1rem;
+    color: #f0d700; /* Dourado */
 }
