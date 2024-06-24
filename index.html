@@ -103,7 +103,8 @@
             resize: vertical;
             min-height: 100px;
         }
-        #contato form button {
+        #contato form button,
+        #play-music-button {
             background-color: #cba135;
             color: #000000;
             border: none;
@@ -113,7 +114,8 @@
             border-radius: 5px;
             transition: background-color 0.3s ease;
         }
-        #contato form button:hover {
+        #contato form button:hover,
+        #play-music-button:hover {
             background-color: #b99010;
         }
         /* Estilo do grid de jogadores */
@@ -158,23 +160,14 @@
             </ul>
         </nav>
     </header>
-    <!-- Adicionar música de fundo -->
     <audio id="background-music" loop>
-    <source src="background-music.mp3" type="audio/mpeg">
-    Seu navegador não suporta o elemento de áudio.
-</audio>
-<button onclick="playMusic()">Reproduzir Música</button>
-
-<script>
-    function playMusic() {
-        var audio = document.getElementById('background-music');
-        audio.play();
-    }
-</script>
-
+        <source src="background-music.mp3" type="audio/mpeg">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
     <section id="banner">
         <img src="logo.png" alt="Logo RONIN PT" style="max-width: 200px;">
         <p>Onde a honra e a vitória se encontram</p>
+        <button id="play-music-button" onclick="playMusic()">Reproduzir Música</button>
     </section>
     <section id="sobre">
         <h2>Sobre Nós</h2>
@@ -192,7 +185,7 @@
                 <h3>Jogador 1</h3>
                 <p>Especialidade: Distribuidor de jogo</p>
             </div>
-            <!-- Repetir conforme necessário para outros jogadores -->
+            <!-- Adicione os outros jogadores aqui -->
         </div>
     </section>
     <section id="competicoes">
@@ -223,13 +216,26 @@
         <p>&copy; 2024 RONIN PT. Todos os direitos reservados.</p>
     </footer>
     <script>
-        // JavaScript para alternar a classe 'zoomed' ao clicar na imagem do jogador
-        document.querySelectorAll('.player img').forEach(item => {
-            item.addEventListener('click', function() {
-                this.classList.toggle('zoomed');
+        function playMusic() {
+            var audio = document.getElementById('background-music');
+            audio.play();
+        }
+
+        // JavaScript para alternar a classe 'zoomed' ao clicar na imagem
+        var playerImages = document.querySelectorAll('.player img');
+        playerImages.forEach(function(image) {
+            image.addEventListener('click', function() {
+                if (this.classList.contains('zoomed')) {
+                    this.classList.remove('zoomed');
+                } else {
+                    // Remove a classe 'zoomed' de todas as outras imagens
+                    playerImages.forEach(function(img) {
+                        img.classList.remove('zoomed');
+                    });
+                    this.classList.add('zoomed');
+                }
             });
         });
     </script>
 </body>
 </html>
-
