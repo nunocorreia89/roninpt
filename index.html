@@ -200,15 +200,27 @@
     </section>
     <section id="contato">
         <h2>Contato</h2>
-        <form action="submit_form.php" method="post">
-            <label for="name">Nome:</label>
-            <input type="text" id="name" name="name" autocomplete="name" required>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" autocomplete="email" required>
-            <label for="message">Mensagem:</label>
-            <textarea id="message" name="message" autocomplete="off" required></textarea>
-            <button type="submit">Enviar</button>
-        </form>
+        <form name="contact" method="POST" data-netlify="true">
+  <p>
+    <label>Your Name: <input type="text" name="name" /></label>
+  </p>
+  <p>
+    <label>Your Email: <input type="email" name="email" /></label>
+  </p>
+  <p>
+    <label>Your Role: <select name="role[]" multiple>
+      <option value="leader">Leader</option>
+      <option value="follower">Follower</option>
+    </select></label>
+  </p>
+  <p>
+    <label>Message: <textarea name="message"></textarea></label>
+  </p>
+  <p>
+    <button type="submit">Send</button>
+  </p>
+</form>
+
     </section>
     <footer>
         <p>Siga-nos nas redes sociais:</p>
