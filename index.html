@@ -159,10 +159,11 @@
         </nav>
     </header>
     <!-- Adicionar música de fundo -->
-    <audio id="background-music" autoplay loop>
+    <audio id="background-music" loop>
         <source src="background-music.mp3" type="audio/mpeg">
         Seu navegador não suporta o elemento de áudio.
     </audio>
+    <button onclick="playAudio()">Reproduzir Música</button>
     <section id="banner">
         <img src="logo.png" alt="Logo RONIN PT" style="max-width: 200px;">
         <p>Onde a honra e a vitória se encontram</p>
@@ -183,46 +184,7 @@
                 <h3>Jogador 1</h3>
                 <p>Especialidade: Distribuidor de jogo</p>
             </div>
-           <div class="player">
-                <img src="KOR.jpg" alt="Jogador 1" id="player1">
-                <h3>Jogador 1</h3>
-                <p>Especialidade: Distribuidor de jogo</p>
-            </div>
-            <div class="player">
-                <img src="KOR.jpg" alt="Jogador 1" id="player1">
-                <h3>Jogador 1</h3>
-                <p>Especialidade: Distribuidor de jogo</p>
-            </div>
-            <div class="player">
-                <img src="KOR.jpg" alt="Jogador 1" id="player1">
-                <h3>Jogador 1</h3>
-                <p>Especialidade: Distribuidor de jogo</p>
-            </div>
-            <div class="player">
-                <img src="KOR.jpg" alt="Jogador 1" id="player1">
-                <h3>Jogador 1</h3>
-                <p>Especialidade: Distribuidor de jogo</p>
-            </div>
-            <div class="player">
-                <img src="KOR.jpg" alt="Jogador 1" id="player1">
-                <h3>Jogador 1</h3>
-                <p>Especialidade: Distribuidor de jogo</p>
-            </div>
-            <div class="player">
-                <img src="KOR.jpg" alt="Jogador 1" id="player1">
-                <h3>Jogador 1</h3>
-                <p>Especialidade: Distribuidor de jogo</p>
-            </div>
-            <div class="player">
-                <img src="KOR.jpg" alt="Jogador 1" id="player1">
-                <h3>Jogador 1</h3>
-                <p>Especialidade: Distribuidor de jogo</p>
-            </div>
-            <div class="player">
-                <img src="KOR.jpg" alt="Jogador 1" id="player1">
-                <h3>Jogador 1</h3>
-                <p>Especialidade: Distribuidor de jogo</p>
-            </div>
+            <!-- Repetir conforme necessário para outros jogadores -->
         </div>
     </section>
     <section id="competicoes">
@@ -253,6 +215,11 @@
         <p>&copy; 2024 RONIN PT. Todos os direitos reservados.</p>
     </footer>
     <script>
+        function playAudio() {
+            var audio = document.getElementById('background-music');
+            audio.play();
+        }
+
         // JavaScript para alternar a classe 'zoomed' ao clicar na imagem do jogador 1
         document.getElementById('player1').addEventListener('click', function() {
             this.classList.toggle('zoomed');
