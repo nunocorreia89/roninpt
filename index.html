@@ -80,6 +80,7 @@
             padding: 1rem;
             border-radius: 10px;
             margin-top: 1rem;
+            text-align: center;
         }
         #contato form label {
             display: block;
@@ -90,14 +91,16 @@
         #contato form input[type="email"],
         #contato form textarea {
             width: 100%;
+            max-width: 400px; /* Define a largura máxima */
             padding: 0.5rem;
-            margin-bottom: 1rem;
+            margin: 0 auto 1rem auto; /* Centraliza os campos */
             border: 2px solid #cba135;
             border-radius: 5px;
             font-size: 1rem;
             color: #cba135;
             background-color: #222222;
             outline: none;
+            display: block;
         }
         #contato form textarea {
             resize: vertical;
