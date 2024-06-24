@@ -160,7 +160,7 @@
             </ul>
         </nav>
     </header>
-    <audio id="background-music" loop>
+    <audio id="background-music">
         <source src="background-music.mp3" type="audio/mpeg">
         Seu navegador não suporta o elemento de áudio.
     </audio>
@@ -219,9 +219,27 @@
         function playMusic() {
             var audio = document.getElementById('background-music');
             audio.play();
+
+            // Inicia o fade-out quando a música estiver próxima do fim
+            audio.addEventListener('timeupdate', function() {
+                var fadePoint = audio.duration - 5; // Inicia o fade-out 5 segundos antes do fim
+                if (audio.currentTime >= fadePoint) {
+                    var fadeDuration = 5; // Duração do fade-out em segundos
+                    var volumeInterval = audio.volume / (fadeDuration * 10); // Reduz o volume em pequenos intervalos
+
+                    var fadeAudio = setInterval(function() {
+                        if (audio.volume > volumeInterval) {
+                            audio.volume -= volumeInterval;
+                        } else {
+                            audio.volume = 0;
+                            clearInterval(fadeAudio);
+                        }
+                    }, 100); // Reduz o volume a cada 100ms
+                }
+            });
         }
 
-        // JavaScript para alternar a classe 'zoomed' ao clicar na imagem
+        // JavaScript para alternar a classe 'zoomed' ao clicar nas imagens dos jogadores
         var playerImages = document.querySelectorAll('.player img');
         playerImages.forEach(function(image) {
             image.addEventListener('click', function() {
