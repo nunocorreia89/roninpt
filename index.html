@@ -211,54 +211,6 @@
         </form>
     </section>
     <footer>
-        <section id="contato">
-    <h2>Contato</h2>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <label for="name">Nome:</label>
-        <input type="text" id="name" name="name" autocomplete="name" required>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" autocomplete="email" required>
-        <label for="message">Mensagem:</label>
-        <textarea id="message" name="message" autocomplete="off" required></textarea>
-        <button type="submit">Enviar</button>
-    </form>
-    <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Recupera os dados do formulário
-        $name = strip_tags(trim($_POST["name"]));
-        $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
-        $message = trim($_POST["message"]);
-
-        // Verifica se os campos foram preenchidos corretamente
-        if (!empty($name) && !empty($email) && !empty($message) && filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            // Email de destino
-            $to = "nuno.correia.kor@gmail.com";
-
-            // Assunto do email
-            $subject = "Nova mensagem de contato de $name";
-
-            // Corpo do email
-            $email_content = "Nome: $name\n";
-            $email_content .= "Email: $email\n\n";
-            $email_content .= "Mensagem:\n$message\n";
-
-            // Cabeçalhos adicionais
-            $headers = "From: $name <$email>\r\n";
-            $headers .= "Reply-To: $email\r\n";
-
-            // Envia o email
-            if (mail($to, $subject, $email_content, $headers)) {
-                echo "<p class='success-message'>Obrigado por sua mensagem! Entraremos em contato em breve.</p>";
-            } else {
-                echo "<p class='error-message'>Ocorreu um problema no envio da mensagem. Por favor, tente novamente mais tarde.</p>";
-            }
-        } else {
-            echo "<p class='error-message'>Preencha todos os campos corretamente antes de enviar.</p>";
-        }
-    }
-    ?>
-</section>
- 
         <p>Siga-nos nas redes sociais:</p>
         <ul>
             <li><a href="https://www.instagram.com/ronin_pt_">Instagram</a></li>
@@ -305,6 +257,57 @@
                 }
             });
         });
+  <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RONIN PT</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos CSS existentes omitidos para brevidade */
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Cabeçalho e navegação -->
+    </header>
+    <audio id="background-music">
+        <!-- Elemento de áudio -->
+    </audio>
+    <section id="banner">
+        <!-- Banner -->
+    </section>
+    <section id="sobre">
+        <!-- Seção Sobre Nós -->
+    </section>
+    <section id="jogadores">
+        <!-- Seção Jogadores -->
+    </section>
+    <section id="competicoes">
+        <!-- Seção Competições -->
+    </section>
+    <section id="contato">
+        <!-- Formulário de Contato -->
+        <h2>Contato</h2>
+        <form action="submit_form.php" method="post">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" autocomplete="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" autocomplete="email" required>
+            <label for="message">Mensagem:</label>
+            <textarea id="message" name="message" autocomplete="off" required></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+    <footer>
+        <!-- Rodapé -->
+    </footer>
+    <script>
+        // Scripts JavaScript existentes omitidos para brevidade
     </script>
 </body>
 </html>
+
+
+
