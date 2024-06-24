@@ -159,19 +159,20 @@
         </nav>
     </header>
     <!-- Adicionar música de fundo -->
-    <audio id="background-music" autoplay loop>
+    <audio id="background-music" loop>
         <source src="background-music.mp3" type="audio/mpeg">
         Seu navegador não suporta o elemento de áudio.
     </audio>
+    <button onclick="playAudio()">Reproduzir Música</button>
     <section id="banner">
         <img src="logo.png" alt="Logo RONIN PT" style="max-width: 200px;">
         <p>Onde a honra e a vitória se encontram</p>
     </section>
     <section id="sobre">
         <h2>Sobre Nós</h2>
-        <p>Somos os RONIN PT, uma equipe Portuguesa no mundo do eSports, fundada em 2024. Nascemos da união de um grupo de amigos, cuja amizade improvável se transformou em uma jornada de camaradagem e conquistas.</p>
+        <p>Somos os RONIN PT, uma equipa Portuguesa no mundo do eSports, fundada em 2024. Nascemos da união de um grupo de amigos, cuja amizade improvável se transformou em uma jornada de camaradagem e conquistas.</p>
         <p>Em cada batalha digital, honramos a tradição dos Ronin modernos, procurando não apenas a vitória, mas também a excelência e o respeito mútuo.</p>
-        <p>Juntos, somos mais do que uma equipe: somos uma família de guerreiros digitais comprometidos com a superação e a paixão pelo mundo gaming.</p>
+        <p>Juntos, somos mais do que uma equipa: somos uma família de guerreiros digitais comprometidos com a superação e a paixão pelo mundo gaming.</p>
         <p>Nosso objetivo é não apenas competir, mas também inspirar outros jogadores a alcançar novos patamares de habilidade e ética de trabalho.</p>
         <p>Além das competições, estamos em constante evolução, aprendendo com cada desafio para nos tornarmos melhores a cada partida.</p>
     </section>
@@ -197,32 +198,4 @@
         <h2>Contato</h2>
         <form action="submit_form.php" method="post">
             <label for="name">Nome:</label>
-            <input type="text" id="name" name="name" autocomplete="name" required>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" autocomplete="email" required>
-            <label for="message">Mensagem:</label>
-            <textarea id="message" name="message" autocomplete="off" required></textarea>
-            <button type="submit">Enviar</button>
-        </form>
-    </section>
-    <footer>
-        <p>Siga-nos nas redes sociais:</p>
-        <ul>
-            <li><a href="https://www.instagram.com/ronin_pt_">Instagram</a></li>
-            <li><a href="https://www.tiktok.com/@ronin_pt_">Tik Tok</a></li>
-        </ul>
-        <p>&copy; 2024 RONIN PT. Todos os direitos reservados.</p>
-    </footer>
-    <script>
-        function playAudio() {
-            var audio = document.getElementById('background-music');
-            audio.play();
-        }
-
-        // JavaScript para alternar a classe 'zoomed' ao clicar na imagem do jogador 1
-        document.getElementById('player1').addEventListener('click', function() {
-            this.classList.toggle('zoomed');
-        });
-    </script>
-</body>
-</html>
+            <input type="text" id="name" name
