@@ -159,10 +159,19 @@
         </nav>
     </header>
     <!-- Adicionar música de fundo -->
-    <audio id="background-music" autoplay loop>
-        <source src="background-music.mp3" type="audio/mpeg">
-        Seu navegador não suporta o elemento de áudio.
-    </audio>
+    <audio id="background-music" loop>
+    <source src="background-music.mp3" type="audio/mpeg">
+    Seu navegador não suporta o elemento de áudio.
+</audio>
+<button onclick="playMusic()">Reproduzir Música</button>
+
+<script>
+    function playMusic() {
+        var audio = document.getElementById('background-music');
+        audio.play();
+    }
+</script>
+
     <section id="banner">
         <img src="logo.png" alt="Logo RONIN PT" style="max-width: 200px;">
         <p>Onde a honra e a vitória se encontram</p>
