@@ -323,7 +323,25 @@
                 </tr>
             </tbody>
         </table>
-// Dentro da função submitPresenca(event), após a verificação de jogadorExistente
+
+        <button type="submit">Confirmar Presença</button>
+    </form>
+
+    <h3>Presenças Confirmadas</h3>
+    <table id="tabela-presenca">
+        <thead>
+            <tr>
+                <th>Jogador</th>
+                <th>Domingo</th>
+                <th>Segunda</th>
+                <th>Terça</th>
+                <th>Quarta</th>
+                <th>Quinta</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- As presenças serão adicionadas aqui -->
+            // Dentro da função submitPresenca(event), após a verificação de jogadorExistente
 
 // Criação do botão de edição
 var botaoEditar = document.createElement('button');
@@ -346,23 +364,6 @@ botaoEditar.addEventListener('click', function() {
 
 // Adiciona o botão de edição à nova linha da tabela
 novaLinha.appendChild(botaoEditar);
-        <button type="submit">Confirmar Presença</button>
-    </form>
-
-    <h3>Presenças Confirmadas</h3>
-    <table id="tabela-presenca">
-        <thead>
-            <tr>
-                <th>Jogador</th>
-                <th>Domingo</th>
-                <th>Segunda</th>
-                <th>Terça</th>
-                <th>Quarta</th>
-                <th>Quinta</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- As presenças serão adicionadas aqui -->
         </tbody>
     </table>
 </section>
