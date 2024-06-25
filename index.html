@@ -150,6 +150,15 @@
             max-height: 90vh;
             object-fit: contain;
         }
+        /* Estilo da mensagem de login */
+        .login-message {
+            text-align: center;
+            margin: 1rem 0;
+            padding: 1rem;
+            background-color: #333333;
+            color: #cba135;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
@@ -161,7 +170,7 @@
                 <li><a href="#jogadores">Jogadores</a></li>
                 <li><a href="#competicoes">Competições</a></li>
                 <li><a href="#captacoes">Captações</a></li>
-                <li><a href="#login">Login</a></li> <!-- Adicionado link para login -->
+                <li><a href="#login">Login</a></li>
             </ul>
         </nav>
     </header>
@@ -222,14 +231,14 @@
     </section>
     <section id="login">
         <h2>Login</h2>
-        <form name="login" method="POST" data-netlify="true">
-            <input type="hidden" name="form-name" value="login">
+        <form name="login" method="POST" onsubmit="handleLogin(event)">
             <label for="username">Usuário:</label>
             <input type="text" id="username" name="username" required>
             <label for="password">Senha:</label>
             <input type="password" id="password" name="password" required>
             <button type="submit">Entrar</button>
         </form>
+        <div id="login-message" class="login-message" style="display: none;"></div>
     </section>
     <footer>
         <p>Siga-nos nas redes sociais:</p>
@@ -272,6 +281,44 @@
                 }
             });
         });
+
+        function handleLogin(event) {
+            event.preventDefault();
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            // Simulação de autenticação (substitua por uma chamada real ao backend)
+            if (username === 'user' && password === 'password') {
+                document.cookie = "loggedIn=true; max-age=3600; path=/"; // Cookie expira em 1 hora
+                document.getElementById('login-message').innerText = 'Você está logado como ' + username;
+                document.getElementById('login-message').style.display = 'block';
+                document.querySelector('nav ul').innerHTML += '<li><a href="#logout" onclick="handleLogout()">Logout</a></li>';
+            } else {
+                alert('Credenciais inválidas');
+            }
+        }
+
+        function handleLogout() {
+            document.cookie = "loggedIn=; max-age=0; path=/"; // Apaga o cookie
+            document.getElementById('login-message').style.display = 'none';
+            location.reload(); // Recarrega a página para refletir a mudança de estado
+        }
+
+        function checkLoginStatus() {
+            var cookies = document.cookie.split(';').reduce((cookies, cookie) => {
+                var [name, value] = cookie.trim().split('=');
+                cookies[name] = value;
+                return cookies;
+            }, {});
+
+            if (cookies.loggedIn === 'true') {
+                document.getElementById('login-message').innerText = 'Você está logado';
+                document.getElementById('login-message').style.display = 'block';
+                document.querySelector('nav ul').innerHTML += '<li><a href="#logout" onclick="handleLogout()">Logout</a></li>';
+            }
+        }
+
+        window.onload = checkLoginStatus;
     </script>
 </body>
 </html>
