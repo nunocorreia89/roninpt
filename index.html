@@ -143,13 +143,13 @@
             text-align: center;
         }
         .player img {
-    width: 100%; /* Ajusta a largura da imagem para ocupar 100% do espaço disponível */
-    height: auto; /* Mantém a proporção da imagem */
-    border-radius: 10px;
-    transition: transform 0.3s ease;
-    cursor: pointer;
-}
-
+            max-width: 100%;
+            border-radius: 10px;
+            width: 150px;
+            height: auto;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
         .player img.zoomed {
             position: fixed;
             top: 50%;
@@ -161,6 +161,7 @@
             max-height: 90vh; /* Limita a altura máxima à altura da viewport */
             object-fit: contain; /* Mantém proporções da imagem */
         }
+
         /* Estilo para a seção de presença */
         #presenca {
             background-color: #222222;
@@ -249,8 +250,10 @@
         <h2>Captações</h2>
         <form name="captacoes" method="POST" data-netlify="true">
             <input type="hidden" name="form-name" value="captacoes"> <!-- Hidden field required by Netlify to identify the form -->
+
             <label for="id">ID:</label> <!-- Alterado para "ID" -->
             <input type="text" id="id" name="id" required>
+
             <label for="platform">Plataforma:</label> <!-- Alterado para "Plataforma" -->
             <select id="platform" name="platform" required>
                 <option value="">Selecione uma plataforma</option>
@@ -258,18 +261,15 @@
                 <option value="Xbox">Xbox</option>
                 <option value="PC">PC</option>
             </select>
+
             <label for="positions">Posições:</label> <!-- Alterado para "Posições" -->
             <textarea id="positions" name="positions" required></textarea>
 
             <button type="submit">Enviar</button>
         </form>
     <section id="presenca">
-   <section id="presenca">
     <h2>Presença</h2>
     <form id="presenca-form" onsubmit="submitPresenca(event)">
-        <label for="access-code">Código de Acesso:</label>
-        <input type="password" id="access-code" name="access-code" required>
-
         <label for="player-name">Nome do Jogador:</label>
         <input type="text" id="player-name" name="player-name" required>
 
@@ -323,8 +323,10 @@
                 </tr>
             </tbody>
         </table>
+
         <button type="submit">Confirmar Presença</button>
     </form>
+
     <h3>Presenças Confirmadas</h3>
     <table id="tabela-presenca">
         <thead>
@@ -343,7 +345,6 @@
     </table>
 </section>
 
-
     <footer>
         <p>Siga-nos nas redes sociais:</p>
         <ul>
@@ -356,12 +357,14 @@
         function playMusic() {
             var audio = document.getElementById('background-music');
             audio.play();
+
             // Inicia o fade-out quando a música estiver próxima do fim
             audio.addEventListener('timeupdate', function() {
                 var fadePoint = audio.duration - 5; // Inicia o fade-out 5 segundos antes do fim
                 if (audio.currentTime >= fadePoint) {
                     var fadeDuration = 5; // Duração do fade-out em segundos
                     var volumeInterval = audio.volume / (fadeDuration * 10); // Reduz o volume em pequenos intervalos
+
                     var fadeAudio = setInterval(function() {
                         if (audio.volume > volumeInterval) {
                             audio.volume -= volumeInterval;
@@ -373,6 +376,7 @@
                 }
             });
         }
+
         // JavaScript para alternar a classe 'zoomed' ao clicar nas imagens dos jogadores
         var playerImages = document.querySelectorAll('.player img');
         playerImages.forEach(function(image) {
@@ -388,12 +392,17 @@
                 }
             });
         });
-       function submitPresenca(event) {
+
+       // JavaScript para gerenciar a presença dos jogadores
+function submitPresenca(event) {
     event.preventDefault();
+
     var form = document.getElementById('presenca-form');
     var playerName = form['player-name'].value;
+
     var diasSemana = ['domingo', 'segunda', 'terca', 'quarta', 'quinta'];
     var presencaPorDia = {};
+
     // Itera sobre os dias da semana para capturar o status de presença selecionado
     diasSemana.forEach(function(dia) {
         var selectedOption = form.querySelector('input[name="' + dia + '"]:checked');
@@ -401,7 +410,9 @@
             presencaPorDia[dia] = selectedOption.value;
         }
     });
+
     var tabela = document.getElementById('tabela-presenca').getElementsByTagName('tbody')[0];
+
     // Verifica se o jogador já está na tabela
     var jogadorExistente = false;
     var linhas = tabela.getElementsByTagName('tr');
@@ -409,135 +420,43 @@
         var celulaNome = linhas[i].getElementsByTagName('td')[0];
         if (celulaNome.textContent === playerName) {
             jogadorExistente = true;
-            // Atualiza os status de presença na linha existente
-            diasSemana.forEach(function(dia, index) {
-                var celulaPresenca = linhas[i].getElementsByTagName('td')[index + 1];
-                celulaPresenca.textContent = presencaPorDia[dia] || '-';
-            });
-            // Adiciona um botão "Editar" à linha existente
-            var botaoEditar = document.createElement('button');
-            botaoEditar.textContent = 'Editar';
-            botaoEditar.classList.add('editar-button');
-            botaoEditar.addEventListener('click', function() {
-                // Preencher o formulário com os dados da linha selecionada
-                form['player-name'].value = playerName;
-                diasSemana.forEach(function(dia) {
-                    var status = presencaPorDia[dia];
-                    var radio = form.querySelector('input[name="' + dia + '"][value="' + status + '"]');
-                    if (radio) {
-                        radio.checked = true;
-                    }
-                });
-                // Remover a linha da tabela após a edição
-                tabela.removeChild(linhas[i]);
-            });
-            // Limpa o formulário após editar
-            form.reset();
-            // Adiciona o botão de edição à célula de ações da linha
-            var celulaAcoes = linhas[i].getElementsByTagName('td')[6]; // Supondo que seja a última célula de ações
-            celulaAcoes.textContent = '';
-            celulaAcoes.appendChild(botaoEditar);
             break;
         }
     }
+
     // Se o jogador não estiver na tabela, adiciona uma nova linha
     if (!jogadorExistente) {
         var novaLinha = tabela.insertRow();
         var celulaNome = novaLinha.insertCell(0);
         celulaNome.textContent = playerName;
+
         // Insere os status de presença por dia na tabela
         diasSemana.forEach(function(dia, index) {
             var celulaPresenca = novaLinha.insertCell(index + 1);
             celulaPresenca.textContent = presencaPorDia[dia] || '-';
         });
-        // Cria a célula de ações com o botão "Editar"
-        var celulaAcoes = novaLinha.insertCell(6); // Supondo que seja a última célula de ações
-        var botaoEditar = document.createElement('button');
-        botaoEditar.textContent = 'Editar';
-        botaoEditar.classList.add('editar-button');
-        botaoEditar.addEventListener('click', function() {
-            // Preencher o formulário com os dados da linha selecionada
-            form['player-name'].value = playerName;
-            diasSemana.forEach(function(dia) {
-                var status = presencaPorDia[dia];
-                var radio = form.querySelector('input[name="' + dia + '"][value="' + status + '"]');
-                if (radio) {
-                    radio.checked = true;
-                }
-            });
-            // Remover a linha da tabela após a edição
-            tabela.removeChild(novaLinha);
-        });
-        // Adiciona o botão de edição à célula de ações da nova linha
-        celulaAcoes.appendChild(botaoEditar);
-        // Limpa o formulário após adicionar
+
         form.reset();
-    }
-}
-       // Defina o código de acesso aqui
-var codigoDeAcesso = 'ronin24';
-// Função para validar o código de acesso
-function validarCodigoAcesso() {
-    var codigoAcessoInserido = document.getElementById('access-code').value;
-    if (codigoAcessoInserido === codigoDeAcesso) {
-        return true; // Código de acesso válido
     } else {
-        alert('Código de acesso incorreto!'); // Mensagem de erro
-        return false; // Impede a submissão do formulário
+        alert('Este jogador já está na lista de presença.');
     }
 }
-// Função para submeter o formulário de presença
-function submitPresenca(event) {
-    event.preventDefault(); // Previne o comportamento padrão de submissão
-
-    // Validação do código de acesso
-    if (!validarCodigoAcesso()) {
-        return; // Sai da função se o código de acesso não for válido
-    }
-
-    var form = document.getElementById('presenca-form');
-    var playerName = form['player-name'].value;
-    var presencaDomingo = form.querySelector('input[name="domingo"]:checked').value;
-    var presencaSegunda = form.querySelector('input[name="segunda"]:checked').value;
-    var presencaTerca = form.querySelector('input[name="terca"]:checked').value;
-    var presencaQuarta = form.querySelector('input[name="quarta"]:checked').value;
-    var presencaQuinta = form.querySelector('input[name="quinta"]:checked').value;
-
-    // Adiciona os dados à tabela de presenças confirmadas
-    var tabela = document.getElementById('tabela-presenca').getElementsByTagName('tbody')[0];
-    var novaLinha = tabela.insertRow();
-    var celulaNome = novaLinha.insertCell(0);
-    var celulaDomingo = novaLinha.insertCell(1);
-    var celulaSegunda = novaLinha.insertCell(2);
-    var celulaTerca = novaLinha.insertCell(3);
-    var celulaQuarta = novaLinha.insertCell(4);
-    var celulaQuinta = novaLinha.insertCell(5);
-    celulaNome.textContent = playerName;
-    celulaDomingo.textContent = presencaDomingo;
-    celulaSegunda.textContent = presencaSegunda;
-    celulaTerca.textContent = presencaTerca;
-    celulaQuarta.textContent = presencaQuarta;
-    celulaQuinta.textContent = presencaQuinta;
-
-    // Limpa o formulário após a submissão
-    form.reset();
-} else {
-        // Se o código de acesso não for válido, não faça nada (ou exiba uma mensagem de erro)
-        console.log('Erro ao enviar o formulário.');
-    }
-}
-     // Função para verificar e resetar a votação de presença todos os sábados à meia-noite
+    
+// Função para verificar e resetar a votação de presença todos os sábados à meia-noite
 function resetPresencaSemana() {
     var hoje = new Date();
     var diaSemana = hoje.getDay(); // 0 para domingo, 1 para segunda, ..., 6 para sábado
+
     // Se hoje for sábado (6) e ainda não passou da meia-noite, agendar o reset
     if (diaSemana === 6 && hoje.getHours() === 0 && hoje.getMinutes() === 0 && hoje.getSeconds() === 0) {
         var tabela = document.getElementById('tabela-presenca').getElementsByTagName('tbody')[0];
         tabela.innerHTML = ''; // Limpa todas as linhas da tabela de presença
     }
 }
+
 // Chama a função de reset uma vez por minuto para verificar se é hora de resetar
 setInterval(resetPresencaSemana, 60000); // A cada 1 minuto (60000 milissegundos)
+
     </script>
 </body>
 </html>
