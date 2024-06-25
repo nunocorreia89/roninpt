@@ -74,24 +74,28 @@
             color: #cba135;
             text-decoration: none;
         }
-        /* Estilo do formulário de contato */
-        #contato form {
+        /* Estilo do formulário de contato e login */
+        form {
             background-color: #000000;
             padding: 1rem;
             border-radius: 10px;
             margin-top: 1rem;
             text-align: center;
+            max-width: 400px; /* Define a largura máxima */
+            margin-left: auto; /* Centraliza os campos */
+            margin-right: auto; /* Centraliza os campos */
         }
-        #contato form label {
+        form label {
             display: block;
             margin-bottom: 0.5rem;
             color: #cba135;
         }
-        #contato form input[type="text"],
-        #contato form input[type="email"],
-        #contato form textarea {
+        form input[type="text"],
+        form input[type="email"],
+        form input[type="password"],
+        form textarea,
+        form select {
             width: 100%;
-            max-width: 400px; /* Define a largura máxima */
             padding: 0.5rem;
             margin: 0 auto 1rem auto; /* Centraliza os campos */
             border: 2px solid #cba135;
@@ -102,12 +106,11 @@
             outline: none;
             display: block;
         }
-        #contato form textarea {
+        form textarea {
             resize: vertical;
             min-height: 100px;
         }
-        #contato form button,
-        #play-music-button {
+        form button {
             background-color: #cba135;
             color: #000000;
             border: none;
@@ -117,8 +120,7 @@
             border-radius: 5px;
             transition: background-color 0.3s ease;
         }
-        #contato form button:hover,
-        #play-music-button:hover {
+        form button:hover {
             background-color: #b99010;
         }
         /* Estilo do grid de jogadores */
@@ -159,7 +161,7 @@
                 <li><a href="#sobre">Sobre Nós</a></li>
                 <li><a href="#jogadores">Jogadores</a></li>
                 <li><a href="#competicoes">Competições</a></li>
-                <li><a href="#captacoes">Captações</a></li>
+                <li><a href="#contato">Captações</a></li>
                 <li><a href="#login">Login</a></li>
             </ul>
         </nav>
@@ -199,31 +201,32 @@
             <li>NG League - <a href="https://www.ngleague.com" style="color: white;">https://discord.gg/BsXBCTGX</a></li>
         </ul>
     </section>
-    <section id="captacoes">
+    <section id="contato">
         <h2>Captações</h2>
         <form name="contact" method="POST" data-netlify="true">
-            <input type="hidden" name="form-name" value="contact">
+            <input type="hidden" name="form-name" value="contact"> <!-- Hidden field required by Netlify to identify the form -->
             <label for="id">ID:</label>
             <input type="text" id="id" name="id" required>
-            <label for="plataforma">Plataforma:</label>
-            <select id="plataforma" name="plataforma" required>
+            <label for="platform">Plataforma:</label>
+            <select id="platform" name="platform" required>
                 <option value="PS5">PS5</option>
                 <option value="Xbox">Xbox</option>
                 <option value="PC">PC</option>
             </select>
-            <label for="posicoes">Posições:</label>
-            <textarea id="posicoes" name="posicoes" required></textarea>
-            <button type="submit">Submit</button>
+            <label for="positions">Posições:</label>
+            <textarea id="positions" name="positions" required></textarea>
+            <button type="submit">Enviar</button>
         </form>
     </section>
     <section id="login">
         <h2>Login</h2>
-        <form id="login-form">
-            <label for="username">Username:</label>
+        <form name="login" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="login"> <!-- Hidden field required by Netlify to identify the form -->
+            <label for="username">Usuário:</label>
             <input type="text" id="username" name="username" required>
-            <label for="password">Password:</label>
+            <label for="password">Senha:</label>
             <input type="password" id="password" name="password" required>
-            <button type="submit">Login</button>
+            <button type="submit">Entrar</button>
         </form>
     </section>
     <footer>
@@ -239,11 +242,12 @@
             var audio = document.getElementById('background-music');
             audio.play();
 
+            // Inicia o fade-out quando a música estiver próxima do fim
             audio.addEventListener('timeupdate', function() {
-                var fadePoint = audio.duration - 5;
+                var fadePoint = audio.duration - 5; // Inicia o fade-out 5 segundos antes do fim
                 if (audio.currentTime >= fadePoint) {
-                    var fadeDuration = 5;
-                    var volumeInterval = audio.volume / (fadeDuration * 10);
+                    var fadeDuration = 5; // Duração do fade-out em segundos
+                    var volumeInterval = audio.volume / (fadeDuration * 10); // Reduz o volume em pequenos intervalos
 
                     var fadeAudio = setInterval(function() {
                         if (audio.volume > volumeInterval) {
@@ -252,37 +256,25 @@
                             audio.volume = 0;
                             clearInterval(fadeAudio);
                         }
-                    }, 100);
+                    }, 100); // Reduz o volume a cada 100ms
                 }
             });
         }
 
+        // JavaScript para alternar a classe 'zoomed' ao clicar nas imagens dos jogadores
         var playerImages = document.querySelectorAll('.player img');
         playerImages.forEach(function(image) {
             image.addEventListener('click', function() {
                 if (this.classList.contains('zoomed')) {
                     this.classList.remove('zoomed');
                 } else {
+                    // Remove a classe 'zoomed' de todas as outras imagens
                     playerImages.forEach(function(img) {
                         img.classList.remove('zoomed');
                     });
                     this.classList.add('zoomed');
                 }
             });
-        });
-
-        // Simulação de login (exemplo básico, sem segurança)
-        document.getElementById('login-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            var username = document.getElementById('username').value;
-            var password = document.getElementById('password').value;
-
-            if (username === 'user' && password === 'pass') {
-                alert('Login bem-sucedido');
-                // Redirecionar ou mostrar conteúdo exclusivo
-            } else {
-                alert('Username ou password incorretos');
-            }
         });
     </script>
 </body>
