@@ -327,23 +327,22 @@
         <button type="submit">Confirmar Presença</button>
     </form>
 
-   <h3>Presenças Confirmadas</h3>
-<table id="tabela-presenca">
-    <thead>
-        <tr>
-            <th>Jogador</th>
-            <th data-dia="domingo">Domingo</th>
-            <th data-dia="segunda">Segunda</th>
-            <th data-dia="terca">Terça</th>
-            <th data-dia="quarta">Quarta</th>
-            <th data-dia="quinta">Quinta</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- As presenças serão adicionadas aqui -->
-    </tbody>
-</table>
-
+    <h3>Presenças Confirmadas</h3>
+    <table id="tabela-presenca">
+        <thead>
+            <tr>
+                <th>Jogador</th>
+                <th>Domingo</th>
+                <th>Segunda</th>
+                <th>Terça</th>
+                <th>Quarta</th>
+                <th>Quinta</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- As presenças serão adicionadas aqui -->
+        </tbody>
+    </table>
 </section>
 
     <footer>
@@ -394,8 +393,7 @@
             });
         });
 
-       // JavaScript para gerenciar a presença dos jogadores
-function submitPresenca(event) {
+       function submitPresenca(event) {
     event.preventDefault();
 
     var form = document.getElementById('presenca-form');
@@ -417,26 +415,23 @@ function submitPresenca(event) {
     // Verifica se o jogador já está na tabela
     var jogadorExistente = false;
     var linhas = tabela.getElementsByTagName('tr');
-    var linhaExistente = null;
-
     for (var i = 0; i < linhas.length; i++) {
         var celulaNome = linhas[i].getElementsByTagName('td')[0];
         if (celulaNome.textContent === playerName) {
             jogadorExistente = true;
-            linhaExistente = linhas[i];
+
+            // Atualiza os status de presença na linha existente
+            diasSemana.forEach(function(dia, index) {
+                var celulaPresenca = linhas[i].getElementsByTagName('td')[index + 1];
+                celulaPresenca.textContent = presencaPorDia[dia] || '-';
+            });
+
             break;
         }
     }
 
-    // Se o jogador já estiver na tabela, atualiza os votos existentes
-    if (jogadorExistente) {
-        // Atualiza os votos existentes na linha da tabela
-        diasSemana.forEach(function(dia) {
-            var celulaPresenca = linhaExistente.querySelector('td[data-dia="' + dia + '"]');
-            celulaPresenca.textContent = presencaPorDia[dia] || '-';
-        });
-    } else {
-        // Se o jogador não estiver na tabela, adiciona uma nova linha
+    // Se o jogador não estiver na tabela, adiciona uma nova linha
+    if (!jogadorExistente) {
         var novaLinha = tabela.insertRow();
         var celulaNome = novaLinha.insertCell(0);
         celulaNome.textContent = playerName;
@@ -445,29 +440,14 @@ function submitPresenca(event) {
         diasSemana.forEach(function(dia, index) {
             var celulaPresenca = novaLinha.insertCell(index + 1);
             celulaPresenca.textContent = presencaPorDia[dia] || '-';
-            celulaPresenca.setAttribute('data-dia', dia);
         });
     }
 
     form.reset();
-  }
-
 }
-    
-// Função para verificar e resetar a votação de presença todos os sábados à meia-noite
-function resetPresencaSemana() {
-    var hoje = new Date();
-    var diaSemana = hoje.getDay(); // 0 para domingo, 1 para segunda, ..., 6 para sábado
 
-    // Se hoje for sábado (6) e ainda não passou da meia-noite, agendar o reset
-    if (diaSemana === 6 && hoje.getHours() === 0 && hoje.getMinutes() === 0 && hoje.getSeconds() === 0) {
-        var tabela = document.getElementById('tabela-presenca').getElementsByTagName('tbody')[0];
-        tabela.innerHTML = ''; // Limpa todas as linhas da tabela de presença
     }
 }
-
-// Chama a função de reset uma vez por minuto para verificar se é hora de resetar
-setInterval(resetPresencaSemana, 60000); // A cada 1 minuto (60000 milissegundos)
 
     </script>
 </body>
