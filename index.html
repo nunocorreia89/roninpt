@@ -349,30 +349,47 @@
             });
         });
 
-        // JavaScript para gerenciar a presença dos jogadores
-        function submitPresenca(event) {
-            event.preventDefault();
+       // JavaScript para gerenciar a presença dos jogadores
+function submitPresenca(event) {
+    event.preventDefault();
 
-            var form = document.getElementById('presenca-form');
-            var playerName = form['player-name'].value;
-            var dias = form.querySelectorAll('input[name="dias"]:checked');
-            var diasDisponiveis = Array.from(dias).map(function(dia) {
-                return dia.value;
-            });
+    var form = document.getElementById('presenca-form');
+    var playerName = form['player-name'].value;
+    var dias = form.querySelectorAll('input[name="dias"]:checked');
+    var diasDisponiveis = Array.from(dias).map(function(dia) {
+        return dia.value;
+    });
 
-            var tabela = document.getElementById('tabela-presenca').getElementsByTagName('tbody')[0];
-            var novaLinha = tabela.insertRow();
+    var tabela = document.getElementById('tabela-presenca').getElementsByTagName('tbody')[0];
 
-            var celulaNome = novaLinha.insertCell(0);
-            celulaNome.textContent = playerName;
-
-            ['domingo', 'segunda', 'terça', 'quarta', 'quinta'].forEach(function(dia) {
-                var celula = novaLinha.insertCell();
-                celula.textContent = diasDisponiveis.includes(dia) ? '✓' : '';
-            });
-
-            form.reset();
+    // Verifica se o jogador já está na tabela
+    var jogadorExistente = false;
+    var linhas = tabela.getElementsByTagName('tr');
+    for (var i = 0; i < linhas.length; i++) {
+        var celulaNome = linhas[i].getElementsByTagName('td')[0];
+        if (celulaNome.textContent === playerName) {
+            jogadorExistente = true;
+            break;
         }
+    }
+
+    // Se o jogador não estiver na tabela, adiciona uma nova linha
+    if (!jogadorExistente) {
+        var novaLinha = tabela.insertRow();
+        var celulaNome = novaLinha.insertCell(0);
+        celulaNome.textContent = playerName;
+
+        ['domingo', 'segunda', 'terça', 'quarta', 'quinta'].forEach(function(dia, index) {
+            var celula = novaLinha.insertCell(index + 1);
+            celula.textContent = diasDisponiveis.includes(dia) ? '✓' : '';
+        });
+
+        form.reset();
+    } else {
+        alert('Este jogador já está na lista de presença.');
+    }
+}
+
     </script>
 </body>
 </html>
