@@ -393,8 +393,7 @@
             });
         });
 
-       // JavaScript para gerenciar a presença dos jogadores
-function submitPresenca(event) {
+       function submitPresenca(event) {
     event.preventDefault();
 
     var form = document.getElementById('presenca-form');
@@ -420,6 +419,40 @@ function submitPresenca(event) {
         var celulaNome = linhas[i].getElementsByTagName('td')[0];
         if (celulaNome.textContent === playerName) {
             jogadorExistente = true;
+
+            // Atualiza os status de presença na linha existente
+            diasSemana.forEach(function(dia, index) {
+                var celulaPresenca = linhas[i].getElementsByTagName('td')[index + 1];
+                celulaPresenca.textContent = presencaPorDia[dia] || '-';
+            });
+
+            // Adiciona um botão "Editar" à linha existente
+            var botaoEditar = document.createElement('button');
+            botaoEditar.textContent = 'Editar';
+            botaoEditar.classList.add('editar-button');
+            botaoEditar.addEventListener('click', function() {
+                // Preencher o formulário com os dados da linha selecionada
+                form['player-name'].value = playerName;
+                diasSemana.forEach(function(dia) {
+                    var status = presencaPorDia[dia];
+                    var radio = form.querySelector('input[name="' + dia + '"][value="' + status + '"]');
+                    if (radio) {
+                        radio.checked = true;
+                    }
+                });
+
+                // Remover a linha da tabela após a edição
+                tabela.removeChild(linhas[i]);
+            });
+
+            // Limpa o formulário após editar
+            form.reset();
+
+            // Adiciona o botão de edição à célula de ações da linha
+            var celulaAcoes = linhas[i].getElementsByTagName('td')[6]; // Supondo que seja a última célula de ações
+            celulaAcoes.textContent = '';
+            celulaAcoes.appendChild(botaoEditar);
+
             break;
         }
     }
@@ -436,11 +469,34 @@ function submitPresenca(event) {
             celulaPresenca.textContent = presencaPorDia[dia] || '-';
         });
 
+        // Cria a célula de ações com o botão "Editar"
+        var celulaAcoes = novaLinha.insertCell(6); // Supondo que seja a última célula de ações
+        var botaoEditar = document.createElement('button');
+        botaoEditar.textContent = 'Editar';
+        botaoEditar.classList.add('editar-button');
+        botaoEditar.addEventListener('click', function() {
+            // Preencher o formulário com os dados da linha selecionada
+            form['player-name'].value = playerName;
+            diasSemana.forEach(function(dia) {
+                var status = presencaPorDia[dia];
+                var radio = form.querySelector('input[name="' + dia + '"][value="' + status + '"]');
+                if (radio) {
+                    radio.checked = true;
+                }
+            });
+
+            // Remover a linha da tabela após a edição
+            tabela.removeChild(novaLinha);
+        });
+
+        // Adiciona o botão de edição à célula de ações da nova linha
+        celulaAcoes.appendChild(botaoEditar);
+
+        // Limpa o formulário após adicionar
         form.reset();
-    } else {
-        alert('Este jogador já está na lista de presença.');
     }
 }
+
     
 // Função para verificar e resetar a votação de presença todos os sábados à meia-noite
 function resetPresencaSemana() {
