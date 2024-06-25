@@ -143,13 +143,13 @@
             text-align: center;
         }
         .player img {
-            max-width: 100%;
-            border-radius: 10px;
-            width: 150px;
-            height: auto;
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
+    width: 100%; /* Ajusta a largura da imagem para ocupar 100% do espaço disponível */
+    height: auto; /* Mantém a proporção da imagem */
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
         .player img.zoomed {
             position: fixed;
             top: 50%;
@@ -489,32 +489,39 @@ function validarCodigoAcesso() {
 // Função para submeter o formulário de presença
 function submitPresenca(event) {
     event.preventDefault(); // Previne o comportamento padrão de submissão
-    if (validarCodigoAcesso()) {
-        // Se o código de acesso for válido, continue com a submissão do formulário
-        var playerName = document.getElementById('player-name').value;
-        var presencaDomingo = document.querySelector('input[name="domingo"]:checked').value;
-        var presencaSegunda = document.querySelector('input[name="segunda"]:checked').value;
-        var presencaTerca = document.querySelector('input[name="terca"]:checked').value;
-        var presencaQuarta = document.querySelector('input[name="quarta"]:checked').value;
-        var presencaQuinta = document.querySelector('input[name="quinta"]:checked').value;
-        // Adicione os dados à tabela de presenças confirmadas
-        var tabela = document.getElementById('tabela-presenca').getElementsByTagName('tbody')[0];
-        var novaLinha = tabela.insertRow();
-        var celulaNome = novaLinha.insertCell(0);
-        var celulaDomingo = novaLinha.insertCell(1);
-        var celulaSegunda = novaLinha.insertCell(2);
-        var celulaTerca = novaLinha.insertCell(3);
-        var celulaQuarta = novaLinha.insertCell(4);
-        var celulaQuinta = novaLinha.insertCell(5);
-        celulaNome.innerHTML = playerName;
-        celulaDomingo.innerHTML = presencaDomingo;
-        celulaSegunda.innerHTML = presencaSegunda;
-        celulaTerca.innerHTML = presencaTerca;
-        celulaQuarta.innerHTML = presencaQuarta;
-        celulaQuinta.innerHTML = presencaQuinta;
-        // Limpe o formulário após a submissão
-        document.getElementById('presenca-form').reset();
-    } else {
+
+    // Validação do código de acesso
+    if (!validarCodigoAcesso()) {
+        return; // Sai da função se o código de acesso não for válido
+    }
+
+    var form = document.getElementById('presenca-form');
+    var playerName = form['player-name'].value;
+    var presencaDomingo = form.querySelector('input[name="domingo"]:checked').value;
+    var presencaSegunda = form.querySelector('input[name="segunda"]:checked').value;
+    var presencaTerca = form.querySelector('input[name="terca"]:checked').value;
+    var presencaQuarta = form.querySelector('input[name="quarta"]:checked').value;
+    var presencaQuinta = form.querySelector('input[name="quinta"]:checked').value;
+
+    // Adiciona os dados à tabela de presenças confirmadas
+    var tabela = document.getElementById('tabela-presenca').getElementsByTagName('tbody')[0];
+    var novaLinha = tabela.insertRow();
+    var celulaNome = novaLinha.insertCell(0);
+    var celulaDomingo = novaLinha.insertCell(1);
+    var celulaSegunda = novaLinha.insertCell(2);
+    var celulaTerca = novaLinha.insertCell(3);
+    var celulaQuarta = novaLinha.insertCell(4);
+    var celulaQuinta = novaLinha.insertCell(5);
+    celulaNome.textContent = playerName;
+    celulaDomingo.textContent = presencaDomingo;
+    celulaSegunda.textContent = presencaSegunda;
+    celulaTerca.textContent = presencaTerca;
+    celulaQuarta.textContent = presencaQuarta;
+    celulaQuinta.textContent = presencaQuinta;
+
+    // Limpa o formulário após a submissão
+    form.reset();
+} else {
         // Se o código de acesso não for válido, não faça nada (ou exiba uma mensagem de erro)
         console.log('Erro ao enviar o formulário.');
     }
