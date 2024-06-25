@@ -226,6 +226,7 @@
             <tr>
                 <th>Data</th>
                 <th>Voto</th>
+                <th>Quantidade de Votos</th>
                 <th>Quem Votou</th>
             </tr>
         </thead>
@@ -258,8 +259,15 @@
         <p id="nome-quem-votou"></p>
         <p id="voto-quem-votou"></p>
     </div>
+    <div id="total-votos">
+        <h3>Total de Votos:</h3>
+        <p id="total-sim">Sim: 0</p>
+        <p id="total-nao">Não: 0</p>
+        <p id="total-atrasado">Atrasado: 0</p>
+    </div>
     <button id="reset-votacao">Resetar Votação</button>
 </section>
+
 
 
     <footer>
@@ -348,6 +356,11 @@ function inicializarTabela() {
         voteCell.appendChild(voteOptions);
         row.appendChild(voteCell);
 
+        const votosCountCell = document.createElement('td');
+        votosCountCell.id = `votos-count-${index}`;
+        votosCountCell.textContent = '0';
+        row.appendChild(votosCountCell);
+
         const whoVotedCell = document.createElement('td');
         whoVotedCell.id = `quem-votou-${index}`;
         whoVotedCell.textContent = 'Ninguém votou ainda';
@@ -372,6 +385,18 @@ function salvarVoto(index, voto) {
     localStorage.setItem('presencas', JSON.stringify(presencas));
 }
 
+// Função para contar e exibir os votos totais
+function contarVotosTotais() {
+    const presencas = JSON.parse(localStorage.getItem('presencas')) || {};
+    const totalSim = Object.values(presencas).filter(item => item.voto === 'sim').length;
+    const totalNao = Object.values(presencas).filter(item => item.voto === 'nao').length;
+    const totalAtrasado = Object.values(presencas).filter(item => item.voto === 'atrasado').length;
+
+    document.getElementById('total-sim').textContent = `Sim: ${totalSim}`;
+    document.getElementById('total-nao').textContent = `Não: ${totalNao}`;
+    document.getElementById('total-atrasado').textContent = `Atrasado: ${totalAtrasado}`;
+}
+
 // Função para carregar os votos e quem votou
 function carregarVotos() {
     const presencas = JSON.parse(localStorage.getItem('presencas')) || {};
@@ -383,6 +408,8 @@ function carregarVotos() {
             radio.checked = true;
         }
         document.querySelector(`#quem-votou-${index}`).textContent = quemVotou;
+        contarVotosTotais(); // Atualiza a contagem de votos totais ao carregar os votos
+        atualizarContagemPorDia(index, voto); // Atualiza a contagem por dia
     });
 }
 
@@ -398,7 +425,16 @@ function limparSelecoes() {
 function resetarVotacao() {
     localStorage.removeItem('presencas');
     inicializarTabela();
+    contarVotosTotais(); // Zera a contagem de votos totais ao resetar
     alert('Votação resetada com sucesso!');
+}
+
+// Função para atualizar a contagem de votos por dia
+function atualizarContagemPorDia(index, voto) {
+    const votosCountCell = document.getElementById(`votos-count-${index}`);
+    const presencas = JSON.parse(localStorage.getItem('presencas')) || {};
+    const votosDia = Object.values(presencas).filter(item => item.voto === voto && item.quemVotou !== 'Ninguém votou ainda').length;
+    votosCountCell.textContent = votosDia.toString();
 }
 
 // Event listener para o formulário de votação
@@ -429,8 +465,8 @@ document.getElementById('reset-votacao').addEventListener('click', function() {
 
 // Carrega a tabela ao carregar a página
 document.addEventListener('DOMContentLoaded', function() {
-    inicializarTabela();
-});
+    inicializarT
+
 
    </script>
 </body>
