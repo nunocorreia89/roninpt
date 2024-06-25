@@ -271,7 +271,7 @@
     <h2>Presença</h2>
     <form id="presenca-form" onsubmit="submitPresenca(event)">
         <label for="access-code">Código de Acesso:</label>
-        <input type="ronin24" id="access-code" name="access-code" required>
+        <input type="password" id="access-code" name="access-code" required>
 
         <label for="player-name">Nome do Jogador:</label>
         <input type="text" id="player-name" name="player-name" required>
@@ -531,7 +531,8 @@ function validarCodigoAcesso() {
 // Função para submeter o formulário de presença
 function submitPresenca(event) {
     event.preventDefault(); // Previne o comportamento padrão de submissão
-    if (validarCodigoAcesso()) {
+    if (codigoAcesso === 'meucodigo123') {
+
         // Se o código de acesso for válido, continue com a submissão do formulário
         // Aqui você pode adicionar a lógica para enviar os dados para o servidor, etc.
         console.log('Formulário enviado com sucesso!');
