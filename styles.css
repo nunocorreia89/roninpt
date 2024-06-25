@@ -1,278 +1,120 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RONIN PT</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Estilo de fonte inspirado na cultura samurai */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #000000;
-            color: #cba135;
-            margin: 0;
-            padding: 0;
-        }
-        /* Estilo de fonte específico para cabeçalhos */
-        h1, h2, h3 {
-            font-family: 'Yu Gothic', 'Yu Mincho', sans-serif;
-        }
-        /* Estilo de navegação */
-        header {
-            background-color: #111111;
-            color: #cba135;
-            padding: 1rem 0;
-            text-align: center;
-        }
-        header nav ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        header nav ul li {
-            display: inline;
-            margin: 0 10px;
-        }
-        header nav ul li a {
-            color: #cba135;
-            text-decoration: none;
-        }
-        /* Estilo do banner */
-        #banner {
-            background-color: #333333;
-            color: #cba135;
-            padding: 2rem 0;
-            text-align: center;
-        }
-        /* Estilo das seções */
-        section {
-            padding: 2rem;
-            margin: 1rem 0;
-            background-color: #222222;
-            border-radius: 10px;
-            color: #cba135;
-        }
-        /* Estilo do rodapé */
-        footer {
-            background-color: #111111;
-            color: #cba135;
-            text-align: center;
-            padding: 1rem 0;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-        }
-        footer ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        footer ul li {
-            display: inline;
-            margin: 0 10px;
-        }
-        footer ul li a {
-            color: #cba135;
-            text-decoration: none;
-        }
-        /* Estilo do formulário de contato e login */
-        form {
-            background-color: #222222;
-            padding: 1rem;
-            border-radius: 10px;
-            margin-top: 1rem;
-            text-align: center;
-            max-width: 400px;
-            margin: 0 auto;
-        }
-        form label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #cba135;
-        }
-        form input[type="text"],
-        form input[type="password"],
-        form textarea,
-        form select {
-            width: calc(100% - 20px);
-            padding: 0.5rem;
-            margin-bottom: 1rem;
-            border: 2px solid #cba135;
-            border-radius: 5px;
-            font-size: 1rem;
-            color: #cba135;
-            background-color: #333333;
-            outline: none;
-            display: block;
-            box-sizing: border-box;
-        }
-        form textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-        form button {
-            background-color: #cba135;
-            color: #000000;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-        form button:hover {
-            background-color: #b99010;
-        }
-        /* Estilo do grid de jogadores */
-        .players-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 1rem;
-        }
-        .player {
-            text-align: center;
-        }
-        .player img {
-            max-width: 100%;
-            border-radius: 10px;
-            width: 150px;
-            height: auto;
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-        .player img.zoomed {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(1.2);
-            z-index: 1000;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            max-width: 90vw;
-            max-height: 90vh;
-            object-fit: contain;
-        }
-    </style>
-</head>
-<body>
-    <header>
-    <h1>RONIN PT</h1>
-    <nav>
-        <ul>
-            <li><a href="#sobre">Sobre Nós</a></li>
-            <li><a href="#jogadores">Jogadores</a></li>
-            <li><a href="#competicoes">Competições</a></li>
-            <li><a href="#captacoes">Captações</a></li>
-            <li><a href="#login">Login</a></li>
-            <li><a href="#registro">Registro</a></li> <!-- Movido o link Registro para esta posição -->
-        </ul>
-    </nav>
-</header>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #f0d700; /* Dourado */
+    background-color: #000000; /* Preto */
+}
 
-    <audio id="background-music">
-        <source src="background-music.mp3" type="audio/mpeg">
-        Seu navegador não suporta o elemento de áudio.
-    </audio>
-    <section id="banner">
-        <img src="logo.png" alt="Logo RONIN PT" style="max-width: 200px;">
-        <p>Onde a honra e a vitória se encontram</p>
-        <button id="play-music-button" onclick="playMusic()" style="background-color: #cba135; color: #000000; border: none; padding: 0.75rem 1.5rem; font-size: 1rem; cursor: pointer; border-radius: 5px; transition: background-color 0.3s ease;">
-            Ouve a nossa claque uma vez
-        </button>
-    </section>
-    <section id="sobre">
-        <h2>Sobre Nós</h2>
-        <p>Somos os RONIN PT, uma equipa Portuguesa no mundo do eSports, fundada em 2024. Nascemos da união de um grupo de amigos, cuja amizade improvável se transformou em uma jornada de camaradagem e conquistas.</p>
-        <p>Em cada batalha digital, honramos a tradição dos Ronin modernos, procurando não apenas a vitória, mas também a excelência e o respeito mútuo.</p>
-        <p>Juntos, somos mais do que uma equipa: somos uma família de guerreiros digitais comprometidos com a superação e a paixão pelo mundo gaming.</p>
-        <p>Nosso objetivo é não apenas competir, mas também inspirar outros jogadores a alcançar novos patamares de habilidade e ética de trabalho.</p>
-        <p>Além das competições, estamos em constante evolução, aprendendo com cada desafio para nos tornarmos melhores a cada partida.</p>
-    </section>
-    <section id="jogadores">
-        <h2>Jogadores</h2>
-        <div class="players-grid">
-            <div class="player">
-                <img src="KOR.jpg" alt="Jogador 1" id="player1">
-                <h3>KOR</h3>
-                <p>Especialidade: Distribuidor de jogo</p>
-            </div>
-            <!-- Adicione os outros jogadores aqui -->
-        </div>
-    </section>
-    <section id="competicoes">
-        <h2>Competições</h2>
-        <ul>
-            <li>VPL - <a href="https://www.virtualproleague.com" style="color: white;">https://www.virtualproleague.com/portal/en/welcome</a></li>
-            <li>NG League - <a href="https://www.instagram.com/league_nova_geracao" style="color: white;">https://www.instagram.com/league_nova_geracao?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==</a></li>
-        </ul>
-    </section>
-    <section id="captacoes">
-        <h2>Captações</h2>
-        <form name="captacoes" method="POST" action="processa_captacoes.php">
-            <input type="hidden" name="form-name" value="captacoes">
-            <label for="id">ID:</label>
-                        <input type="text" id="id" name="id" required>
-            <label for="platform">Plataforma:</label>
-            <select id="platform" name="platform" required>
-                <option value="">Selecione uma plataforma</option>
-                <option value="PS5">PS5</option>
-                <option value="Xbox">Xbox</option>
-                <option value="PC">PC</option>
-            </select>
-            <label for="positions">Posições:</label>
-            <textarea id="positions" name="positions" required></textarea>
-            <button type="submit">Enviar</button>
-        </form>
-    </section>
-    <section id="login">
-        <h2>Login</h2>
-        <form name="login" method="POST" action="processa_login.php">
-            <input type="hidden" name="form-name" value="login">
-            <label for="username">Usuário:</label>
-            <input type="text" id="username" name="username" required>
-            <label for="password">Senha:</label>
-            <input type="password" id="password" name="password" required>
-            <button type="submit">Entrar</button>
-        </form>
-    </section>
-    <section id="registro">
-        <h2>Registro</h2>
-        <form name="registro" method="POST" action="processa_registro.php">
-            <input type="hidden" name="form-name" value="registro">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" required>
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" name="email" required>
-            <label for="username-reg">Usuário:</label>
-            <input type="text" id="username-reg" name="username-reg" required>
-            <label for="password-reg">Senha:</label>
-            <input type="password" id="password-reg" name="password-reg" required>
-            <button type="submit">Registrar</button>
-        </form>
-    </section>
-    <section id="contato">
-        <h2>Contato</h2>
-        <form name="contato" method="POST" action="processa_contato.php">
-            <input type="hidden" name="form-name" value="contato">
-            <label for="nome-contato">Nome:</label>
-            <input type="text" id="nome-contato" name="nome-contato" required>
-            <label for="email-contato">E-mail:</label>
-            <input type="email" id="email-contato" name="email-contato" required>
-            <label for="mensagem">Mensagem:</label>
-            <textarea id="mensagem" name="mensagem" required></textarea>
-            <button type="submit">Enviar</button>
-        </form>
-    </section>
-    <footer>
-        <ul>
-            <li><a href="#sobre">Sobre Nós</a></li>
-            <li><a href="#jogadores">Jogadores</a></li>
-            <li><a href="#competicoes">Competições</a></li>
-            <li><a href="#captacoes">Captações</a></li>
-            <li><a href="#login">Login</a></li>
-            <li><a href="#registro">Registro</a></li>
-            <li><a href="#contato">Contato</a></li>
-        </ul>
-        <p>&copy; 2024 RONIN PT. Todos os direitos reservados.</p>
-    </footer>
-</body>
-</html>
+header {
+    background-color: #111111; /* Preto escuro */
+    color: #f0d700; /* Dourado */
+    padding: 1rem 0;
+    text-align: center;
+}
 
+header nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+header nav ul li a {
+    color: #f0d700; /* Dourado */
+    text-decoration: none;
+}
+
+#banner {
+    background-color: #333333; /* Preto intermediário */
+    color: #f0d700; /* Dourado */
+    padding: 2rem 0;
+    text-align: center;
+}
+
+section {
+    padding: 2rem;
+    margin: 1rem 0;
+    background-color: #222222; /* Preto */
+    border-radius: 10px;
+}
+
+#jogadores .player {
+    display: inline-block;
+    width: 45%;
+    margin: 2.5%;
+    text-align: center;
+}
+
+#jogadores .player img {
+    width: 100%;
+    height: auto;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin-top: 1rem;
+}
+
+form input, form textarea {
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    background-color: #333333; /* Preto intermediário */
+    color: #f0d700; /* Dourado */
+    border: 1px solid #f0d700; /* Dourado */
+}
+
+form button {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    background-color: #111111; /* Preto escuro */
+    color: #f0d700; /* Dourado */
+    border: none;
+    cursor: pointer;
+}
+
+footer {
+    background-color: #111111; /* Preto escuro */
+    color: #f0d700; /* Dourado */
+    text-align: center;
+    padding: 1rem 0;
+}
+
+footer ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+footer ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+footer ul li a {
+    color: #f0d700; /* Dourado */
+    text-decoration: none;
+}
+
+#biografia {
+    background-color: #222222; /* Preto */
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+#biografia h2 {
+    text-align: center;
+    color: #f0d700; /* Dourado */
+}
+
+#biografia p {
+    text-align: justify;
+    margin-bottom: 1rem;
+    color: #f0d700; /* Dourado */
+}
