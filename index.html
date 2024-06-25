@@ -393,55 +393,55 @@
             });
         });
 
-       // JavaScript para gerenciar a presença dos jogadores
-function submitPresenca(event) {
-    event.preventDefault();
+      <script>
+    function submitPresenca(event) {
+        event.preventDefault(); // Impede o comportamento padrão de submissão do formulário
 
-    var form = document.getElementById('presenca-form');
-    var playerName = form['player-name'].value;
+        var form = document.getElementById('presenca-form');
+        var playerName = form['player-name'].value;
 
-    var diasSemana = ['domingo', 'segunda', 'terca', 'quarta', 'quinta'];
-    var presencaPorDia = {};
+        var diasSemana = ['domingo', 'segunda', 'terca', 'quarta', 'quinta'];
+        var presencaPorDia = {};
 
-    // Itera sobre os dias da semana para capturar o status de presença selecionado
-    diasSemana.forEach(function(dia) {
-        var selectedOption = form.querySelector('input[name="' + dia + '"]:checked');
-        if (selectedOption) {
-            presencaPorDia[dia] = selectedOption.value;
-        }
-    });
-
-    var tabela = document.getElementById('tabela-presenca').getElementsByTagName('tbody')[0];
-
-    // Verifica se o jogador já está na tabela
-    var jogadorExistente = false;
-    var linhas = tabela.getElementsByTagName('tr');
-    for (var i = 0; i < linhas.length; i++) {
-        var celulaNome = linhas[i].getElementsByTagName('td')[0];
-        if (celulaNome.textContent === playerName) {
-            jogadorExistente = true;
-            break;
-        }
-    }
-
-    // Se o jogador não estiver na tabela, adiciona uma nova linha
-    if (!jogadorExistente) {
-        var novaLinha = tabela.insertRow();
-        var celulaNome = novaLinha.insertCell(0);
-        celulaNome.textContent = playerName;
-
-        // Insere os status de presença por dia na tabela
-        diasSemana.forEach(function(dia, index) {
-            var celulaPresenca = novaLinha.insertCell(index + 1);
-            celulaPresenca.textContent = presencaPorDia[dia] || '-';
+        // Itera sobre os dias da semana para capturar o status de presença selecionado
+        diasSemana.forEach(function(dia) {
+            var selectedOption = form.querySelector('input[name="' + dia + '"]:checked');
+            if (selectedOption) {
+                presencaPorDia[dia] = selectedOption.value;
+            }
         });
 
-        form.reset();
-    } else {
-        alert('Este jogador já está na lista de presença.');
-    }
-}
+        var tabela = document.getElementById('tabela-presenca').getElementsByTagName('tbody')[0];
 
-    </script>
+        // Verifica se o jogador já está na tabela
+        var jogadorExistente = false;
+        var linhas = tabela.getElementsByTagName('tr');
+        for (var i = 0; i < linhas.length; i++) {
+            var celulaNome = linhas[i].getElementsByTagName('td')[0];
+            if (celulaNome.textContent === playerName) {
+                jogadorExistente = true;
+                break;
+            }
+        }
+
+        // Se o jogador não estiver na tabela, adiciona uma nova linha
+        if (!jogadorExistente) {
+            var novaLinha = tabela.insertRow();
+            var celulaNome = novaLinha.insertCell(0);
+            celulaNome.textContent = playerName;
+
+            // Insere os status de presença por dia na tabela
+            diasSemana.forEach(function(dia, index) {
+                var celulaPresenca = novaLinha.insertCell(index + 1);
+                celulaPresenca.textContent = presencaPorDia[dia] || '-';
+            });
+
+            form.reset(); // Limpa o formulário após a submissão
+        } else {
+            alert('Este jogador já está na lista de presença.');
+        }
+    }
+</script>
+
 </body>
 </html>
