@@ -267,40 +267,42 @@
 
             <button type="submit">Enviar</button>
         </form>
-    </section>
     <section id="presenca">
-        <h2>Presença</h2>
-        <form id="presenca-form" onsubmit="submitPresenca(event)">
-            <label for="player-name">Nome do Jogador:</label>
-            <input type="text" id="player-name" name="player-name" required>
+    <h2>Presença</h2>
+    <form id="presenca-form" onsubmit="submitPresenca(event)">
+        <label for="player-name">Nome do Jogador:</label>
+        <input type="text" id="player-name" name="player-name" required>
 
-            <label>Dias Disponíveis:</label>
-            <label><input type="checkbox" name="dias" value="domingo"> Domingo</label>
-            <label><input type="checkbox" name="dias" value="segunda"> Segunda</label>
-            <label><input type="checkbox" name="dias" value="terça"> Terça</label>
-            <label><input type="checkbox" name="dias" value="quarta"> Quarta</label>
-            <label><input type="checkbox" name="dias" value="quinta"> Quinta</label>
+        <label>Presença:</label>
+        <label><input type="checkbox" name="presenca" value="sim"> Sim</label>
+        <label><input type="checkbox" name="presenca" value="nao"> Não</label>
+        <label><input type="checkbox" name="presenca" value="atrasado"> Atrasado</label>
 
-            <button type="submit">Confirmar Presença</button>
-        </form>
+        <label>Dias Disponíveis:</label>
+        <label><input type="checkbox" name="dias" value="domingo"> Domingo</label>
+        <label><input type="checkbox" name="dias" value="segunda"> Segunda</label>
+        <label><input type="checkbox" name="dias" value="terca"> Terça</label>
+        <label><input type="checkbox" name="dias" value="quarta"> Quarta</label>
+        <label><input type="checkbox" name="dias" value="quinta"> Quinta</label>
 
-        <h3>Presenças Confirmadas</h3>
-        <table id="tabela-presenca">
-            <thead>
-                <tr>
-                    <th>Jogador</th>
-                    <th>Domingo</th>
-                    <th>Segunda</th>
-                    <th>Terça</th>
-                    <th>Quarta</th>
-                    <th>Quinta</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- As presenças serão adicionadas aqui -->
-            </tbody>
-        </table>
-    </section>
+        <button type="submit">Confirmar Presença</button>
+    </form>
+
+    <h3>Presenças Confirmadas</h3>
+    <table id="tabela-presenca">
+        <thead>
+            <tr>
+                <th>Jogador</th>
+                <th>Presença</th>
+                <th>Dias Disponíveis</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- As presenças serão adicionadas aqui -->
+        </tbody>
+    </table>
+</section>
+
     <footer>
         <p>Siga-nos nas redes sociais:</p>
         <ul>
@@ -355,8 +357,13 @@ function submitPresenca(event) {
 
     var form = document.getElementById('presenca-form');
     var playerName = form['player-name'].value;
+    var presencas = form.querySelectorAll('input[name="presenca"]:checked');
+    var presencaSelecionada = Array.from(presencas).map(function(presenca) {
+        return presenca.value;
+    });
+
     var dias = form.querySelectorAll('input[name="dias"]:checked');
-    var diasDisponiveis = Array.from(dias).map(function(dia) {
+    var diasSelecionados = Array.from(dias).map(function(dia) {
         return dia.value;
     });
 
@@ -379,10 +386,11 @@ function submitPresenca(event) {
         var celulaNome = novaLinha.insertCell(0);
         celulaNome.textContent = playerName;
 
-        ['domingo', 'segunda', 'terça', 'quarta', 'quinta'].forEach(function(dia, index) {
-            var celula = novaLinha.insertCell(index + 1);
-            celula.textContent = diasDisponiveis.includes(dia) ? '✓' : '';
-        });
+        var celulaPresenca = novaLinha.insertCell(1);
+        celulaPresenca.textContent = presencaSelecionada.join(', ');
+
+        var celulaDias = novaLinha.insertCell(2);
+        celulaDias.textContent = diasSelecionados.join(', ');
 
         form.reset();
     } else {
