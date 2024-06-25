@@ -219,18 +219,7 @@
             <textarea id="positions" name="positions" required></textarea>
             <button type="submit">Enviar</button>
         </form>
-    </section>
-    <section id="login">
-        <h2>Login</h2>
-        <form name="login" method="POST" data-netlify="true">
-            <input type="hidden" name="form-name" value="login">
-            <label for="username">Usuário:</label>
-            <input type="text" id="username" name="username" required>
-            <label for="password">Senha:</label>
-            <input type="password" id="password" name="password" required>
-            <button type="submit">Entrar</button>
-        </form>
-  <section id="presenca">
+    <section id="presenca">
     <h2>Votação de Presença</h2>
     <table id="presenca-table">
         <thead>
@@ -265,8 +254,13 @@
         </div>
         <button type="submit">Votar</button>
     </form>
+    <div id="confirmacao-voto">
+        <p id="nome-quem-votou"></p>
+        <p id="voto-quem-votou"></p>
+    </div>
     <button id="reset-votacao">Resetar Votação</button>
 </section>
+
 
     <footer>
         <p>Siga-nos nas redes sociais:</p>
@@ -309,7 +303,7 @@
                 }
             });
         });
-     // Lista dos dias da semana
+    // Lista dos dias da semana
 const diasDaSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
 
 // Função para inicializar a tabela com os dias da semana
@@ -372,7 +366,7 @@ function salvarVoto(index, voto) {
 
     presencas[index] = {
         voto: voto,
-        quemVotou: localStorage.getItem('quemVotou') || 'Ninguém votou ainda'
+        quemVotou: localStorage.getItem('nomeVotante') || 'Ninguém votou ainda'
     };
 
     localStorage.setItem('presencas', JSON.stringify(presencas));
@@ -418,11 +412,14 @@ document.getElementById('presenca-form').addEventListener('submit', function(eve
         }
     });
     const diaAtual = new Date().getDay(); // Obtém o índice do dia atual (0 para Domingo, 1 para Segunda, etc.)
+    const nomeVotante = prompt('Por favor, digite seu nome para confirmar o voto:');
+    localStorage.setItem('nomeVotante', nomeVotante); // Armazena o nome do votante no localStorage
     salvarVoto(diaAtual, selectedValue);
-    localStorage.setItem('quemVotou', 'Você votou'); // Define quem votou para o dia atual
     carregarVotos();
     limparSelecoes();
-    alert('Voto registrado com sucesso!');
+    document.getElementById('nome-quem-votou').textContent = `Nome: ${nomeVotante}`;
+    document.getElementById('voto-quem-votou').textContent = `Voto: ${selectedValue}`;
+    document.getElementById('confirmacao-voto').style.display = 'block'; // Mostra a confirmação do voto
 });
 
 // Event listener para o botão de reset
