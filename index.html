@@ -150,17 +150,18 @@
             transition: transform 0.3s ease;
             cursor: pointer;
         }
-        .player img.zoomed {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(1.2); /* Reduzido mais um pouco a altura do zoom */
-            z-index: 1000;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            max-width: 90vw; /* Limita a largura máxima à largura da viewport */
-            max-height: 90vh; /* Limita a altura máxima à altura da viewport */
-            object-fit: contain; /* Mantém proporções da imagem */
-        }
+       .player img.zoomed {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.2); /* Ajusta o zoom para 1.2x o tamanho original */
+    z-index: 1000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    max-width: 90vw; /* Limita a largura máxima à largura da viewport */
+    max-height: 90vh; /* Limita a altura máxima à altura da viewport */
+    object-fit: cover; /* Garante que a imagem seja cortada para ajustar ao tamanho da janela */
+}
+
 
         /* Estilo para a seção de presença */
         #presenca {
