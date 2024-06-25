@@ -204,10 +204,10 @@
     </section>
     <section id="captacoes">
         <h2>Captações</h2>
-        <form name="captacoes" method="POST" data-netlify="true">
+        <form name="captacoes" method="POST" action="processa_captacoes.php">
             <input type="hidden" name="form-name" value="captacoes">
             <label for="id">ID:</label>
-            <input type="text" id="id" name="id" required>
+                        <input type="text" id="id" name="id" required>
             <label for="platform">Plataforma:</label>
             <select id="platform" name="platform" required>
                 <option value="">Selecione uma plataforma</option>
@@ -222,7 +222,7 @@
     </section>
     <section id="login">
         <h2>Login</h2>
-        <form name="login" method="POST" data-netlify="true">
+        <form name="login" method="POST" action="processa_login.php">
             <input type="hidden" name="form-name" value="login">
             <label for="username">Usuário:</label>
             <input type="text" id="username" name="username" required>
@@ -231,110 +231,46 @@
             <button type="submit">Entrar</button>
         </form>
     </section>
-    <section id="presenca">
-    <h2>Votação de Presença</h2>
-    <form id="presenca-form">
-        <label for="voto">Você está presente hoje?</label>
-        <select id="voto" name="voto">
-            <option value="sim">Sim</option>
-            <option value="nao">Não</option>
-            <option value="atrasado">Atrasado</option>
-        </select>
-        <button type="submit">Votar</button>
-    </form>
-    <button id="reset-votacao">Resetar Votação</button>
-</section>
+    <section id="registro">
+        <h2>Registro</h2>
+        <form name="registro" method="POST" action="processa_registro.php">
+            <input type="hidden" name="form-name" value="registro">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="username-reg">Usuário:</label>
+            <input type="text" id="username-reg" name="username-reg" required>
+            <label for="password-reg">Senha:</label>
+            <input type="password" id="password-reg" name="password-reg" required>
+            <button type="submit">Registrar</button>
+        </form>
+    </section>
+    <section id="contato">
+        <h2>Contato</h2>
+        <form name="contato" method="POST" action="processa_contato.php">
+            <input type="hidden" name="form-name" value="contato">
+            <label for="nome-contato">Nome:</label>
+            <input type="text" id="nome-contato" name="nome-contato" required>
+            <label for="email-contato">E-mail:</label>
+            <input type="email" id="email-contato" name="email-contato" required>
+            <label for="mensagem">Mensagem:</label>
+            <textarea id="mensagem" name="mensagem" required></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
     <footer>
-        <p>Siga-nos nas redes sociais:</p>
         <ul>
-            <li><a href="https://www.instagram.com/ronin_pt_">Instagram</a></li>
-            <li><a href="https://www.tiktok.com/@ronin_pt_">Tik Tok</a></li>
+            <li><a href="#sobre">Sobre Nós</a></li>
+            <li><a href="#jogadores">Jogadores</a></li>
+            <li><a href="#competicoes">Competições</a></li>
+            <li><a href="#captacoes">Captações</a></li>
+            <li><a href="#login">Login</a></li>
+            <li><a href="#registro">Registro</a></li>
+            <li><a href="#contato">Contato</a></li>
         </ul>
         <p>&copy; 2024 RONIN PT. Todos os direitos reservados.</p>
     </footer>
-    <script>
-        function playMusic() {
-            var audio = document.getElementById('background-music');
-            audio.play();
-            audio.addEventListener('timeupdate', function() {
-                var fadePoint = audio.duration - 5;
-                if (audio.currentTime >= fadePoint) {
-                    var fadeDuration = 5;
-                    var volumeInterval = audio.volume / (fadeDuration * 10);
-                    var fadeAudio = setInterval(function() {
-                        if (audio.volume > volumeInterval) {
-                            audio.volume -= volumeInterval;
-                        } else {
-                            audio.volume = 0;
-                            clearInterval(fadeAudio);
-                        }
-                    }, 100);
-                }
-            });
-        }
-        var playerImages = document.querySelectorAll('.player img');
-        playerImages.forEach(function(image) {
-            image.addEventListener('click', function() {
-                if (this.classList.contains('zoomed')) {
-                    this.classList.remove('zoomed');
-                } else {
-                    playerImages.forEach(function(img) {
-                        img.classList.remove('zoomed');
-                    });
-                    this.classList.add('zoomed');
-                }
-            });
-        });
-       // Função para salvar o voto no localStorage
-function salvarVoto(voto) {
-    // Usamos a data de hoje para identificar a votação atual
-    var hoje = new Date().toLocaleDateString('pt-BR');
-    var presencas = JSON.parse(localStorage.getItem('presencas')) || {};
-
-    if (!presencas[hoje]) {
-        presencas[hoje] = {};
-    }
-
-    // Atualiza o voto para hoje
-    presencas[hoje].voto = voto;
-    localStorage.setItem('presencas', JSON.stringify(presencas));
-}
-
-// Função para carregar o último voto salvo
-function carregarUltimoVoto() {
-    var hoje = new Date().toLocaleDateString('pt-BR');
-    var presencas = JSON.parse(localStorage.getItem('presencas')) || {};
-
-    if (presencas[hoje] && presencas[hoje].voto) {
-        var voto = presencas[hoje].voto;
-        document.getElementById('voto').value = voto;
-    }
-}
-
-// Função para resetar a votação (apaga todos os votos salvos)
-function resetarVotacao() {
-    localStorage.removeItem('presencas');
-    alert('Votação resetada com sucesso!');
-}
-
-// Event listener para o formulário de votação
-document.getElementById('presenca-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    var voto = document.getElementById('voto').value;
-    salvarVoto(voto);
-    alert('Voto registrado com sucesso!');
-});
-
-// Event listener para o botão de reset
-document.getElementById('reset-votacao').addEventListener('click', function() {
-    resetarVotacao();
-});
-
-// Carrega o último voto salvo ao carregar a página
-document.addEventListener('DOMContentLoaded', function() {
-    carregarUltimoVoto();
-});
-
-    </script>
 </body>
 </html>
+
