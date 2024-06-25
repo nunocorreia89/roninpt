@@ -230,8 +230,7 @@
             <input type="password" id="password" name="password" required>
             <button type="submit">Entrar</button>
         </form>
-    </section>
-    <section id="presenca">
+  <section id="presenca">
     <h2>Votação de Presença</h2>
     <table id="presenca-table">
         <thead>
@@ -246,17 +245,28 @@
         </tbody>
     </table>
     <form id="presenca-form">
-        <label for="voto">Você está presente hoje?</label>
-        <select id="voto" name="voto">
-            <option value="sim">Sim</option>
-            <option value="nao">Não</option>
-            <option value="atrasado">Atrasado</option>
-        </select>
+        <label>Selecione sua presença hoje:</label>
+        <div id="voto-options">
+            <label>
+                <input type="radio" name="voto" value="sim">
+                <span class="bullet"></span>
+                Sim
+            </label>
+            <label>
+                <input type="radio" name="voto" value="nao">
+                <span class="bullet"></span>
+                Não
+            </label>
+            <label>
+                <input type="radio" name="voto" value="atrasado">
+                <span class="bullet"></span>
+                Atrasado
+            </label>
+        </div>
         <button type="submit">Votar</button>
     </form>
     <button id="reset-votacao">Resetar Votação</button>
 </section>
-
 
     <footer>
         <p>Siga-nos nas redes sociais:</p>
@@ -317,16 +327,31 @@ function inicializarTabela() {
         row.appendChild(dateCell);
 
         const voteCell = document.createElement('td');
-        const voteSelect = document.createElement('select');
-        voteSelect.id = `voto-${index}`;
-        voteSelect.name = 'voto';
+        const voteOptions = document.createElement('div');
+        voteOptions.classList.add('vote-options');
+
         ['sim', 'nao', 'atrasado'].forEach(opcao => {
-            const option = document.createElement('option');
-            option.value = opcao;
-            option.textContent = opcao.charAt(0).toUpperCase() + opcao.slice(1);
-            voteSelect.appendChild(option);
+            const label = document.createElement('label');
+            label.addEventListener('click', function() {
+                const isChecked = this.querySelector('input[type="radio"]').checked;
+                if (!isChecked) {
+                    limparSelecoes();
+                    this.querySelector('input[type="radio"]').checked = true;
+                }
+            });
+            const radio = document.createElement('input');
+            radio.type = 'radio';
+            radio.name = `voto-${index}`;
+            radio.value = opcao;
+            label.appendChild(radio);
+            const bullet = document.createElement('span');
+            bullet.classList.add('bullet');
+            label.appendChild(bullet);
+            label.appendChild(document.createTextNode(opcao.charAt(0).toUpperCase() + opcao.slice(1)));
+            voteOptions.appendChild(label);
         });
-        voteCell.appendChild(voteSelect);
+
+        voteCell.appendChild(voteOptions);
         row.appendChild(voteCell);
 
         const whoVotedCell = document.createElement('td');
@@ -359,8 +384,19 @@ function carregarVotos() {
 
     Object.keys(presencas).forEach(index => {
         const { voto, quemVotou } = presencas[index];
-        document.querySelector(`#voto-${index}`).value = voto;
+        const radio = document.querySelector(`input[name="voto-${index}"][value="${voto}"]`);
+        if (radio) {
+            radio.checked = true;
+        }
         document.querySelector(`#quem-votou-${index}`).textContent = quemVotou;
+    });
+}
+
+// Função para limpar todas as seleções de voto
+function limparSelecoes() {
+    const radios = document.querySelectorAll('input[type="radio"]');
+    radios.forEach(radio => {
+        radio.checked = false;
     });
 }
 
@@ -374,11 +410,18 @@ function resetarVotacao() {
 // Event listener para o formulário de votação
 document.getElementById('presenca-form').addEventListener('submit', function(event) {
     event.preventDefault();
-    const voto = document.getElementById('voto').value;
+    const radios = document.querySelectorAll('input[name^="voto-"]');
+    let selectedValue = '';
+    radios.forEach(radio => {
+        if (radio.checked) {
+            selectedValue = radio.value;
+        }
+    });
     const diaAtual = new Date().getDay(); // Obtém o índice do dia atual (0 para Domingo, 1 para Segunda, etc.)
-    salvarVoto(diaAtual, voto);
+    salvarVoto(diaAtual, selectedValue);
     localStorage.setItem('quemVotou', 'Você votou'); // Define quem votou para o dia atual
     carregarVotos();
+    limparSelecoes();
     alert('Voto registrado com sucesso!');
 });
 
@@ -391,6 +434,7 @@ document.getElementById('reset-votacao').addEventListener('click', function() {
 document.addEventListener('DOMContentLoaded', function() {
     inicializarTabela();
 });
+
    </script>
 </body>
 </html>
