@@ -270,6 +270,9 @@
     <section id="presenca">
     <h2>Presença</h2>
     <form id="presenca-form" onsubmit="submitPresenca(event)">
+        <label for="access-code">Código de Acesso:</label>
+        <input type="password" id="access-code" name="access-code" required>
+
         <label for="player-name">Nome do Jogador:</label>
         <input type="text" id="player-name" name="player-name" required>
 
@@ -512,6 +515,32 @@ function resetPresencaSemana() {
 
 // Chama a função de reset uma vez por minuto para verificar se é hora de resetar
 setInterval(resetPresencaSemana, 60000); // A cada 1 minuto (60000 milissegundos)
+
+// Função para validar o código de acesso
+function validarCodigoAcesso() {
+    var codigoAcesso = document.getElementById('access-code').value;
+    // Verifique se o código de acesso é igual ao código desejado (por exemplo, 'meucodigo123')
+    if (codigoAcesso === 'meucodigo123') {
+        return true; // Código de acesso válido
+    } else {
+        alert('Código de acesso incorreto!'); // Mensagem de erro
+        return false; // Impede a submissão do formulário
+    }
+}
+
+// Função para submeter o formulário de presença
+function submitPresenca(event) {
+    event.preventDefault(); // Previne o comportamento padrão de submissão
+    if (validarCodigoAcesso()) {
+        // Se o código de acesso for válido, continue com a submissão do formulário
+        // Aqui você pode adicionar a lógica para enviar os dados para o servidor, etc.
+        console.log('Formulário enviado com sucesso!');
+    } else {
+        // Se o código de acesso não for válido, não faça nada (ou exiba uma mensagem de erro)
+        console.log('Erro ao enviar o formulário.');
+    }
+}
+
 
     </script>
 </body>
