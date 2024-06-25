@@ -75,52 +75,39 @@
             text-decoration: none;
         }
         /* Estilo do formulário de contato */
-        #captacoes form {
-            background-color: #222222;
+        #contato form {
+            background-color: #000000;
             padding: 1rem;
             border-radius: 10px;
             margin-top: 1rem;
             text-align: center;
-            max-width: 400px; /* Limita a largura máxima do formulário */
-            margin: 0 auto; /* Centraliza o formulário na página */
         }
-        #captacoes form label {
+        #contato form label {
             display: block;
             margin-bottom: 0.5rem;
             color: #cba135;
         }
-        #captacoes form input[type="text"],
-        #captacoes form textarea {
-            width: calc(100% - 20px); /* Reduz a largura dos campos para caber no formulário */
+        #contato form input[type="text"],
+        #contato form input[type="email"],
+        #contato form textarea {
+            width: 100%;
+            max-width: 400px; /* Define a largura máxima */
             padding: 0.5rem;
-            margin-bottom: 1rem; /* Espaçamento inferior entre os campos */
+            margin: 0 auto 1rem auto; /* Centraliza os campos */
             border: 2px solid #cba135;
             border-radius: 5px;
             font-size: 1rem;
             color: #cba135;
-            background-color: #333333;
+            background-color: #222222;
             outline: none;
             display: block;
-            box-sizing: border-box; /* Garante que padding e border não aumentem a largura */
         }
-        #captacoes form select {
-            width: calc(100% - 20px); /* Reduz a largura do select para caber no formulário */
-            padding: 0.5rem;
-            margin-bottom: 1rem; /* Espaçamento inferior entre os campos */
-            border: 2px solid #cba135;
-            border-radius: 5px;
-            font-size: 1rem;
-            color: #cba135;
-            background-color: #333333;
-            outline: none;
-            display: block;
-            box-sizing: border-box; /* Garante que padding e border não aumentem a largura */
-        }
-        #captacoes form textarea {
+        #contato form textarea {
             resize: vertical;
             min-height: 100px;
         }
-        #captacoes form button {
+        #contato form button,
+        #play-music-button {
             background-color: #cba135;
             color: #000000;
             border: none;
@@ -130,7 +117,8 @@
             border-radius: 5px;
             transition: background-color 0.3s ease;
         }
-        #captacoes form button:hover {
+        #contato form button:hover,
+        #play-music-button:hover {
             background-color: #b99010;
         }
         /* Estilo do grid de jogadores */
@@ -171,7 +159,8 @@
                 <li><a href="#sobre">Sobre Nós</a></li>
                 <li><a href="#jogadores">Jogadores</a></li>
                 <li><a href="#competicoes">Competições</a></li>
-                <li><a href="#captacoes">Captações</a></li> <!-- Alterado de "Contato" para "Captações" -->
+                <li><a href="#captacoes">Captações</a></li>
+                <li><a href="#login">Login</a></li>
             </ul>
         </nav>
     </header>
@@ -182,10 +171,7 @@
     <section id="banner">
         <img src="logo.png" alt="Logo RONIN PT" style="max-width: 200px;">
         <p>Onde a honra e a vitória se encontram</p>
-        <button id="play-music-button" onclick="playMusic()" style="background-color: #cba135; color: #000000; border: none; padding: 0.75rem 1.5rem; font-size: 1rem; cursor: pointer; border-radius: 5px; transition: background-color 0.3s ease;">
-    Ouve a nossa claque uma vez
-</button>
-
+        <button id="play-music-button" onclick="playMusic()">Ouve a nossa claque uma vez</button>
     </section>
     <section id="sobre">
         <h2>Sobre Nós</h2>
@@ -200,7 +186,7 @@
         <div class="players-grid">
             <div class="player">
                 <img src="KOR.jpg" alt="Jogador 1" id="player1">
-                <h3>KOR</h3>
+                <h3>Jogador 1</h3>
                 <p>Especialidade: Distribuidor de jogo</p>
             </div>
             <!-- Adicione os outros jogadores aqui -->
@@ -210,29 +196,34 @@
         <h2>Competições</h2>
         <ul>
             <li>VPL - <a href="https://www.virtualproleague.com" style="color: white;">https://www.virtualproleague.com/portal/en/welcome</a></li>
-            <li>NG League - <a href="https://www.instagram.com/league_nova_geracao" style="color: white;">https://www.instagram.com/league_nova_geracao?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==</a></li>
+            <li>NG League - <a href="https://www.ngleague.com" style="color: white;">https://discord.gg/BsXBCTGX</a></li>
         </ul>
     </section>
-    <section id="captacoes"> <!-- Alterado para "Captações" -->
+    <section id="captacoes">
         <h2>Captações</h2>
-        <form name="captacoes" method="POST" data-netlify="true">
-            <input type="hidden" name="form-name" value="captacoes"> <!-- Hidden field required by Netlify to identify the form -->
-
-            <label for="id">ID:</label> <!-- Alterado para "ID" -->
+        <form name="contact" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="contact">
+            <label for="id">ID:</label>
             <input type="text" id="id" name="id" required>
-
-            <label for="platform">Plataforma:</label> <!-- Alterado para "Plataforma" -->
-            <select id="platform" name="platform" required>
-                <option value="">Selecione uma plataforma</option>
+            <label for="plataforma">Plataforma:</label>
+            <select id="plataforma" name="plataforma" required>
                 <option value="PS5">PS5</option>
                 <option value="Xbox">Xbox</option>
                 <option value="PC">PC</option>
             </select>
-
-            <label for="positions">Posições:</label> <!-- Alterado para "Posições" -->
-            <textarea id="positions" name="positions" required></textarea>
-
-            <button type="submit">Enviar</button>
+            <label for="posicoes">Posições:</label>
+            <textarea id="posicoes" name="posicoes" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+    <section id="login">
+        <h2>Login</h2>
+        <form id="login-form">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Login</button>
         </form>
     </section>
     <footer>
@@ -248,12 +239,11 @@
             var audio = document.getElementById('background-music');
             audio.play();
 
-            // Inicia o fade-out quando a música estiver próxima do fim
             audio.addEventListener('timeupdate', function() {
-                var fadePoint = audio.duration - 5; // Inicia o fade-out 5 segundos antes do fim
+                var fadePoint = audio.duration - 5;
                 if (audio.currentTime >= fadePoint) {
-                    var fadeDuration = 5; // Duração do fade-out em segundos
-                    var volumeInterval = audio.volume / (fadeDuration * 10); // Reduz o volume em pequenos intervalos
+                    var fadeDuration = 5;
+                    var volumeInterval = audio.volume / (fadeDuration * 10);
 
                     var fadeAudio = setInterval(function() {
                         if (audio.volume > volumeInterval) {
@@ -262,25 +252,37 @@
                             audio.volume = 0;
                             clearInterval(fadeAudio);
                         }
-                    }, 100); // Reduz o volume a cada 100ms
+                    }, 100);
                 }
             });
         }
 
-        // JavaScript para alternar a classe 'zoomed' ao clicar nas imagens dos jogadores
         var playerImages = document.querySelectorAll('.player img');
         playerImages.forEach(function(image) {
             image.addEventListener('click', function() {
                 if (this.classList.contains('zoomed')) {
                     this.classList.remove('zoomed');
                 } else {
-                    // Remove a classe 'zoomed' de todas as outras imagens
                     playerImages.forEach(function(img) {
                         img.classList.remove('zoomed');
                     });
                     this.classList.add('zoomed');
                 }
             });
+        });
+
+        // Simulação de login (exemplo básico, sem segurança)
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            if (username === 'user' && password === 'pass') {
+                alert('Login bem-sucedido');
+                // Redirecionar ou mostrar conteúdo exclusivo
+            } else {
+                alert('Username ou password incorretos');
+            }
         });
     </script>
 </body>
