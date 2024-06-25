@@ -151,17 +151,16 @@
             cursor: pointer;
         }
         .player img.zoomed {
-            position: absolute; /* Ajustado para absolute */
+            position: fixed;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) scale(1.2); /* Ajusta o zoom para 1.2x o tamanho original */
+            transform: translate(-50%, -50%) scale(1.2); /* Reduzido mais um pouco a altura do zoom */
             z-index: 1000;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             max-width: 90vw; /* Limita a largura máxima à largura da viewport */
             max-height: 90vh; /* Limita a altura máxima à altura da viewport */
-            object-fit: cover; /* Garante que a imagem seja cortada para ajustar ao tamanho da janela */
+            object-fit: contain; /* Mantém proporções da imagem */
         }
-
         /* Estilo para a seção de presença */
         #presenca {
             background-color: #222222;
@@ -227,105 +226,311 @@
         <p>Juntos, somos mais do que uma equipa: somos uma família de guerreiros digitais comprometidos com a superação e a paixão pelo mundo gaming.</p>
         <p>Nosso objetivo é não apenas competir, mas também inspirar outros jogadores a alcançar novos patamares de habilidade e ética de trabalho.</p>
         <p>Além das competições, estamos em constante evolução, aprendendo com cada desafio para nos tornarmos melhores a cada partida.</p>
-   </section>
-     <section id="jogadores">
-        <h2>Nossos Jogadores</h2>
+    </section>
+    <section id="jogadores">
+        <h2>Jogadores</h2>
         <div class="players-grid">
             <div class="player">
-                <img src="player1.jpg" alt="Jogador 1">
+                <img src="KOR.jpg" alt="Jogador 1" id="player1">
+                <h3>Jogador 1</h3>
+                <p>Especialidade: Distribuidor de jogo</p>
             </div>
-            <div class="player">
-                <img src="player2.jpg" alt="Jogador 2">
-            </div>
-            <div class="player">
-                <img src="player3.jpg" alt="Jogador 3">
-            </div>
-            <div class="player">
-                <img src="player4.jpg" alt="Jogador 4">
-            </div>
-            <div class="player">
-                <img src="player5.jpg" alt="Jogador 5">
-            </div>
+            <!-- Adicione os outros jogadores aqui -->
         </div>
     </section>
     <section id="competicoes">
-        <h2>Nossas Competições</h2>
-        <p>Participamos em várias competições nacionais e internacionais de eSports. Confira algumas das nossas conquistas:</p>
+        <h2>Competições</h2>
         <ul>
-            <li>Campeonato Nacional de League of Legends - Vice-campeões em 2025</li>
-            <li>Torneio Internacional de Valorant - Top 8 em 2026</li>
-            <li>Campeonato Mundial de Counter-Strike - Participação em 2027</li>
+            <li>VPL - <a href="https://www.virtualproleague.com" style="color: white;">https://www.virtualproleague.com/portal/en/welcome</a></li>
+            <li>NG League - <a href="https://www.instagram.com/league_nova_geracao" style="color: white;">https://www.instagram.com/league_nova_geracao?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==</a></li>
         </ul>
     </section>
-    <section id="captacoes">
+    <section id="captacoes"> <!-- Alterado para "Captações" -->
         <h2>Captações</h2>
-        <form>
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" required>
-
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="jogo">Jogo de interesse:</label>
-            <select id="jogo" name="jogo">
-                <option value="League of Legends">League of Legends</option>
-                <option value="Valorant">Valorant</option>
-                <option value="Counter-Strike">Counter-Strike</option>
-                <option value="Fortnite">Fortnite</option>
-                <option value="Outro">Outro</option>
+        <form name="captacoes" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="captacoes"> <!-- Hidden field required by Netlify to identify the form -->
+            <label for="id">ID:</label> <!-- Alterado para "ID" -->
+            <input type="text" id="id" name="id" required>
+            <label for="platform">Plataforma:</label> <!-- Alterado para "Plataforma" -->
+            <select id="platform" name="platform" required>
+                <option value="">Selecione uma plataforma</option>
+                <option value="PS5">PS5</option>
+                <option value="Xbox">Xbox</option>
+                <option value="PC">PC</option>
             </select>
-
-            <label for="mensagem">Mensagem:</label>
-            <textarea id="mensagem" name="mensagem" required></textarea>
+            <label for="positions">Posições:</label> <!-- Alterado para "Posições" -->
+            <textarea id="positions" name="positions" required></textarea>
 
             <button type="submit">Enviar</button>
         </form>
-    </section>
     <section id="presenca">
-        <h2>Presença</h2>
-        <form>
-            <label>
-                <input type="checkbox" name="presenca" value="confirmado">
-                Confirmar presença no próximo treino
-            </label>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Data</th>
-                        <th>Hora</th>
-                        <th>Local</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>15/07/2024</td>
-                        <td>19:00</td>
-                        <td>Arena RONIN</td>
-                    </tr>
-                    <tr>
-                        <td>18/07/2024</td>
-                        <td>20:00</td>
-                        <td>Arena RONIN</td>
-                    </tr>
-                    <tr>
-                        <td>21/07/2024</td>
-                        <td>18:30</td>
-                        <td>Arena RONIN</td>
-                    </tr>
-                </tbody>
-            </table>
-        </form>
-    </section>
+   <section id="presenca">
+    <h2>Presença</h2>
+    <form id="presenca-form" onsubmit="submitPresenca(event)">
+        <label for="access-code">Código de Acesso:</label>
+        <input type="password" id="access-code" name="access-code" required>
+
+        <label for="player-name">Nome do Jogador:</label>
+        <input type="text" id="player-name" name="player-name" required>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Dia</th>
+                    <th>Presença</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Domingo</td>
+                    <td>
+                        <label><input type="radio" name="domingo" value="sim"> Sim</label>
+                        <label><input type="radio" name="domingo" value="nao"> Não</label>
+                        <label><input type="radio" name="domingo" value="atrasado"> Atrasado</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Segunda</td>
+                    <td>
+                        <label><input type="radio" name="segunda" value="sim"> Sim</label>
+                        <label><input type="radio" name="segunda" value="nao"> Não</label>
+                        <label><input type="radio" name="segunda" value="atrasado"> Atrasado</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Terça</td>
+                    <td>
+                        <label><input type="radio" name="terca" value="sim"> Sim</label>
+                        <label><input type="radio" name="terca" value="nao"> Não</label>
+                        <label><input type="radio" name="terca" value="atrasado"> Atrasado</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Quarta</td>
+                    <td>
+                        <label><input type="radio" name="quarta" value="sim"> Sim</label>
+                        <label><input type="radio" name="quarta" value="nao"> Não</label>
+                        <label><input type="radio" name="quarta" value="atrasado"> Atrasado</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Quinta</td>
+                    <td>
+                        <label><input type="radio" name="quinta" value="sim"> Sim</label>
+                        <label><input type="radio" name="quinta" value="nao"> Não</label>
+                        <label><input type="radio" name="quinta" value="atrasado"> Atrasado</label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="submit">Confirmar Presença</button>
+    </form>
+    <h3>Presenças Confirmadas</h3>
+    <table id="tabela-presenca">
+        <thead>
+            <tr>
+                <th>Jogador</th>
+                <th>Domingo</th>
+                <th>Segunda</th>
+                <th>Terça</th>
+                <th>Quarta</th>
+                <th>Quinta</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- As presenças serão adicionadas aqui -->
+        </tbody>
+    </table>
+</section>
+
+
     <footer>
+        <p>Siga-nos nas redes sociais:</p>
         <ul>
-            <li><a href="#sobre">Sobre Nós</a></li>
-            <li><a href="#jogadores">Jogadores</a></li>
-            <li><a href="#competicoes">Competições</a></li>
-            <li><a href="#captacoes">Captações</a></li>
-            <li><a href="#presenca">Presença</a></li>
+            <li><a href="https://www.instagram.com/ronin_pt_">Instagram</a></li>
+            <li><a href="https://www.tiktok.com/@ronin_pt_">Tik Tok</a></li>
         </ul>
         <p>&copy; 2024 RONIN PT. Todos os direitos reservados.</p>
     </footer>
-    <script src="script.js"></script>
+    <script>
+        function playMusic() {
+            var audio = document.getElementById('background-music');
+            audio.play();
+            // Inicia o fade-out quando a música estiver próxima do fim
+            audio.addEventListener('timeupdate', function() {
+                var fadePoint = audio.duration - 5; // Inicia o fade-out 5 segundos antes do fim
+                if (audio.currentTime >= fadePoint) {
+                    var fadeDuration = 5; // Duração do fade-out em segundos
+                    var volumeInterval = audio.volume / (fadeDuration * 10); // Reduz o volume em pequenos intervalos
+                    var fadeAudio = setInterval(function() {
+                        if (audio.volume > volumeInterval) {
+                            audio.volume -= volumeInterval;
+                        } else {
+                            audio.volume = 0;
+                            clearInterval(fadeAudio);
+                        }
+                    }, 100); // Reduz o volume a cada 100ms
+                }
+            });
+        }
+        // JavaScript para alternar a classe 'zoomed' ao clicar nas imagens dos jogadores
+        var playerImages = document.querySelectorAll('.player img');
+        playerImages.forEach(function(image) {
+            image.addEventListener('click', function() {
+                if (this.classList.contains('zoomed')) {
+                    this.classList.remove('zoomed');
+                } else {
+                    // Remove a classe 'zoomed' de todas as outras imagens
+                    playerImages.forEach(function(img) {
+                        img.classList.remove('zoomed');
+                    });
+                    this.classList.add('zoomed');
+                }
+            });
+        });
+       function submitPresenca(event) {
+    event.preventDefault();
+    var form = document.getElementById('presenca-form');
+    var playerName = form['player-name'].value;
+    var diasSemana = ['domingo', 'segunda', 'terca', 'quarta', 'quinta'];
+    var presencaPorDia = {};
+    // Itera sobre os dias da semana para capturar o status de presença selecionado
+    diasSemana.forEach(function(dia) {
+        var selectedOption = form.querySelector('input[name="' + dia + '"]:checked');
+        if (selectedOption) {
+            presencaPorDia[dia] = selectedOption.value;
+        }
+    });
+    var tabela = document.getElementById('tabela-presenca').getElementsByTagName('tbody')[0];
+    // Verifica se o jogador já está na tabela
+    var jogadorExistente = false;
+    var linhas = tabela.getElementsByTagName('tr');
+    for (var i = 0; i < linhas.length; i++) {
+        var celulaNome = linhas[i].getElementsByTagName('td')[0];
+        if (celulaNome.textContent === playerName) {
+            jogadorExistente = true;
+            // Atualiza os status de presença na linha existente
+            diasSemana.forEach(function(dia, index) {
+                var celulaPresenca = linhas[i].getElementsByTagName('td')[index + 1];
+                celulaPresenca.textContent = presencaPorDia[dia] || '-';
+            });
+            // Adiciona um botão "Editar" à linha existente
+            var botaoEditar = document.createElement('button');
+            botaoEditar.textContent = 'Editar';
+            botaoEditar.classList.add('editar-button');
+            botaoEditar.addEventListener('click', function() {
+                // Preencher o formulário com os dados da linha selecionada
+                form['player-name'].value = playerName;
+                diasSemana.forEach(function(dia) {
+                    var status = presencaPorDia[dia];
+                    var radio = form.querySelector('input[name="' + dia + '"][value="' + status + '"]');
+                    if (radio) {
+                        radio.checked = true;
+                    }
+                });
+                // Remover a linha da tabela após a edição
+                tabela.removeChild(linhas[i]);
+            });
+            // Limpa o formulário após editar
+            form.reset();
+            // Adiciona o botão de edição à célula de ações da linha
+            var celulaAcoes = linhas[i].getElementsByTagName('td')[6]; // Supondo que seja a última célula de ações
+            celulaAcoes.textContent = '';
+            celulaAcoes.appendChild(botaoEditar);
+            break;
+        }
+    }
+    // Se o jogador não estiver na tabela, adiciona uma nova linha
+    if (!jogadorExistente) {
+        var novaLinha = tabela.insertRow();
+        var celulaNome = novaLinha.insertCell(0);
+        celulaNome.textContent = playerName;
+        // Insere os status de presença por dia na tabela
+        diasSemana.forEach(function(dia, index) {
+            var celulaPresenca = novaLinha.insertCell(index + 1);
+            celulaPresenca.textContent = presencaPorDia[dia] || '-';
+        });
+        // Cria a célula de ações com o botão "Editar"
+        var celulaAcoes = novaLinha.insertCell(6); // Supondo que seja a última célula de ações
+        var botaoEditar = document.createElement('button');
+        botaoEditar.textContent = 'Editar';
+        botaoEditar.classList.add('editar-button');
+        botaoEditar.addEventListener('click', function() {
+            // Preencher o formulário com os dados da linha selecionada
+            form['player-name'].value = playerName;
+            diasSemana.forEach(function(dia) {
+                var status = presencaPorDia[dia];
+                var radio = form.querySelector('input[name="' + dia + '"][value="' + status + '"]');
+                if (radio) {
+                    radio.checked = true;
+                }
+            });
+            // Remover a linha da tabela após a edição
+            tabela.removeChild(novaLinha);
+        });
+        // Adiciona o botão de edição à célula de ações da nova linha
+        celulaAcoes.appendChild(botaoEditar);
+        // Limpa o formulário após adicionar
+        form.reset();
+    }
+}
+       // Defina o código de acesso aqui
+var codigoDeAcesso = 'ronin24';
+// Função para validar o código de acesso
+function validarCodigoAcesso() {
+    var codigoAcessoInserido = document.getElementById('access-code').value;
+    if (codigoAcessoInserido === codigoDeAcesso) {
+        return true; // Código de acesso válido
+    } else {
+        alert('Código de acesso incorreto!'); // Mensagem de erro
+        return false; // Impede a submissão do formulário
+    }
+}
+// Função para submeter o formulário de presença
+function submitPresenca(event) {
+    event.preventDefault(); // Previne o comportamento padrão de submissão
+    if (validarCodigoAcesso()) {
+        // Se o código de acesso for válido, continue com a submissão do formulário
+        var playerName = document.getElementById('player-name').value;
+        var presencaDomingo = document.querySelector('input[name="domingo"]:checked').value;
+        var presencaSegunda = document.querySelector('input[name="segunda"]:checked').value;
+        var presencaTerca = document.querySelector('input[name="terca"]:checked').value;
+        var presencaQuarta = document.querySelector('input[name="quarta"]:checked').value;
+        var presencaQuinta = document.querySelector('input[name="quinta"]:checked').value;
+        // Adicione os dados à tabela de presenças confirmadas
+        var tabela = document.getElementById('tabela-presenca').getElementsByTagName('tbody')[0];
+        var novaLinha = tabela.insertRow();
+        var celulaNome = novaLinha.insertCell(0);
+        var celulaDomingo = novaLinha.insertCell(1);
+        var celulaSegunda = novaLinha.insertCell(2);
+        var celulaTerca = novaLinha.insertCell(3);
+        var celulaQuarta = novaLinha.insertCell(4);
+        var celulaQuinta = novaLinha.insertCell(5);
+        celulaNome.innerHTML = playerName;
+        celulaDomingo.innerHTML = presencaDomingo;
+        celulaSegunda.innerHTML = presencaSegunda;
+        celulaTerca.innerHTML = presencaTerca;
+        celulaQuarta.innerHTML = presencaQuarta;
+        celulaQuinta.innerHTML = presencaQuinta;
+        // Limpe o formulário após a submissão
+        document.getElementById('presenca-form').reset();
+    } else {
+        // Se o código de acesso não for válido, não faça nada (ou exiba uma mensagem de erro)
+        console.log('Erro ao enviar o formulário.');
+    }
+}
+     // Função para verificar e resetar a votação de presença todos os sábados à meia-noite
+function resetPresencaSemana() {
+    var hoje = new Date();
+    var diaSemana = hoje.getDay(); // 0 para domingo, 1 para segunda, ..., 6 para sábado
+    // Se hoje for sábado (6) e ainda não passou da meia-noite, agendar o reset
+    if (diaSemana === 6 && hoje.getHours() === 0 && hoje.getMinutes() === 0 && hoje.getSeconds() === 0) {
+        var tabela = document.getElementById('tabela-presenca').getElementsByTagName('tbody')[0];
+        tabela.innerHTML = ''; // Limpa todas as linhas da tabela de presença
+    }
+}
+// Chama a função de reset uma vez por minuto para verificar se é hora de resetar
+setInterval(resetPresencaSemana, 60000); // A cada 1 minuto (60000 milissegundos)
+    </script>
 </body>
 </html>
