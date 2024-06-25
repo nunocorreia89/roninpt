@@ -7,6 +7,23 @@ body {
 }
 
 header {
+    background-color: #111111; /* Preto escuro */
+    color: #f0d700; /* Dourado */
+    padding: 1rem 0;
+    text-align: center;
+}
+
+header nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+header nav ul li a {
     <style>
     /* Estilo de fonte inspirado na cultura samurai */
     body {
@@ -160,21 +177,6 @@ header {
 
 }
 
-header nav ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-header nav ul li {
-    display: inline;
-    margin: 0 10px;
-}
-
-header nav ul li a {
-    color: #f0d700; /* Dourado */
-    text-decoration: none;
-}
-
 #banner {
     background-color: #333333; /* Preto intermediário */
     color: #f0d700; /* Dourado */
@@ -253,12 +255,10 @@ footer ul li a {
     background-color: #222222; /* Preto */
     padding: 2rem;
     border-radius: 10px;
-    text-align: center; /* Centraliza todo o conteúdo */
-    max-width: 800px; /* Define uma largura máxima para o conteúdo */
-    margin: 0 auto; /* Centraliza a seção na tela */
 }
 
 #biografia h2 {
+    text-align: center;
     color: #f0d700; /* Dourado */
 }
 
@@ -267,37 +267,3 @@ footer ul li a {
     margin-bottom: 1rem;
     color: #f0d700; /* Dourado */
 }
-/* Estilo das bolas */
-#voto-options {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-
-#voto-options label {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    color: #cba135;
-}
-
-#voto-options input[type="radio"] {
-    display: none;
-}
-
-#voto-options .bullet {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border: 2px solid #cba135;
-    background-color: transparent;
-    margin-bottom: 5px;
-    transition: background-color 0.3s ease;
-}
-
-#voto-options input[type="radio"]:checked + .bullet {
-    background-color: #cba135;
-}
-
-
