@@ -154,7 +154,7 @@
             position: fixed;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) scale(1.5); /* Ajustar o nível de zoom conforme desejado */
+            transform: translate(-50%, -50%) scale(1); /* Remove escala adicional */
             z-index: 1000;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             max-width: 90vw; /* Limita a largura máxima à largura da viewport */
@@ -183,9 +183,8 @@
         <img src="logo.png" alt="Logo RONIN PT" style="max-width: 200px;">
         <p>Onde a honra e a vitória se encontram</p>
         <button id="play-music-button" onclick="playMusic()" style="background-color: #cba135; color: #000000; border: none; padding: 0.75rem 1.5rem; font-size: 1rem; cursor: pointer; border-radius: 5px; transition: background-color 0.3s ease;">
-    Ouve a nossa claque uma vez
-</button>
-
+            Ouve a nossa claque uma vez
+        </button>
     </section>
     <section id="sobre">
         <h2>Sobre Nós</h2>
@@ -210,13 +209,16 @@
         <h2>Competições</h2>
         <ul>
             <li>VPL - <a href="https://www.virtualproleague.com" style="color: white;">https://www.virtualproleague.com/portal/en/welcome</a></li>
-            <li>NG League - <a href="https://www.instagram.com/league_nova_geracao" style="color: white;">https://www.instagram.com/league_nova_geracao?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==</a></li>
+            <li>NG League - <a href="https://www.instagram.com/league_nova_geracao" style="color: white;">https://www.instagram.com/league_nova_geracao</a></li>
+            <li>LIGA TFA - <a href="https://www.instagram.com/tfa_liga" style="color: white;">https://www.instagram.com/tfa_liga</a></li>
+            <li>PRO CLUB PORTUGAL - <a href="https://www.instagram.com/proclubportugal/" style="color: white;">https://www.instagram.com/proclubportugal/</a></li>
+            <li>AF PORTUGAL - <a href="https://www.instagram.com/af_portugal/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" style="color: white;">https://www.instagram.com/af_portugal/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==</a></li>
         </ul>
     </section>
     <section id="captacoes"> <!-- Alterado para "Captações" -->
         <h2>Captações</h2>
         <form name="captacoes" method="POST" data-netlify="true">
-            <input type="hidden" name="form-name" value="captacoes"> <!-- Hidden field required by Netlify to identify the form -->
+            <input type="hidden" name="form-name" value="captacoes"> <!-- Hidden field required by Netlify para identificar o formulário -->
 
             <label for="id">ID:</label> <!-- Alterado para "ID" -->
             <input type="text" id="id" name="id" required>
