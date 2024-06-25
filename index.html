@@ -273,17 +273,56 @@
         <label for="player-name">Nome do Jogador:</label>
         <input type="text" id="player-name" name="player-name" required>
 
-        <label>Presença:</label>
-        <label><input type="checkbox" name="presenca" value="sim"> Sim</label>
-        <label><input type="checkbox" name="presenca" value="nao"> Não</label>
-        <label><input type="checkbox" name="presenca" value="atrasado"> Atrasado</label>
-
-        <label>Dias Disponíveis:</label>
-        <label><input type="checkbox" name="dias" value="domingo"> Domingo</label>
-        <label><input type="checkbox" name="dias" value="segunda"> Segunda</label>
-        <label><input type="checkbox" name="dias" value="terca"> Terça</label>
-        <label><input type="checkbox" name="dias" value="quarta"> Quarta</label>
-        <label><input type="checkbox" name="dias" value="quinta"> Quinta</label>
+        <table>
+            <thead>
+                <tr>
+                    <th>Dia</th>
+                    <th>Presença</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Domingo</td>
+                    <td>
+                        <label><input type="radio" name="domingo" value="sim"> Sim</label>
+                        <label><input type="radio" name="domingo" value="nao"> Não</label>
+                        <label><input type="radio" name="domingo" value="atrasado"> Atrasado</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Segunda</td>
+                    <td>
+                        <label><input type="radio" name="segunda" value="sim"> Sim</label>
+                        <label><input type="radio" name="segunda" value="nao"> Não</label>
+                        <label><input type="radio" name="segunda" value="atrasado"> Atrasado</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Terça</td>
+                    <td>
+                        <label><input type="radio" name="terca" value="sim"> Sim</label>
+                        <label><input type="radio" name="terca" value="nao"> Não</label>
+                        <label><input type="radio" name="terca" value="atrasado"> Atrasado</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Quarta</td>
+                    <td>
+                        <label><input type="radio" name="quarta" value="sim"> Sim</label>
+                        <label><input type="radio" name="quarta" value="nao"> Não</label>
+                        <label><input type="radio" name="quarta" value="atrasado"> Atrasado</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Quinta</td>
+                    <td>
+                        <label><input type="radio" name="quinta" value="sim"> Sim</label>
+                        <label><input type="radio" name="quinta" value="nao"> Não</label>
+                        <label><input type="radio" name="quinta" value="atrasado"> Atrasado</label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
         <button type="submit">Confirmar Presença</button>
     </form>
@@ -293,8 +332,11 @@
         <thead>
             <tr>
                 <th>Jogador</th>
-                <th>Presença</th>
-                <th>Dias Disponíveis</th>
+                <th>Domingo</th>
+                <th>Segunda</th>
+                <th>Terça</th>
+                <th>Quarta</th>
+                <th>Quinta</th>
             </tr>
         </thead>
         <tbody>
@@ -357,14 +399,16 @@ function submitPresenca(event) {
 
     var form = document.getElementById('presenca-form');
     var playerName = form['player-name'].value;
-    var presencas = form.querySelectorAll('input[name="presenca"]:checked');
-    var presencaSelecionada = Array.from(presencas).map(function(presenca) {
-        return presenca.value;
-    });
 
-    var dias = form.querySelectorAll('input[name="dias"]:checked');
-    var diasSelecionados = Array.from(dias).map(function(dia) {
-        return dia.value;
+    var diasSemana = ['domingo', 'segunda', 'terca', 'quarta', 'quinta'];
+    var presencaPorDia = {};
+
+    // Itera sobre os dias da semana para capturar o status de presença selecionado
+    diasSemana.forEach(function(dia) {
+        var selectedOption = form.querySelector('input[name="' + dia + '"]:checked');
+        if (selectedOption) {
+            presencaPorDia[dia] = selectedOption.value;
+        }
     });
 
     var tabela = document.getElementById('tabela-presenca').getElementsByTagName('tbody')[0];
@@ -386,11 +430,11 @@ function submitPresenca(event) {
         var celulaNome = novaLinha.insertCell(0);
         celulaNome.textContent = playerName;
 
-        var celulaPresenca = novaLinha.insertCell(1);
-        celulaPresenca.textContent = presencaSelecionada.join(', ');
-
-        var celulaDias = novaLinha.insertCell(2);
-        celulaDias.textContent = diasSelecionados.join(', ');
+        // Insere os status de presença por dia na tabela
+        diasSemana.forEach(function(dia, index) {
+            var celulaPresenca = novaLinha.insertCell(index + 1);
+            celulaPresenca.textContent = presencaPorDia[dia] || '-';
+        });
 
         form.reset();
     } else {
