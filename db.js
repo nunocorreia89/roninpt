@@ -3,7 +3,7 @@
 const { MongoClient } = require('mongodb');
 
 const uri = 'mongodb://localhost:27017'; // URI de conexão com o MongoDB
-const dbName = 'nome-do-seu-banco-de-dados'; // Nome do seu banco de dados MongoDB
+const dbName = 'login'; // Nome do seu banco de dados MongoDB
 
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
