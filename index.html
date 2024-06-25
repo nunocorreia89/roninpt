@@ -199,22 +199,28 @@
         </ul>
     </section>
     <section id="captacoes"> <!-- Alterado para "Captações" -->
-        <h2>Captações</h2>
-        <form name="captacoes" method="POST" data-netlify="true">
-            <input type="hidden" name="form-name" value="captacoes"> <!-- Hidden field required by Netlify to identify the form -->
+    <h2>Captações</h2>
+    <form name="captacoes" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="captacoes"> <!-- Hidden field required by Netlify to identify the form -->
 
-            <label for="id">ID:</label> <!-- Alterado para "ID" -->
-            <input type="text" id="id" name="id" required>
+        <label for="id">ID:</label> <!-- Alterado para "ID" -->
+        <input type="text" id="id" name="id" required>
 
-            <label for="platform">Plataforma:</label> <!-- Alterado para "Plataforma" -->
-            <input type="text" id="platform" name="platform" required>
+        <label for="platform">Plataforma:</label> <!-- Alterado para "Plataforma" -->
+        <select id="platform" name="platform" required>
+            <option value="">Selecione uma plataforma</option>
+            <option value="PS5">PS5</option>
+            <option value="Xbox">Xbox</option>
+            <option value="PC">PC</option>
+        </select>
 
-            <label for="positions">Posições:</label> <!-- Alterado para "Posições" -->
-            <textarea id="positions" name="positions" required></textarea>
+        <label for="positions">Posições:</label> <!-- Alterado para "Posições" -->
+        <textarea id="positions" name="positions" required></textarea>
 
-            <button type="submit">Enviar</button>
-        </form>
-    </section>
+        <button type="submit">Enviar</button>
+    </form>
+</section>
+
     <footer>
         <p>Siga-nos nas redes sociais:</p>
         <ul>
