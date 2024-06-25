@@ -5,195 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RONIN PT</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Estilo de fonte inspirado na cultura samurai */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #000000;
-            color: #cba135;
-            margin: 0;
-            padding: 0;
-        }
-        /* Estilo de fonte específico para cabeçalhos */
-        h1, h2, h3 {
-            font-family: 'Yu Gothic', 'Yu Mincho', sans-serif;
-        }
-        /* Estilo de navegação */
-        header {
-            background-color: #111111;
-            color: #cba135;
-            padding: 1rem 0;
-            text-align: center;
-        }
-        header nav ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        header nav ul li {
-            display: inline;
-            margin: 0 10px;
-        }
-        header nav ul li a {
-            color: #cba135;
-            text-decoration: none;
-        }
-        /* Estilo do banner */
-        #banner {
-            background-color: #333333;
-            color: #cba135;
-            padding: 2rem 0;
-            text-align: center;
-        }
-        /* Estilo das seções */
-        section {
-            padding: 2rem;
-            margin: 1rem 0;
-            background-color: #222222;
-            border-radius: 10px;
-            color: #cba135;
-        }
-        /* Estilo do rodapé */
-        footer {
-            background-color: #111111;
-            color: #cba135;
-            text-align: center;
-            padding: 1rem 0;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-        }
-        footer ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        footer ul li {
-            display: inline;
-            margin: 0 10px;
-        }
-        footer ul li a {
-            color: #cba135;
-            text-decoration: none;
-        }
-        /* Estilo do formulário de contato */
-        #captacoes form {
-            background-color: #222222;
-            padding: 1rem;
-            border-radius: 10px;
-            margin-top: 1rem;
-            text-align: center;
-            max-width: 400px; /* Limita a largura máxima do formulário */
-            margin: 0 auto; /* Centraliza o formulário na página */
-        }
-        #captacoes form label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #cba135;
-        }
-        #captacoes form input[type="text"],
-        #captacoes form textarea {
-            width: calc(100% - 20px); /* Reduz a largura dos campos para caber no formulário */
-            padding: 0.5rem;
-            margin-bottom: 1rem; /* Espaçamento inferior entre os campos */
-            border: 2px solid #cba135;
-            border-radius: 5px;
-            font-size: 1rem;
-            color: #cba135;
-            background-color: #333333;
-            outline: none;
-            display: block;
-            box-sizing: border-box; /* Garante que padding e border não aumentem a largura */
-        }
-        #captacoes form select {
-            width: calc(100% - 20px); /* Reduz a largura do select para caber no formulário */
-            padding: 0.5rem;
-            margin-bottom: 1rem; /* Espaçamento inferior entre os campos */
-            border: 2px solid #cba135;
-            border-radius: 5px;
-            font-size: 1rem;
-            color: #cba135;
-            background-color: #333333;
-            outline: none;
-            display: block;
-            box-sizing: border-box; /* Garante que padding e border não aumentem a largura */
-        }
-        #captacoes form textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-        #captacoes form button {
-            background-color: #cba135;
-            color: #000000;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-        #captacoes form button:hover {
-            background-color: #b99010;
-        }
-        /* Estilo do grid de jogadores */
-        .players-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 1rem;
-        }
-        .player {
-            text-align: center;
-        }
-        .player img {
-            max-width: 100%;
-            border-radius: 10px;
-            width: 150px;
-            height: auto;
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-        .player img.zoomed {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(1.2); /* Reduzido mais um pouco a altura do zoom */
-            z-index: 1000;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            max-width: 90vw; /* Limita a largura máxima à largura da viewport */
-            max-height: 90vh; /* Limita a altura máxima à altura da viewport */
-            object-fit: contain; /* Mantém proporções da imagem */
-        }
-        /* Estilo para a seção de presença */
-        #presenca {
-            background-color: #222222;
-            padding: 2rem;
-            margin: 1rem 0;
-            border-radius: 10px;
-            color: #cba135;
-        }
-        #presenca form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        #presenca form label {
-            margin-bottom: 0.5rem;
-        }
-        #presenca form input[type="checkbox"] {
-            margin-right: 10px;
-        }
-        #presenca table {
-            width: 100%;
-            margin-top: 1rem;
-            border-collapse: collapse;
-        }
-        #presenca table th, #presenca table td {
-            border: 1px solid #cba135;
-            padding: 0.5rem;
-            text-align: center;
-        }
-        #presenca table th {
-            background-color: #333333;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -203,7 +14,7 @@
                 <li><a href="#sobre">Sobre Nós</a></li>
                 <li><a href="#jogadores">Jogadores</a></li>
                 <li><a href="#competicoes">Competições</a></li>
-                <li><a href="#captacoes">Captações</a></li> <!-- Alterado de "Contato" para "Captações" -->
+                <li><a href="#captacoes">Captações</a></li>
                 <li><a href="#presenca">Presença</a></li>
             </ul>
         </nav>
@@ -215,125 +26,137 @@
     <section id="banner">
         <img src="logo.png" alt="Logo RONIN PT" style="max-width: 200px;">
         <p>Onde a honra e a vitória se encontram</p>
-        <button id="play-music-button" onclick="playMusic()" style="background-color: #cba135; color: #000000; border: none; padding: 0.75rem 1.5rem; font-size: 1rem; cursor: pointer; border-radius: 5px; transition: background-color 0.3s ease;">
-            Ouve a nossa claque uma vez
-        </button>
+        <button id="play-music-button" onclick="playMusic()">Ouve a nossa claque uma vez</button>
     </section>
     <section id="sobre">
         <h2>Sobre Nós</h2>
         <p>Somos os RONIN PT, uma equipa Portuguesa no mundo do eSports, fundada em 2024. Nascemos da união de um grupo de amigos, cuja amizade improvável se transformou em uma jornada de camaradagem e conquistas.</p>
         <p>Em cada batalha digital, honramos a tradição dos Ronin modernos, procurando não apenas a vitória, mas também a excelência e o respeito mútuo.</p>
         <p>Juntos, somos mais do que uma equipa: somos uma família de guerreiros digitais comprometidos com a superação e a paixão pelo mundo gaming.</p>
-        <p>Assim como os samurais sem mestres que nos inspiram, lutamos com coragem, honra e um espírito indomável. A nossa história está apenas começando, e convidamos todos a acompanharem-nos nesta emocionante jornada.</p>
+        <p>Nosso objetivo é não apenas competir, mas também inspirar outros jogadores a alcançar novos patamares de habilidade e ética de trabalho.</p>
+        <p>Além das competições, estamos em constante evolução, aprendendo com cada desafio para nos tornarmos melhores a cada partida.</p>
     </section>
     <section id="jogadores">
         <h2>Jogadores</h2>
         <div class="players-grid">
             <div class="player">
-                <img src="player1.jpg" alt="Jogador 1" onclick="zoomImage(this)">
+                <img src="KOR.jpg" alt="Jogador 1" id="player1">
                 <h3>Jogador 1</h3>
+                <p>Especialidade: Distribuidor de jogo</p>
             </div>
-            <div class="player">
-                <img src="player2.jpg" alt="Jogador 2" onclick="zoomImage(this)">
-                <h3>Jogador 2</h3>
-            </div>
-            <div class="player">
-                <img src="player3.jpg" alt="Jogador 3" onclick="zoomImage(this)">
-                <h3>Jogador 3</h3>
-            </div>
-            <div class="player">
-                <img src="player4.jpg" alt="Jogador 4" onclick="zoomImage(this)">
-                <h3>Jogador 4</h3>
-            </div>
-            <div class="player">
-                <img src="player5.jpg" alt="Jogador 5" onclick="zoomImage(this)">
-                <h3>Jogador 5</h3>
-            </div>
+            <!-- Adicione os outros jogadores aqui -->
         </div>
     </section>
     <section id="competicoes">
         <h2>Competições</h2>
-        <p>Próximas competições e resultados recentes.</p>
+        <ul>
+            <li>VPL - <a href="https://www.virtualproleague.com" target="_blank">Virtual Pro League</a></li>
+            <li>NG League - <a href="https://www.instagram.com/league_nova_geracao" target="_blank">League Nova Geração</a></li>
+        </ul>
     </section>
     <section id="captacoes">
         <h2>Captações</h2>
-        <p>Interessado em se juntar a nós? Preencha o formulário abaixo:</p>
-        <form id="captacao-form">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" required>
-            <label for="email">Email:</label>
-            <input type="text" id="email" name="email" required>
-            <label for="jogo">Jogo de Interesse:</label>
-            <select id="jogo" name="jogo" required>
-                <option value="">Selecione um jogo</option>
-                <option value="jogo1">Jogo 1</option>
-                <option value="jogo2">Jogo 2</option>
-                <option value="jogo3">Jogo 3</option>
+        <form name="captacoes" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="captacoes">
+            <label for="id">ID:</label>
+            <input type="text" id="id" name="id" required>
+            <label for="platform">Plataforma:</label>
+            <select id="platform" name="platform" required>
+                <option value="">Selecione uma plataforma</option>
+                <option value="PS5">PS5</option>
+                <option value="Xbox">Xbox</option>
+                <option value="PC">PC</option>
             </select>
-            <label for="mensagem">Mensagem:</label>
-            <textarea id="mensagem" name="mensagem" required></textarea>
+            <label for="positions">Posições:</label>
+            <textarea id="positions" name="positions" required></textarea>
             <button type="submit">Enviar</button>
         </form>
     </section>
     <section id="presenca">
-        <h2>Confirmação de Presença</h2>
-        <form id="presenca-form">
-            <label>
-                <input type="checkbox" id="confirmar-presenca">
-                Confirmar presença no treino
-            </label>
-            <button type="button" onclick="submitPresenca()">Confirmar Presença</button>
+        <h2>Presença</h2>
+        <form id="presenca-form" onsubmit="submitPresenca(event)">
+            <label for="access-code">Código de Acesso:</label>
+            <input type="password" id="access-code" name="access-code" required>
+            <label for="player-name">Nome do Jogador:</label>
+            <input type="text" id="player-name" name="player-name" required>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Dia</th>
+                        <th>Presença</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Domingo</td>
+                        <td>
+                            <label><input type="radio" name="domingo" value="sim"> Sim</label>
+                            <label><input type="radio" name="domingo" value="nao"> Não</label>
+                            <label><input type="radio" name="domingo" value="atrasado"> Atrasado</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Segunda</td>
+                        <td>
+                            <label><input type="radio" name="segunda" value="sim"> Sim</label>
+                            <label><input type="radio" name="segunda" value="nao"> Não</label>
+                            <label><input type="radio" name="segunda" value="atrasado"> Atrasado</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Terça</td>
+                        <td>
+                            <label><input type="radio" name="terca" value="sim"> Sim</label>
+                            <label><input type="radio" name="terca" value="nao"> Não</label>
+                            <label><input type="radio" name="terca" value="atrasado"> Atrasado</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Quarta</td>
+                        <td>
+                            <label><input type="radio" name="quarta" value="sim"> Sim</label>
+                            <label><input type="radio" name="quarta" value="nao"> Não</label>
+                            <label><input type="radio" name="quarta" value="atrasado"> Atrasado</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Quinta</td>
+                        <td>
+                            <label><input type="radio" name="quinta" value="sim"> Sim</label>
+                            <label><input type="radio" name="quinta" value="nao"> Não</label>
+                            <label><input type="radio" name="quinta" value="atrasado"> Atrasado</label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="submit">Confirmar Presença</button>
         </form>
+        <h3>Presenças Confirmadas</h3>
         <table id="tabela-presenca">
             <thead>
                 <tr>
-                    <th>Nome</th>
-                    <th>Presença</th>
+                    <th>Jogador</th>
+                    <th>Domingo</th>
+                    <th>Segunda</th>
+                    <th>Terça</th>
+                    <th>Quarta</th>
+                    <th>Quinta</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
-            <tbody id="tabela-presenca-body">
-                <!-- As linhas da tabela serão inseridas aqui via JavaScript -->
+            <tbody>
+                <!-- As presenças serão adicionadas aqui -->
             </tbody>
         </table>
     </section>
     <footer>
-        <p>© 2024 RONIN PT. Todos os direitos reservados.</p>
+        <p>Siga-nos nas redes sociais:</p>
         <ul>
-            <li><a href="#sobre">Sobre Nós</a></li>
-            <li><a href="#jogadores">Jogadores</a></li>
-            <li><a href="#competicoes">Competições</a></li>
-            <li><a href="#captacoes">Captações</a></li>
-            <li><a href="#presenca">Presença</a></li>
+            <li><a href="https://www.instagram.com/ronin_pt_" target="_blank">Instagram</a></li>
+            <li><a href="https://www.tiktok.com/@ronin_pt_" target="_blank">Tik Tok</a></li>
         </ul>
+        <p>&copy; 2024 RONIN PT. Todos os direitos reservados.</p>
     </footer>
-    <script>
-        // Script para tocar música
-        function playMusic() {
-            var audio = document.getElementById('background-music');
-            audio.play();
-        }
-
-        // Script para enviar formulário de presença
-        function submitPresenca() {
-            var checkbox = document.getElementById('confirmar-presenca');
-            var tabelaBody = document.getElementById('tabela-presenca-body');
-
-            if (checkbox.checked) {
-                var row = tabelaBody.insertRow();
-                var cellNome = row.insertCell(0);
-                var cellPresenca = row.insertCell(1);
-
-                cellNome.textContent = "Nome do Jogador"; // Você pode ajustar para obter o nome real do jogador
-                cellPresenca.textContent = "Presente";
-
-                checkbox.checked = false;
-            }
-        }
-
-        // Script para zoom da imagem
-        function zoomImage(img) {
-            img.classList.toggle('zoomed');
-        }
-    </script>
+    <script src="scripts.js"></script>
 </body>
 </html>
