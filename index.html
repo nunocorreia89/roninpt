@@ -74,13 +74,15 @@
             color: #cba135;
             text-decoration: none;
         }
-        /* Estilo do formulário de captações */
+        /* Estilo do formulário de contato */
         #captacoes form {
-            background-color: #000000;
+            background-color: #222222;
             padding: 1rem;
             border-radius: 10px;
             margin-top: 1rem;
             text-align: center;
+            max-width: 400px; /* Limita a largura máxima do formulário */
+            margin: 0 auto; /* Centraliza o formulário na página */
         }
         #captacoes form label {
             display: block;
@@ -88,26 +90,37 @@
             color: #cba135;
         }
         #captacoes form input[type="text"],
-        #captacoes form input[type="email"],
         #captacoes form textarea {
-            width: 100%;
-            max-width: 400px; /* Define a largura máxima */
+            width: calc(100% - 20px); /* Reduz a largura dos campos para caber no formulário */
             padding: 0.5rem;
-            margin: 0 auto 1rem auto; /* Centraliza os campos */
+            margin-bottom: 1rem; /* Espaçamento inferior entre os campos */
             border: 2px solid #cba135;
             border-radius: 5px;
             font-size: 1rem;
             color: #cba135;
-            background-color: #222222;
+            background-color: #333333;
             outline: none;
             display: block;
+            box-sizing: border-box; /* Garante que padding e border não aumentem a largura */
+        }
+        #captacoes form select {
+            width: calc(100% - 20px); /* Reduz a largura do select para caber no formulário */
+            padding: 0.5rem;
+            margin-bottom: 1rem; /* Espaçamento inferior entre os campos */
+            border: 2px solid #cba135;
+            border-radius: 5px;
+            font-size: 1rem;
+            color: #cba135;
+            background-color: #333333;
+            outline: none;
+            display: block;
+            box-sizing: border-box; /* Garante que padding e border não aumentem a largura */
         }
         #captacoes form textarea {
             resize: vertical;
             min-height: 100px;
         }
-        #captacoes form button,
-        #play-music-button {
+        #captacoes form button {
             background-color: #cba135;
             color: #000000;
             border: none;
@@ -117,8 +130,7 @@
             border-radius: 5px;
             transition: background-color 0.3s ease;
         }
-        #captacoes form button:hover,
-        #play-music-button:hover {
+        #captacoes form button:hover {
             background-color: #b99010;
         }
         /* Estilo do grid de jogadores */
@@ -159,7 +171,7 @@
                 <li><a href="#sobre">Sobre Nós</a></li>
                 <li><a href="#jogadores">Jogadores</a></li>
                 <li><a href="#competicoes">Competições</a></li>
-                <li><a href="#captacoes">Captações</a></li> <!-- Alterado para "Captações" -->
+                <li><a href="#captacoes">Captações</a></li> <!-- Alterado de "Contato" para "Captações" -->
             </ul>
         </nav>
     </header>
@@ -170,7 +182,10 @@
     <section id="banner">
         <img src="logo.png" alt="Logo RONIN PT" style="max-width: 200px;">
         <p>Onde a honra e a vitória se encontram</p>
-        <button id="play-music-button" onclick="playMusic()">Ouve a nossa claque uma vez</button>
+        <button id="play-music-button" onclick="playMusic()" style="background-color: #cba135; color: #000000; border: none; padding: 0.75rem 1.5rem; font-size: 1rem; cursor: pointer; border-radius: 5px; transition: background-color 0.3s ease;">
+    Ouve a nossa claque uma vez
+</button>
+
     </section>
     <section id="sobre">
         <h2>Sobre Nós</h2>
@@ -195,7 +210,7 @@
         <h2>Competições</h2>
         <ul>
             <li>VPL - <a href="https://www.virtualproleague.com" style="color: white;">https://www.virtualproleague.com/portal/en/welcome</a></li>
-            <li>NG League - <a href="https://www.ngleague.com" style="color: white;">https://discord.gg/BsXBCTGX</a></li>
+            <li>NG League - <a href="https://www.instagram.com/league_nova_geracao" style="color: white;">https://www.instagram.com/league_nova_geracao?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==</a></li>
         </ul>
     </section>
     <section id="captacoes"> <!-- Alterado para "Captações" -->
@@ -207,7 +222,12 @@
             <input type="text" id="id" name="id" required>
 
             <label for="platform">Plataforma:</label> <!-- Alterado para "Plataforma" -->
-            <input type="text" id="platform" name="platform" required>
+            <select id="platform" name="platform" required>
+                <option value="">Selecione uma plataforma</option>
+                <option value="PS5">PS5</option>
+                <option value="Xbox">Xbox</option>
+                <option value="PC">PC</option>
+            </select>
 
             <label for="positions">Posições:</label> <!-- Alterado para "Posições" -->
             <textarea id="positions" name="positions" required></textarea>
