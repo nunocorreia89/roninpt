@@ -1,211 +1,106 @@
-/* Estilo de fonte inspirado na cultura samurai */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    background-color: #f4f4f4;
-    color: #333;
+    color: #f0d700; /* Dourado */
+    background-color: #000000; /* Preto */
 }
 
 header {
-    background-color: #222;
-    color: white;
-    padding: 1em 0;
+    background-color: #111111; /* Preto escuro */
+    color: #f0d700; /* Dourado */
+    padding: 1rem 0;
     text-align: center;
 }
 
-header h1 {
-    margin: 0;
-}
-
-nav ul {
-    list-style: none;
+header nav ul {
+    list-style-type: none;
     padding: 0;
 }
 
-nav ul li {
+header nav ul li {
     display: inline;
-    margin-right: 15px;
+    margin: 0 10px;
 }
 
-nav ul li a {
-    color: white;
+header nav ul li a {
+    color: #f0d700; /* Dourado */
     text-decoration: none;
 }
 
-nav ul li a:hover {
-    text-decoration: underline;
-}
-
 #banner {
-    background: url('banner-image.jpg') no-repeat center center/cover;
-    color: white;
+    background-color: #333333; /* Preto intermediário */
+    color: #f0d700; /* Dourado */
+    padding: 2rem 0;
     text-align: center;
-    padding: 50px 20px;
-}
-
-#banner img {
-    max-width: 200px;
-    margin-bottom: 20px;
-}
-
-#banner p {
-    font-size: 1.5em;
 }
 
 section {
-    padding: 20px;
-    margin: 20px 0;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-    border-bottom: 2px solid #ccc;
-    padding-bottom: 10px;
-}
-
-/* Adicionado estilo para a classe .zoomed */
-.player img.zoomed {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(1.2); /* Zoom de 1.2x */
-    z-index: 1000;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    max-width: 90vw; /* Limita a largura máxima à largura da viewport */
-    max-height: 90vh; /* Limita a altura máxima à altura da viewport */
-    object-fit: cover; /* Garante que a imagem seja cortada para ajustar ao tamanho da janela */
-}
-
-/* Estilo de grid responsivo para os jogadores */
-.players-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Grid responsivo */
-    gap: 1rem;
-}
-
-/* Estilo dos jogadores */
-.player {
-    text-align: center;
-    position: relative; /* Necessário para alinhar a imagem zoomada corretamente */
-}
-
-.player img {
-    max-width: 100%;
+    padding: 2rem;
+    margin: 1rem 0;
+    background-color: #222222; /* Preto */
     border-radius: 10px;
-    width: 100%; /* Ajuste para garantir que a imagem ocupe todo o espaço disponível */
-    height: auto;
-    transition: transform 0.3s ease;
-    cursor: pointer;
 }
 
-/* Estilo do formulário de presença */
-#presenca form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#presenca form label {
-    margin-bottom: 0.5rem;
-}
-
-#presenca form input[type="checkbox"] {
-    margin-right: 10px;
-}
-
-#presenca table {
-    width: 100%;
-    margin-top: 1rem;
-    border-collapse: collapse;
-}
-
-#presenca table th,
-#presenca table td {
-    border: 1px solid #cba135;
-    padding: 0.5rem;
+#jogadores .player {
+    display: inline-block;
+    width: 45%;
+    margin: 2.5%;
     text-align: center;
 }
 
-#presenca table th {
-    background-color: #333333;
+#jogadores .player img {
+    width: 100%;
+    height: auto;
 }
-
 
 form {
-    display: grid;
-    gap: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
-label {
-    font-weight: bold;
+form label {
+    margin-top: 1rem;
 }
 
-input, select, textarea, button {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1em;
+form input, form textarea {
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    background-color: #333333; /* Preto intermediário */
+    color: #f0d700; /* Dourado */
+    border: 1px solid #f0d700; /* Dourado */
 }
 
-button {
-    background-color: #222;
-    color: white;
+form button {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    background-color: #111111; /* Preto escuro */
+    color: #f0d700; /* Dourado */
+    border: none;
     cursor: pointer;
-}
-
-button:hover {
-    background-color: #555;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-table, th, td {
-    border: 1px solid #ddd;
-}
-
-th, td {
-    padding: 10px;
-    text-align: center;
 }
 
 footer {
-    background-color: #222;
-    color: white;
+    background-color: #111111; /* Preto escuro */
+    color: #f0d700; /* Dourado */
     text-align: center;
-    padding: 20px 0;
-    margin-top: 20px;
-}
-
-footer p, footer ul {
-    margin: 0;
+    padding: 1rem 0;
 }
 
 footer ul {
-    list-style: none;
+    list-style-type: none;
     padding: 0;
 }
 
 footer ul li {
     display: inline;
-    margin-right: 10px;
+    margin: 0 10px;
 }
 
 footer ul li a {
-    color: white;
+    color: #f0d700; /* Dourado */
     text-decoration: none;
 }
-
-footer ul li a:hover {
-    text-decoration: underline;
-}
-
 
 #biografia {
     background-color: #222222; /* Preto */
