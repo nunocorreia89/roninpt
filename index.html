@@ -268,21 +268,20 @@
         }
 
         // JavaScript para alternar a classe 'zoomed' ao clicar nas imagens dos jogadores
-var playerImages = document.querySelectorAll('.player img');
-playerImages.forEach(function(image) {
-    image.addEventListener('click', function() {
-        if (this.classList.contains('zoomed')) {
-            this.classList.remove('zoomed');
-        } else {
-            // Remove a classe 'zoomed' de todas as outras imagens
-            playerImages.forEach(function(img) {
-                img.classList.remove('zoomed');
+        var playerImages = document.querySelectorAll('.player img');
+        playerImages.forEach(function(image) {
+            image.addEventListener('click', function() {
+                if (this.classList.contains('zoomed')) {
+                    this.classList.remove('zoomed');
+                } else {
+                    // Remove a classe 'zoomed' de todas as outras imagens
+                    playerImages.forEach(function(img) {
+                        img.classList.remove('zoomed');
+                    });
+                    this.classList.add('zoomed');
+                }
             });
-            this.classList.add('zoomed');
-        }
-    });
-});
-
+        });
     </script>
 </body>
 </html>
