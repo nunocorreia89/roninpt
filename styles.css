@@ -67,23 +67,73 @@ h2 {
     padding-bottom: 10px;
 }
 
-.players-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+/* Adicionado estilo para a classe .zoomed */
+.player img.zoomed {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.2); /* Zoom de 1.2x */
+    z-index: 1000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    max-width: 90vw; /* Limita a largura máxima à largura da viewport */
+    max-height: 90vh; /* Limita a altura máxima à altura da viewport */
+    object-fit: cover; /* Garante que a imagem seja cortada para ajustar ao tamanho da janela */
 }
 
+/* Estilo de grid responsivo para os jogadores */
+.players-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Grid responsivo */
+    gap: 1rem;
+}
+
+/* Estilo dos jogadores */
 .player {
-    flex: 1 1 calc(33.333% - 20px);
-    box-sizing: border-box;
     text-align: center;
+    position: relative; /* Necessário para alinhar a imagem zoomada corretamente */
 }
 
 .player img {
     max-width: 100%;
-    border-radius: 50%;
-    margin-bottom: 10px;
+    border-radius: 10px;
+    width: 100%; /* Ajuste para garantir que a imagem ocupe todo o espaço disponível */
+    height: auto;
+    transition: transform 0.3s ease;
+    cursor: pointer;
 }
+
+/* Estilo do formulário de presença */
+#presenca form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#presenca form label {
+    margin-bottom: 0.5rem;
+}
+
+#presenca form input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+#presenca table {
+    width: 100%;
+    margin-top: 1rem;
+    border-collapse: collapse;
+}
+
+#presenca table th,
+#presenca table td {
+    border: 1px solid #cba135;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+#presenca table th {
+    background-color: #333333;
+}
+
 
 form {
     display: grid;
