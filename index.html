@@ -286,6 +286,56 @@
                 }
             });
         });
+       // Função para salvar o voto no localStorage
+function salvarVoto(voto) {
+    // Usamos a data de hoje para identificar a votação atual
+    var hoje = new Date().toLocaleDateString('pt-BR');
+    var presencas = JSON.parse(localStorage.getItem('presencas')) || {};
+
+    if (!presencas[hoje]) {
+        presencas[hoje] = {};
+    }
+
+    // Atualiza o voto para hoje
+    presencas[hoje].voto = voto;
+    localStorage.setItem('presencas', JSON.stringify(presencas));
+}
+
+// Função para carregar o último voto salvo
+function carregarUltimoVoto() {
+    var hoje = new Date().toLocaleDateString('pt-BR');
+    var presencas = JSON.parse(localStorage.getItem('presencas')) || {};
+
+    if (presencas[hoje] && presencas[hoje].voto) {
+        var voto = presencas[hoje].voto;
+        document.getElementById('voto').value = voto;
+    }
+}
+
+// Função para resetar a votação (apaga todos os votos salvos)
+function resetarVotacao() {
+    localStorage.removeItem('presencas');
+    alert('Votação resetada com sucesso!');
+}
+
+// Event listener para o formulário de votação
+document.getElementById('presenca-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    var voto = document.getElementById('voto').value;
+    salvarVoto(voto);
+    alert('Voto registrado com sucesso!');
+});
+
+// Event listener para o botão de reset
+document.getElementById('reset-votacao').addEventListener('click', function() {
+    resetarVotacao();
+});
+
+// Carrega o último voto salvo ao carregar a página
+document.addEventListener('DOMContentLoaded', function() {
+    carregarUltimoVoto();
+});
+
     </script>
 </body>
 </html>
