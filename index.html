@@ -233,6 +233,18 @@
     </section>
     <section id="presenca">
     <h2>Votação de Presença</h2>
+    <table id="presenca-table">
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Voto</th>
+                <th>Quem Votou</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Os dias da semana serão preenchidos dinamicamente aqui -->
+        </tbody>
+    </table>
     <form id="presenca-form">
         <label for="voto">Você está presente hoje?</label>
         <select id="voto" name="voto">
@@ -244,6 +256,7 @@
     </form>
     <button id="reset-votacao">Resetar Votação</button>
 </section>
+
 
     <footer>
         <p>Siga-nos nas redes sociais:</p>
@@ -286,43 +299,86 @@
                 }
             });
         });
-       // Função para salvar o voto no localStorage
-function salvarVoto(voto) {
-    // Usamos a data de hoje para identificar a votação atual
-    var hoje = new Date().toLocaleDateString('pt-BR');
-    var presencas = JSON.parse(localStorage.getItem('presencas')) || {};
+     // Lista dos dias da semana
+const diasDaSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
 
-    if (!presencas[hoje]) {
-        presencas[hoje] = {};
-    }
+// Função para inicializar a tabela com os dias da semana
+function inicializarTabela() {
+    const tableBody = document.querySelector('#presenca-table tbody');
+    
+    // Limpa o conteúdo atual da tabela
+    tableBody.innerHTML = '';
 
-    // Atualiza o voto para hoje
-    presencas[hoje].voto = voto;
+    // Cria uma linha para cada dia da semana
+    diasDaSemana.forEach((dia, index) => {
+        const row = document.createElement('tr');
+        const dateCell = document.createElement('td');
+        dateCell.textContent = `${dia}`;
+        row.appendChild(dateCell);
+
+        const voteCell = document.createElement('td');
+        const voteSelect = document.createElement('select');
+        voteSelect.id = `voto-${index}`;
+        voteSelect.name = 'voto';
+        ['sim', 'nao', 'atrasado'].forEach(opcao => {
+            const option = document.createElement('option');
+            option.value = opcao;
+            option.textContent = opcao.charAt(0).toUpperCase() + opcao.slice(1);
+            voteSelect.appendChild(option);
+        });
+        voteCell.appendChild(voteSelect);
+        row.appendChild(voteCell);
+
+        const whoVotedCell = document.createElement('td');
+        whoVotedCell.id = `quem-votou-${index}`;
+        whoVotedCell.textContent = 'Ninguém votou ainda';
+        row.appendChild(whoVotedCell);
+
+        tableBody.appendChild(row);
+    });
+
+    // Carrega os votos e quem votou ao iniciar
+    carregarVotos();
+}
+
+// Função para salvar o voto no localStorage
+function salvarVoto(index, voto) {
+    const presencas = JSON.parse(localStorage.getItem('presencas')) || {};
+
+    presencas[index] = {
+        voto: voto,
+        quemVotou: localStorage.getItem('quemVotou') || 'Ninguém votou ainda'
+    };
+
     localStorage.setItem('presencas', JSON.stringify(presencas));
 }
 
-// Função para carregar o último voto salvo
-function carregarUltimoVoto() {
-    var hoje = new Date().toLocaleDateString('pt-BR');
-    var presencas = JSON.parse(localStorage.getItem('presencas')) || {};
+// Função para carregar os votos e quem votou
+function carregarVotos() {
+    const presencas = JSON.parse(localStorage.getItem('presencas')) || {};
 
-    if (presencas[hoje] && presencas[hoje].voto) {
-        var voto = presencas[hoje].voto;
-        document.getElementById('voto').value = voto;
-    }
+    Object.keys(presencas).forEach(index => {
+        const { voto, quemVotou } = presencas[index];
+        document.querySelector(`#voto-${index}`).value = voto;
+        document.querySelector(`#quem-votou-${index}`).textContent = quemVotou;
+    });
 }
 
 // Função para resetar a votação (apaga todos os votos salvos)
 function resetarVotacao() {
     localStorage.removeItem('presencas');
+    inicializarTabela();
     alert('Votação resetada com sucesso!');
 }
 
 // Event listener para o formulário de votação
 document.getElementById('presenca-form').addEventListener('submit', function(event) {
     event.preventDefault();
-    var voto = document.getElementById('voto').value;
-    salvarVoto(voto);
+    const voto = document.getElementById('voto').value;
+    const diaAtual = new Date().getDay(); // Obtém o índice do dia atual (0 para Domingo, 1 para Segunda, etc.)
+    salvarVoto(diaAtual, voto);
+    localStorage.setItem('quemVotou', 'Você votou'); // Define quem votou para o dia atual
+    carregarVotos();
     alert('Voto registrado com sucesso!');
 });
 
@@ -331,11 +387,10 @@ document.getElementById('reset-votacao').addEventListener('click', function() {
     resetarVotacao();
 });
 
-// Carrega o último voto salvo ao carregar a página
+// Carrega a tabela ao carregar a página
 document.addEventListener('DOMContentLoaded', function() {
-    carregarUltimoVoto();
+    inicializarTabela();
 });
-
-    </script>
+   </script>
 </body>
 </html>
