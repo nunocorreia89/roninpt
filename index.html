@@ -74,22 +74,22 @@
             color: #cba135;
             text-decoration: none;
         }
-        /* Estilo do formulário de contato */
-        #contato form {
+        /* Estilo do formulário de captações */
+        #captacoes form {
             background-color: #000000;
             padding: 1rem;
             border-radius: 10px;
             margin-top: 1rem;
             text-align: center;
         }
-        #contato form label {
+        #captacoes form label {
             display: block;
             margin-bottom: 0.5rem;
             color: #cba135;
         }
-        #contato form input[type="text"],
-        #contato form input[type="email"],
-        #contato form textarea {
+        #captacoes form input[type="text"],
+        #captacoes form input[type="email"],
+        #captacoes form textarea {
             width: 100%;
             max-width: 400px; /* Define a largura máxima */
             padding: 0.5rem;
@@ -102,11 +102,11 @@
             outline: none;
             display: block;
         }
-        #contato form textarea {
+        #captacoes form textarea {
             resize: vertical;
             min-height: 100px;
         }
-        #contato form button,
+        #captacoes form button,
         #play-music-button {
             background-color: #cba135;
             color: #000000;
@@ -117,7 +117,7 @@
             border-radius: 5px;
             transition: background-color 0.3s ease;
         }
-        #contato form button:hover,
+        #captacoes form button:hover,
         #play-music-button:hover {
             background-color: #b99010;
         }
@@ -159,7 +159,7 @@
                 <li><a href="#sobre">Sobre Nós</a></li>
                 <li><a href="#jogadores">Jogadores</a></li>
                 <li><a href="#competicoes">Competições</a></li>
-                <li><a href="#contato">Contato</a></li>
+                <li><a href="#captacoes">Captações</a></li> <!-- Alterado para "Captações" -->
             </ul>
         </nav>
     </header>
@@ -198,23 +198,22 @@
             <li>NG League - <a href="https://www.ngleague.com" style="color: white;">https://discord.gg/BsXBCTGX</a></li>
         </ul>
     </section>
-    <section id="contato">
-        <h2>Contato</h2>
-      <form name="contact" method="POST" data-netlify="true">
-    <input type="hidden" name="form-name" value="contact"> <!-- Hidden field required by Netlify to identify the form -->
+    <section id="captacoes"> <!-- Alterado para "Captações" -->
+        <h2>Captações</h2>
+        <form name="captacoes" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="captacoes"> <!-- Hidden field required by Netlify to identify the form -->
 
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required>
+            <label for="id">ID:</label> <!-- Alterado para "ID" -->
+            <input type="text" id="id" name="id" required>
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
+            <label for="platform">Plataforma:</label> <!-- Alterado para "Plataforma" -->
+            <input type="text" id="platform" name="platform" required>
 
-    <label for="message">Message:</label>
-    <textarea id="message" name="message" required></textarea>
+            <label for="positions">Posições:</label> <!-- Alterado para "Posições" -->
+            <textarea id="positions" name="positions" required></textarea>
 
-    <button type="submit">Submit</button>
-</form>
-
+            <button type="submit">Enviar</button>
+        </form>
     </section>
     <footer>
         <p>Siga-nos nas redes sociais:</p>
