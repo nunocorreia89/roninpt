@@ -219,57 +219,31 @@
             <textarea id="positions" name="positions" required></textarea>
             <button type="submit">Enviar</button>
         </form>
+    </section>
+    <section id="login">
+        <h2>Login</h2>
+        <form name="login" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="login">
+            <label for="username">Usuário:</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Entrar</button>
+        </form>
+    </section>
     <section id="presenca">
     <h2>Votação de Presença</h2>
-    <table id="presenca-table">
-        <thead>
-            <tr>
-                <th>Data</th>
-                <th>Voto</th>
-                <th>Quantidade de Votos</th>
-                <th>Quem Votou</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Os dias da semana serão preenchidos dinamicamente aqui -->
-        </tbody>
-    </table>
     <form id="presenca-form">
-        <label>Selecione sua presença hoje:</label>
-        <div id="voto-options">
-            <label>
-                <input type="radio" name="voto" value="sim">
-                <span class="bullet"></span>
-                Sim
-            </label>
-            <label>
-                <input type="radio" name="voto" value="nao">
-                <span class="bullet"></span>
-                Não
-            </label>
-            <label>
-                <input type="radio" name="voto" value="atrasado">
-                <span class="bullet"></span>
-                Atrasado
-            </label>
-        </div>
+        <label for="voto">Você está presente hoje?</label>
+        <select id="voto" name="voto">
+            <option value="sim">Sim</option>
+            <option value="nao">Não</option>
+            <option value="atrasado">Atrasado</option>
+        </select>
         <button type="submit">Votar</button>
     </form>
-    <div id="confirmacao-voto">
-        <p id="nome-quem-votou"></p>
-        <p id="voto-quem-votou"></p>
-    </div>
-    <div id="total-votos">
-        <h3>Total de Votos:</h3>
-        <p id="total-sim">Sim: 0</p>
-        <p id="total-nao">Não: 0</p>
-        <p id="total-atrasado">Atrasado: 0</p>
-    </div>
     <button id="reset-votacao">Resetar Votação</button>
 </section>
-
-
-
     <footer>
         <p>Siga-nos nas redes sociais:</p>
         <ul>
@@ -311,151 +285,44 @@
                 }
             });
         });
-    // Lista dos dias da semana
-const diasDaSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado'];
+       // Função para salvar o voto no localStorage
+function salvarVoto(voto) {
+    // Usamos a data de hoje para identificar a votação atual
+    var hoje = new Date().toLocaleDateString('pt-BR');
+    var presencas = JSON.parse(localStorage.getItem('presencas')) || {};
 
-// Função para inicializar a tabela com os dias da semana
-function inicializarTabela() {
-    const tableBody = document.querySelector('#presenca-table tbody');
-    
-    // Limpa o conteúdo atual da tabela
-    tableBody.innerHTML = '';
+    if (!presencas[hoje]) {
+        presencas[hoje] = {};
+    }
 
-    // Cria uma linha para cada dia da semana
-    diasDaSemana.forEach((dia, index) => {
-        const row = document.createElement('tr');
-        const dateCell = document.createElement('td');
-        dateCell.textContent = `${dia}`;
-        row.appendChild(dateCell);
-
-        const voteCell = document.createElement('td');
-        const voteOptions = document.createElement('div');
-        voteOptions.classList.add('vote-options');
-
-        ['sim', 'nao', 'atrasado'].forEach(opcao => {
-            const label = document.createElement('label');
-            label.addEventListener('click', function() {
-                const isChecked = this.querySelector('input[type="radio"]').checked;
-                if (!isChecked) {
-                    limparSelecoes();
-                    this.querySelector('input[type="radio"]').checked = true;
-                }
-            });
-            const radio = document.createElement('input');
-            radio.type = 'radio';
-            radio.name = `voto-${index}`;
-            radio.value = opcao;
-            label.appendChild(radio);
-            const bullet = document.createElement('span');
-            bullet.classList.add('bullet');
-            label.appendChild(bullet);
-            label.appendChild(document.createTextNode(opcao.charAt(0).toUpperCase() + opcao.slice(1)));
-            voteOptions.appendChild(label);
-        });
-
-        voteCell.appendChild(voteOptions);
-        row.appendChild(voteCell);
-
-        const votosCountCell = document.createElement('td');
-        votosCountCell.id = `votos-count-${index}`;
-        votosCountCell.textContent = '0';
-        row.appendChild(votosCountCell);
-
-        const whoVotedCell = document.createElement('td');
-        whoVotedCell.id = `quem-votou-${index}`;
-        whoVotedCell.textContent = 'Ninguém votou ainda';
-        row.appendChild(whoVotedCell);
-
-        tableBody.appendChild(row);
-    });
-
-    // Carrega os votos e quem votou ao iniciar
-    carregarVotos();
-}
-
-// Função para salvar o voto no localStorage
-function salvarVoto(index, voto) {
-    const presencas = JSON.parse(localStorage.getItem('presencas')) || {};
-
-    presencas[index] = {
-        voto: voto,
-        quemVotou: localStorage.getItem('nomeVotante') || 'Ninguém votou ainda'
-    };
-
+    // Atualiza o voto para hoje
+    presencas[hoje].voto = voto;
     localStorage.setItem('presencas', JSON.stringify(presencas));
 }
 
-// Função para contar e exibir os votos totais
-function contarVotosTotais() {
-    const presencas = JSON.parse(localStorage.getItem('presencas')) || {};
-    const totalSim = Object.values(presencas).filter(item => item.voto === 'sim').length;
-    const totalNao = Object.values(presencas).filter(item => item.voto === 'nao').length;
-    const totalAtrasado = Object.values(presencas).filter(item => item.voto === 'atrasado').length;
+// Função para carregar o último voto salvo
+function carregarUltimoVoto() {
+    var hoje = new Date().toLocaleDateString('pt-BR');
+    var presencas = JSON.parse(localStorage.getItem('presencas')) || {};
 
-    document.getElementById('total-sim').textContent = `Sim: ${totalSim}`;
-    document.getElementById('total-nao').textContent = `Não: ${totalNao}`;
-    document.getElementById('total-atrasado').textContent = `Atrasado: ${totalAtrasado}`;
-}
-
-// Função para carregar os votos e quem votou
-function carregarVotos() {
-    const presencas = JSON.parse(localStorage.getItem('presencas')) || {};
-
-    Object.keys(presencas).forEach(index => {
-        const { voto, quemVotou } = presencas[index];
-        const radio = document.querySelector(`input[name="voto-${index}"][value="${voto}"]`);
-        if (radio) {
-            radio.checked = true;
-        }
-        document.querySelector(`#quem-votou-${index}`).textContent = quemVotou;
-        contarVotosTotais(); // Atualiza a contagem de votos totais ao carregar os votos
-        atualizarContagemPorDia(index, voto); // Atualiza a contagem por dia
-    });
-}
-
-// Função para limpar todas as seleções de voto
-function limparSelecoes() {
-    const radios = document.querySelectorAll('input[type="radio"]');
-    radios.forEach(radio => {
-        radio.checked = false;
-    });
+    if (presencas[hoje] && presencas[hoje].voto) {
+        var voto = presencas[hoje].voto;
+        document.getElementById('voto').value = voto;
+    }
 }
 
 // Função para resetar a votação (apaga todos os votos salvos)
 function resetarVotacao() {
     localStorage.removeItem('presencas');
-    inicializarTabela();
-    contarVotosTotais(); // Zera a contagem de votos totais ao resetar
     alert('Votação resetada com sucesso!');
-}
-
-// Função para atualizar a contagem de votos por dia
-function atualizarContagemPorDia(index, voto) {
-    const votosCountCell = document.getElementById(`votos-count-${index}`);
-    const presencas = JSON.parse(localStorage.getItem('presencas')) || {};
-    const votosDia = Object.values(presencas).filter(item => item.voto === voto && item.quemVotou !== 'Ninguém votou ainda').length;
-    votosCountCell.textContent = votosDia.toString();
 }
 
 // Event listener para o formulário de votação
 document.getElementById('presenca-form').addEventListener('submit', function(event) {
     event.preventDefault();
-    const radios = document.querySelectorAll('input[name^="voto-"]');
-    let selectedValue = '';
-    radios.forEach(radio => {
-        if (radio.checked) {
-            selectedValue = radio.value;
-        }
-    });
-    const diaAtual = new Date().getDay(); // Obtém o índice do dia atual (0 para Domingo, 1 para Segunda, etc.)
-    const nomeVotante = prompt('Por favor, digite seu nome para confirmar o voto:');
-    localStorage.setItem('nomeVotante', nomeVotante); // Armazena o nome do votante no localStorage
-    salvarVoto(diaAtual, selectedValue);
-    carregarVotos();
-    limparSelecoes();
-    document.getElementById('nome-quem-votou').textContent = `Nome: ${nomeVotante}`;
-    document.getElementById('voto-quem-votou').textContent = `Voto: ${selectedValue}`;
-    document.getElementById('confirmacao-voto').style.display = 'block'; // Mostra a confirmação do voto
+    var voto = document.getElementById('voto').value;
+    salvarVoto(voto);
+    alert('Voto registrado com sucesso!');
 });
 
 // Event listener para o botão de reset
@@ -463,160 +330,11 @@ document.getElementById('reset-votacao').addEventListener('click', function() {
     resetarVotacao();
 });
 
-// Carrega a tabela ao carregar a página
+// Carrega o último voto salvo ao carregar a página
 document.addEventListener('DOMContentLoaded', function() {
-    inicializarTabela();
+    carregarUltimoVoto();
 });
 
-// Função para inicializar a tabela com os dias da semana
-function inicializarTabela() {
-    const tableBody = document.querySelector('#presenca-table tbody');
-    
-    // Limpa o conteúdo atual da tabela
-    tableBody.innerHTML = '';
-
-    // Cria uma linha para cada dia da semana
-    diasDaSemana.forEach((dia, index) => {
-        const row = document.createElement('tr');
-        const dateCell = document.createElement('td');
-        dateCell.textContent = `${dia}`;
-        row.appendChild(dateCell);
-
-        const voteCell = document.createElement('td');
-        const voteOptions = document.createElement('div');
-        voteOptions.classList.add('vote-options');
-
-        ['sim', 'nao', 'atrasado'].forEach(opcao => {
-            const label = document.createElement('label');
-            label.addEventListener('click', function() {
-                const isChecked = this.querySelector('input[type="radio"]').checked;
-                if (!isChecked) {
-                    limparSelecoes();
-                    this.querySelector('input[type="radio"]').checked = true;
-                }
-            });
-            const radio = document.createElement('input');
-            radio.type = 'radio';
-            radio.name = `voto-${index}`;
-            radio.value = opcao;
-            label.appendChild(radio);
-            const bullet = document.createElement('span');
-            bullet.classList.add('bullet');
-            label.appendChild(bullet);
-            label.appendChild(document.createTextNode(opcao.charAt(0).toUpperCase() + opcao.slice(1)));
-            voteOptions.appendChild(label);
-        });
-
-        voteCell.appendChild(voteOptions);
-        row.appendChild(voteCell);
-
-        const votosCountCell = document.createElement('td');
-        votosCountCell.id = `votos-count-${index}`;
-        votosCountCell.textContent = '0';
-        row.appendChild(votosCountCell);
-
-        const whoVotedCell = document.createElement('td');
-        whoVotedCell.id = `quem-votou-${index}`;
-        whoVotedCell.textContent = 'Ninguém votou ainda';
-        row.appendChild(whoVotedCell);
-
-        tableBody.appendChild(row);
-    });
-
-    // Carrega os votos e quem votou ao iniciar
-    carregarVotos();
-}
-
-// Função para salvar o voto no localStorage
-function salvarVoto(index, voto) {
-    const presencas = JSON.parse(localStorage.getItem('presencas')) || {};
-
-    presencas[index] = {
-        voto: voto,
-        quemVotou: localStorage.getItem('nomeVotante') || 'Ninguém votou ainda'
-    };
-
-    localStorage.setItem('presencas', JSON.stringify(presencas));
-}
-
-// Função para contar e exibir os votos totais
-function contarVotosTotais() {
-    const presencas = JSON.parse(localStorage.getItem('presencas')) || {};
-    const totalSim = Object.values(presencas).filter(item => item.voto === 'sim').length;
-    const totalNao = Object.values(presencas).filter(item => item.voto === 'nao').length;
-    const totalAtrasado = Object.values(presencas).filter(item => item.voto === 'atrasado').length;
-
-    document.getElementById('total-sim').textContent = `Sim: ${totalSim}`;
-    document.getElementById('total-nao').textContent = `Não: ${totalNao}`;
-    document.getElementById('total-atrasado').textContent = `Atrasado: ${totalAtrasado}`;
-}
-
-// Função para carregar os votos e quem votou
-function carregarVotos() {
-    const presencas = JSON.parse(localStorage.getItem('presencas')) || {};
-
-    Object.keys(presencas).forEach(index => {
-        const { voto, quemVotou } = presencas[index];
-        const radio = document.querySelector(`input[name="voto-${index}"][value="${voto}"]`);
-        if (radio) {
-            radio.checked = true;
-        }
-        document.querySelector(`#quem-votou-${index}`).textContent = quemVotou;
-        contarVotosTotais(); // Atualiza a contagem de votos totais ao carregar os votos
-        atualizarContagemPorDia(index, voto); // Atualiza a contagem por dia
-    });
-}
-
-// Função para limpar todas as seleções de voto
-function limparSelecoes() {
-    const radios = document.querySelectorAll('input[type="radio"]');
-    radios.forEach(radio => {
-        radio.checked = false;
-    });
-}
-
-// Função para resetar a votação (apaga todos os votos salvos)
-function resetarVotacao() {
-    localStorage.removeItem('presencas');
-    inicializarTabela();
-    contarVotosTotais(); // Zera a contagem de votos totais ao resetar
-    alert('Votação resetada com sucesso!');
-}
-
-// Função para atualizar a contagem de votos por dia
-function atualizarContagemPorDia(index, voto) {
-    const votosCountCell = document.getElementById(`votos-count-${index}`);
-    const presencas = JSON.parse(localStorage.getItem('presencas')) || {};
-    const votosDia = Object.values(presencas).filter(item => item.voto === voto && item.quemVotou !== 'Ninguém votou ainda').length;
-    votosCountCell.textContent = votosDia.toString();
-}
-
-// Event listener para o formulário de votação
-document.getElementById('presenca-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const radios = document.querySelectorAll('input[name^="voto-"]');
-    let selectedValue = '';
-    radios.forEach(radio => {
-        if (radio.checked) {
-            selectedValue = radio.value;
-        }
-    });
-    const diaAtual = new Date().getDay(); // Obtém o índice do dia atual (0 para Domingo, 1 para Segunda, etc.)
-    const nomeVotante = prompt('Por favor, digite seu nome para confirmar o voto:');
-    localStorage.setItem('nomeVotante', nomeVotante); // Armazena o nome do votante no localStorage
-    salvarVoto(diaAtual, selectedValue);
-    carregarVotos();
-    limparSelecoes();
-    document.getElementById('nome-quem-votou').textContent = `Nome: ${nomeVotante}`;
-    document.getElementById('voto-quem-votou').textContent = `Voto: ${selectedValue}`;
-    document.getElementById('confirmacao-voto').style.display = 'block'; // Mostra a confirmação do voto
-});
-
-// Event listener para o botão de reset
-document.getElementById('reset-votacao').addEventListener('click', function() {
-    resetarVotacao();
-});
-
-   </script>
+    </script>
 </body>
 </html>
