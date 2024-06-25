@@ -441,6 +441,21 @@ function submitPresenca(event) {
         alert('Este jogador já está na lista de presença.');
     }
 }
+    
+// Função para verificar e resetar a votação de presença todos os sábados à meia-noite
+function resetPresencaSemana() {
+    var hoje = new Date();
+    var diaSemana = hoje.getDay(); // 0 para domingo, 1 para segunda, ..., 6 para sábado
+
+    // Se hoje for sábado (6) e ainda não passou da meia-noite, agendar o reset
+    if (diaSemana === 6 && hoje.getHours() === 0 && hoje.getMinutes() === 0 && hoje.getSeconds() === 0) {
+        var tabela = document.getElementById('tabela-presenca').getElementsByTagName('tbody')[0];
+        tabela.innerHTML = ''; // Limpa todas as linhas da tabela de presença
+    }
+}
+
+// Chama a função de reset uma vez por minuto para verificar se é hora de resetar
+setInterval(resetPresencaSemana, 60000); // A cada 1 minuto (60000 milissegundos)
 
     </script>
 </body>
