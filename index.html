@@ -267,9 +267,12 @@
 
             <button type="submit">Enviar</button>
         </form>
-    <section id="presenca">
+   <section id="presenca">
     <h2>Presença</h2>
     <form id="presenca-form" onsubmit="submitPresenca(event)">
+        <label for="access-code">Código de Acesso:</label>
+        <input type="password" id="access-code" name="access-code" required>
+
         <label for="player-name">Nome do Jogador:</label>
         <input type="text" id="player-name" name="player-name" required>
 
@@ -344,6 +347,7 @@
         </tbody>
     </table>
 </section>
+
 
     <footer>
         <p>Siga-nos nas redes sociais:</p>
