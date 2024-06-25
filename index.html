@@ -74,16 +74,15 @@
             color: #cba135;
             text-decoration: none;
         }
-        /* Estilo do formulário de captações e login */
+        /* Estilo do formulário de contato e login */
         form {
-            background-color: #000000;
+            background-color: #222222;
             padding: 1rem;
             border-radius: 10px;
             margin-top: 1rem;
             text-align: center;
-            max-width: 400px; /* Define a largura máxima */
-            margin-left: auto; /* Centraliza os campos */
-            margin-right: auto; /* Centraliza os campos */
+            max-width: 400px;
+            margin: 0 auto;
         }
         form label {
             display: block;
@@ -91,20 +90,20 @@
             color: #cba135;
         }
         form input[type="text"],
-        form input[type="email"],
         form input[type="password"],
         form textarea,
         form select {
-            width: 100%;
+            width: calc(100% - 20px);
             padding: 0.5rem;
-            margin: 0 auto 1rem auto; /* Centraliza os campos */
+            margin-bottom: 1rem;
             border: 2px solid #cba135;
             border-radius: 5px;
             font-size: 1rem;
             color: #cba135;
-            background-color: #222222;
+            background-color: #333333;
             outline: none;
             display: block;
+            box-sizing: border-box;
         }
         form textarea {
             resize: vertical;
@@ -144,12 +143,12 @@
             position: fixed;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) scale(1.2); /* Reduzido mais um pouco a altura do zoom */
+            transform: translate(-50%, -50%) scale(1.2);
             z-index: 1000;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            max-width: 90vw; /* Limita a largura máxima à largura da viewport */
-            max-height: 90vh; /* Limita a altura máxima à altura da viewport */
-            object-fit: contain; /* Mantém proporções da imagem */
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
         }
     </style>
 </head>
@@ -161,8 +160,8 @@
                 <li><a href="#sobre">Sobre Nós</a></li>
                 <li><a href="#jogadores">Jogadores</a></li>
                 <li><a href="#competicoes">Competições</a></li>
-                <li><a href="#contato">Captações</a></li>
-                <li><a href="#login">Login</a></li>
+                <li><a href="#captacoes">Captações</a></li>
+                <li><a href="#login">Login</a></li> <!-- Adicionado link para login -->
             </ul>
         </nav>
     </header>
@@ -173,7 +172,9 @@
     <section id="banner">
         <img src="logo.png" alt="Logo RONIN PT" style="max-width: 200px;">
         <p>Onde a honra e a vitória se encontram</p>
-        <button id="play-music-button" onclick="playMusic()">Ouve a nossa claque uma vez</button>
+        <button id="play-music-button" onclick="playMusic()" style="background-color: #cba135; color: #000000; border: none; padding: 0.75rem 1.5rem; font-size: 1rem; cursor: pointer; border-radius: 5px; transition: background-color 0.3s ease;">
+            Ouve a nossa claque uma vez
+        </button>
     </section>
     <section id="sobre">
         <h2>Sobre Nós</h2>
@@ -188,7 +189,7 @@
         <div class="players-grid">
             <div class="player">
                 <img src="KOR.jpg" alt="Jogador 1" id="player1">
-                <h3>Jogador 1</h3>
+                <h3>KOR</h3>
                 <p>Especialidade: Distribuidor de jogo</p>
             </div>
             <!-- Adicione os outros jogadores aqui -->
@@ -198,17 +199,18 @@
         <h2>Competições</h2>
         <ul>
             <li>VPL - <a href="https://www.virtualproleague.com" style="color: white;">https://www.virtualproleague.com/portal/en/welcome</a></li>
-            <li>NG League - <a href="https://www.ngleague.com" style="color: white;">https://discord.gg/BsXBCTGX</a></li>
+            <li>NG League - <a href="https://www.instagram.com/league_nova_geracao" style="color: white;">https://www.instagram.com/league_nova_geracao?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==</a></li>
         </ul>
     </section>
-    <section id="contato">
+    <section id="captacoes">
         <h2>Captações</h2>
-        <form name="contact" method="POST" data-netlify="true">
-            <input type="hidden" name="form-name" value="contact"> <!-- Hidden field required by Netlify para identificar o formulário -->
+        <form name="captacoes" method="POST" data-netlify="true">
+            <input type="hidden" name="form-name" value="captacoes">
             <label for="id">ID:</label>
             <input type="text" id="id" name="id" required>
             <label for="platform">Plataforma:</label>
             <select id="platform" name="platform" required>
+                <option value="">Selecione uma plataforma</option>
                 <option value="PS5">PS5</option>
                 <option value="Xbox">Xbox</option>
                 <option value="PC">PC</option>
@@ -221,7 +223,7 @@
     <section id="login">
         <h2>Login</h2>
         <form name="login" method="POST" data-netlify="true">
-            <input type="hidden" name="form-name" value="login"> <!-- Hidden field required by Netlify para identificar o formulário -->
+            <input type="hidden" name="form-name" value="login">
             <label for="username">Usuário:</label>
             <input type="text" id="username" name="username" required>
             <label for="password">Senha:</label>
@@ -241,14 +243,11 @@
         function playMusic() {
             var audio = document.getElementById('background-music');
             audio.play();
-
-            // Inicia o fade-out quando a música estiver próxima do fim
             audio.addEventListener('timeupdate', function() {
-                var fadePoint = audio.duration - 5; // Inicia o fade-out 5 segundos antes do fim
+                var fadePoint = audio.duration - 5;
                 if (audio.currentTime >= fadePoint) {
-                    var fadeDuration = 5; // Duração do fade-out em segundos
-                    var volumeInterval = audio.volume / (fadeDuration * 10); // Reduz o volume em pequenos intervalos
-
+                    var fadeDuration = 5;
+                    var volumeInterval = audio.volume / (fadeDuration * 10);
                     var fadeAudio = setInterval(function() {
                         if (audio.volume > volumeInterval) {
                             audio.volume -= volumeInterval;
@@ -256,19 +255,16 @@
                             audio.volume = 0;
                             clearInterval(fadeAudio);
                         }
-                    }, 100); // Reduz o volume a cada 100ms
+                    }, 100);
                 }
             });
         }
-
-        // JavaScript para alternar a classe 'zoomed' ao clicar nas imagens dos jogadores
         var playerImages = document.querySelectorAll('.player img');
         playerImages.forEach(function(image) {
             image.addEventListener('click', function() {
                 if (this.classList.contains('zoomed')) {
                     this.classList.remove('zoomed');
                 } else {
-                    // Remove a classe 'zoomed' de todas as outras imagens
                     playerImages.forEach(function(img) {
                         img.classList.remove('zoomed');
                     });
