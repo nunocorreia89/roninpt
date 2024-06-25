@@ -154,12 +154,45 @@
             position: fixed;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) scale(1); /* Remove escala adicional */
+            transform: translate(-50%, -50%) scale(1.2); /* Reduzido mais um pouco a altura do zoom */
             z-index: 1000;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             max-width: 90vw; /* Limita a largura máxima à largura da viewport */
             max-height: 90vh; /* Limita a altura máxima à altura da viewport */
             object-fit: contain; /* Mantém proporções da imagem */
+        }
+
+        /* Estilo para a seção de presença */
+        #presenca {
+            background-color: #222222;
+            padding: 2rem;
+            margin: 1rem 0;
+            border-radius: 10px;
+            color: #cba135;
+        }
+        #presenca form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #presenca form label {
+            margin-bottom: 0.5rem;
+        }
+        #presenca form input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        #presenca table {
+            width: 100%;
+            margin-top: 1rem;
+            border-collapse: collapse;
+        }
+        #presenca table th, #presenca table td {
+            border: 1px solid #cba135;
+            padding: 0.5rem;
+            text-align: center;
+        }
+        #presenca table th {
+            background-color: #333333;
         }
     </style>
 </head>
@@ -172,6 +205,7 @@
                 <li><a href="#jogadores">Jogadores</a></li>
                 <li><a href="#competicoes">Competições</a></li>
                 <li><a href="#captacoes">Captações</a></li> <!-- Alterado de "Contato" para "Captações" -->
+                <li><a href="#presenca">Presença</a></li>
             </ul>
         </nav>
     </header>
@@ -199,7 +233,7 @@
         <div class="players-grid">
             <div class="player">
                 <img src="KOR.jpg" alt="Jogador 1" id="player1">
-                <h3>KOR</h3>
+                <h3>Jogador 1</h3>
                 <p>Especialidade: Distribuidor de jogo</p>
             </div>
             <!-- Adicione os outros jogadores aqui -->
@@ -209,16 +243,13 @@
         <h2>Competições</h2>
         <ul>
             <li>VPL - <a href="https://www.virtualproleague.com" style="color: white;">https://www.virtualproleague.com/portal/en/welcome</a></li>
-            <li>NG League - <a href="https://www.instagram.com/league_nova_geracao" style="color: white;">https://www.instagram.com/league_nova_geracao</a></li>
-            <li>LIGA TFA - <a href="https://www.instagram.com/tfa_liga" style="color: white;">https://www.instagram.com/tfa_liga</a></li>
-            <li>PRO CLUB PORTUGAL - <a href="https://www.instagram.com/proclubportugal/" style="color: white;">https://www.instagram.com/proclubportugal/</a></li>
-            <li>AF PORTUGAL - <a href="https://www.instagram.com/af_portugal/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" style="color: white;">https://www.instagram.com/af_portugal/?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==</a></li>
+            <li>NG League - <a href="https://www.instagram.com/league_nova_geracao" style="color: white;">https://www.instagram.com/league_nova_geracao?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==</a></li>
         </ul>
     </section>
     <section id="captacoes"> <!-- Alterado para "Captações" -->
         <h2>Captações</h2>
         <form name="captacoes" method="POST" data-netlify="true">
-            <input type="hidden" name="form-name" value="captacoes"> <!-- Hidden field required by Netlify para identificar o formulário -->
+            <input type="hidden" name="form-name" value="captacoes"> <!-- Hidden field required by Netlify to identify the form -->
 
             <label for="id">ID:</label> <!-- Alterado para "ID" -->
             <input type="text" id="id" name="id" required>
@@ -236,6 +267,39 @@
 
             <button type="submit">Enviar</button>
         </form>
+    </section>
+    <section id="presenca">
+        <h2>Presença</h2>
+        <form id="presenca-form" onsubmit="submitPresenca(event)">
+            <label for="player-name">Nome do Jogador:</label>
+            <input type="text" id="player-name" name="player-name" required>
+
+            <label>Dias Disponíveis:</label>
+            <label><input type="checkbox" name="dias" value="domingo"> Domingo</label>
+            <label><input type="checkbox" name="dias" value="segunda"> Segunda</label>
+            <label><input type="checkbox" name="dias" value="terça"> Terça</label>
+            <label><input type="checkbox" name="dias" value="quarta"> Quarta</label>
+            <label><input type="checkbox" name="dias" value="quinta"> Quinta</label>
+
+            <button type="submit">Confirmar Presença</button>
+        </form>
+
+        <h3>Presenças Confirmadas</h3>
+        <table id="tabela-presenca">
+            <thead>
+                <tr>
+                    <th>Jogador</th>
+                    <th>Domingo</th>
+                    <th>Segunda</th>
+                    <th>Terça</th>
+                    <th>Quarta</th>
+                    <th>Quinta</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- As presenças serão adicionadas aqui -->
+            </tbody>
+        </table>
     </section>
     <footer>
         <p>Siga-nos nas redes sociais:</p>
@@ -284,6 +348,31 @@
                 }
             });
         });
+
+        // JavaScript para gerenciar a presença dos jogadores
+        function submitPresenca(event) {
+            event.preventDefault();
+
+            var form = document.getElementById('presenca-form');
+            var playerName = form['player-name'].value;
+            var dias = form.querySelectorAll('input[name="dias"]:checked');
+            var diasDisponiveis = Array.from(dias).map(function(dia) {
+                return dia.value;
+            });
+
+            var tabela = document.getElementById('tabela-presenca').getElementsByTagName('tbody')[0];
+            var novaLinha = tabela.insertRow();
+
+            var celulaNome = novaLinha.insertCell(0);
+            celulaNome.textContent = playerName;
+
+            ['domingo', 'segunda', 'terça', 'quarta', 'quinta'].forEach(function(dia) {
+                var celula = novaLinha.insertCell();
+                celula.textContent = diasDisponiveis.includes(dia) ? '✓' : '';
+            });
+
+            form.reset();
+        }
     </script>
 </body>
 </html>
