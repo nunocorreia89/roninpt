@@ -272,6 +272,30 @@
     <form id="presenca-form" onsubmit="submitPresenca(event)">
         <label for="player-name">Nome do Jogador:</label>
         <input type="text" id="player-name" name="player-name" required>
+// Dentro da função submitPresenca(event), após a verificação de jogadorExistente
+
+// Criação do botão de edição
+var botaoEditar = document.createElement('button');
+botaoEditar.textContent = 'Editar';
+botaoEditar.classList.add('editar-button');
+botaoEditar.addEventListener('click', function() {
+    // Preencher o formulário com os dados da linha selecionada
+    form['player-name'].value = playerName;
+    diasSemana.forEach(function(dia) {
+        var status = presencaPorDia[dia];
+        var radio = form.querySelector('input[name="' + dia + '"][value="' + status + '"]');
+        if (radio) {
+            radio.checked = true;
+        }
+    });
+
+    // Remover a linha da tabela após a edição
+    tabela.removeChild(novaLinha);
+});
+
+// Adiciona o botão de edição à nova linha da tabela
+novaLinha.appendChild(botaoEditar);
+
 
         <table>
             <thead>
